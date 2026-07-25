@@ -1,1355 +1,352 @@
-```react
-'use client';
+```html
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>منصة 𝑴𝑶𝑼𝑺𝑨 الاحترافية للقواعد الإنجليزية</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Cairo', 'Inter', sans-serif; transition: background 0.3s ease, color 0.3s ease; }
+    .glass-dark { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); }
+    .glass-light { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(0, 0, 0, 0.08); }
+    .scrollbar-none::-webkit-scrollbar { display: none; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-purple-500 selection:text-white" id="bodyTheme">
 
-import React, { useState, useEffect, useMemo } from 'react';
-import { 
-  Compass, Search, BookOpen, Bookmark, Award, Settings, Sun, Moon, Globe, 
-  ChevronRight, ChevronDown, CheckCircle2, XCircle, Volume2, RotateCcw, 
-  Sparkles, Share2, Printer, Download, Heart, Play, HelpCircle, ArrowLeft,
-  Check, Filter, Star, Zap, ShieldAlert, FileText, Layout, Layers, UserCheck
-} from 'lucide-react';
-
-// قاعدة بيانات الـ 25 كلمة وقواعدها الإنجليزية والعربية
-const topicsData = [
-  {
-    id: 'at',
-    title: 'AT',
-    category: 'Prepositions of Time & Place',
-    color: 'from-purple-500 to-indigo-600',
-    icon: '🧭',
-    definition: {
-      en: 'Used to point out specific times, exact locations, or specific points.',
-      ar: 'يُستخدم للإشارة إلى أوقات محددة، أو أماكن دقيقة، أو نقاط معينة.'
-    },
-    whenToUse: {
-      en: 'Specific times (clock times), exact addresses/locations, festivals, and specific points.',
-      ar: 'الأوقات المحددة (ساعات)، والعناوين/الأماكن الدقيقة، والمهرجانات، والنقط المحددة.'
-    },
-    rules: [
-      { en: 'Use AT for precise times (at 5:00 PM, at midnight, at noon)', ar: 'استخدم AT للأوقات الدقيقة (الساعة 5، منتصف الليل، الظهر)' },
-      { en: 'Use AT for specific locations (at the door, at the bus stop, at home)', ar: 'استخدم AT للأماكن المحددة (عند الباب، في محطة الحافلات، في البيت)' }
-    ],
-    timeline: ['at 6:00 AM', 'at noon', 'at 7:30 PM', 'at midnight'],
-    commonMistakes: [
-      { wrong: 'I am at home in Cairo.', correct: 'I am at home / in Cairo.', explanation: 'Use "at" for specific point (home), "in" for cities/countries.' }
-    ],
-    examples: [
-      { en: 'She arrived at the airport at 3 PM.', ar: 'وصلت إلى المطار الساعة 3 مساءً.', explanation: 'Specific time and precise location.' }
-    ],
-    quiz: [
-      { question: 'Choose the correct preposition: "My flight departs ___ 6:30 AM."', options: ['in', 'on', 'at', 'by'], answer: 2, explanation: 'Clock times always use "at".' }
-    ],
-    dailyUsage: 'I wake up at 7 AM every day to start my English practice.',
-    businessUsage: 'The meeting is scheduled at 10:00 AM sharp.',
-    academicUsage: 'The experiment begins precisely at 00:00 hours.'
-  },
-  {
-    id: 'in',
-    title: 'IN',
-    category: 'Prepositions of Time & Place',
-    color: 'from-cyan-500 to-blue-600',
-    icon: '📦',
-    definition: {
-      en: 'Used for unspecific times during a day, month, season, year, and enclosed spaces.',
-      ar: 'يُستخدم للأوقات غير المحددة خلال اليوم، الشهر، الفصل، السنة، والأماكن المغلقة.'
-    },
-    whenToUse: {
-      en: 'Months, years, centuries, long periods, and inside enclosed spaces.',
-      ar: 'الشهور، السنوات، الفصول، والمساحات المغلقة.'
-    },
-    rules: [
-      { en: 'Months, years, seasons (in January, in 2026, in summer)', ar: 'الشهور، السنوات، الفصول (في يناير، في 2026، في الصيف)' },
-      { en: 'Cities, countries (in Paris, in Dubai, in Japan)', ar: 'المدن والدول (في باريس، في دبي، في اليابان)' }
-    ],
-    timeline: ['Morning', 'Afternoon', '2026', 'Century'],
-    commonMistakes: [
-      { wrong: 'She was born in Monday.', correct: 'She was born on Monday.', explanation: 'Days require "on".' }
-    ],
-    examples: [
-      { en: 'Mousa is studying English in Dubai.', ar: 'موسى يدرس اللغة الإنجليزية في دبي.', explanation: 'Cities and countries use "in".' }
-    ],
-    quiz: [
-      { question: 'Fill in the blank: "We love traveling ___ summer."', options: ['at', 'in', 'on', 'by'], answer: 1, explanation: 'Seasons take "in".' }
-    ],
-    dailyUsage: 'I like reading books in the morning.',
-    businessUsage: 'Our company was founded in London in 2010.',
-    academicUsage: 'Significant discoveries were made in the 19th century.'
-  },
-  {
-    id: 'on',
-    title: 'ON',
-    category: 'Prepositions of Time & Place',
-    color: 'from-emerald-500 to-teal-600',
-    icon: '📍',
-    definition: {
-      en: 'Used for days of the week, dates, surfaces, and electronic media.',
-      ar: 'يُستخدم لأيام الأسبوع، التواريخ، الأسطح، وسائل الإعلام الإلكترونية.'
-    },
-    whenToUse: {
-      en: 'Days, dates, surfaces, and public transport.',
-      ar: 'الأيام، التواريخ، الأسطح، ووسائل النقل العام.'
-    },
-    rules: [
-      { en: 'Days of the week (on Sunday, on Friday)', ar: 'أيام الأسبوع (يوم الأحد، يوم الجمعة)' },
-      { en: 'Surfaces & devices (on the desk, on my phone)', ar: 'الأسطح والأجهزة (على المكتب، على هاتفي)' }
-    ],
-    timeline: ['Sunday', 'Monday', 'Tuesday'],
-    commonMistakes: [
-      { wrong: 'See you on the morning.', correct: 'See you in the morning.', explanation: 'Parts of the day take "in".' }
-    ],
-    examples: [
-      { en: 'My birthday is on October 12th.', ar: 'عيد ميلادي في 12 أكتوبر.', explanation: 'Specific dates take "on".' }
-    ],
-    quiz: [
-      { question: 'Choose the correct preposition: "The report must be on my desk ___ Monday."', options: ['at', 'in', 'on', 'by'], answer: 2, explanation: 'Days of the week require "on".' }
-    ],
-    dailyUsage: 'I have my conversation class on Tuesdays.',
-    businessUsage: 'The new policy goes live on the intranet next month.',
-    academicUsage: 'Data is published on the university portal weekly.'
-  },
-  {
-    id: 'for',
-    title: 'FOR',
-    category: 'Prepositions of Duration & Purpose',
-    color: 'from-pink-500 to-rose-600',
-    icon: '⏳',
-    definition: {
-      en: 'Used to indicate a duration of time or the purpose/recipient of something.',
-      ar: 'يُستخدم للإشارة إلى فترة زمنية أو الغرض أو المستلم لشيء ما.'
-    },
-    whenToUse: {
-      en: 'Stating how long an action lasts and expressing intended recipients.',
-      ar: 'تحديد مدة استمرار الحدث والتعبير عن المستلمين.'
-    },
-    rules: [
-      { en: 'Duration of time (for 3 years, for 2 hours)', ar: 'فترة زمنية (لمدة 3 سنوات، لمدة ساعتين)' },
-      { en: 'Intended recipient (this gift is for you)', ar: 'المستلم المقصود (هذه الهدية لك)' }
-    ],
-    timeline: ['Start', '-----------------(For 5 Hours)-----------------', 'End'],
-    commonMistakes: [
-      { wrong: 'I have lived here for 2020.', correct: 'I have lived here since 2020.', explanation: 'Use "since" for starting points.' }
-    ],
-    examples: [
-      { en: 'She has been studying English for two hours.', ar: 'هي تدرس الإنجليزية منذ ساعتين.', explanation: 'Duration of time.' }
-    ],
-    quiz: [
-      { question: 'Choose the correct word: "We stayed at the hotel ___ three nights."', options: ['since', 'for', 'during', 'at'], answer: 1, explanation: 'Three nights is duration.' }
-    ],
-    dailyUsage: 'I practice listening for 30 minutes every evening.',
-    businessUsage: 'We signed a contract for five years.',
-    academicUsage: 'The research grant was awarded for twelve months.'
-  },
-  {
-    id: 'since',
-    title: 'SINCE',
-    category: 'Prepositions of Time & Starting Point',
-    color: 'from-amber-500 to-orange-600',
-    icon: '⏰',
-    definition: {
-      en: 'Used to specify a particular starting point in the past up until now.',
-      ar: 'يُستخدم لتحديد نقطة بداية معينة في الماضي حتى الوقت الحاضر.'
-    },
-    whenToUse: {
-      en: 'Paired with present perfect tense to show an action starting at a specific moment.',
-      ar: 'مع زمن المضارع التام لإظهار حدث بدأ في لحظة محددة.'
-    },
-    rules: [
-      { en: 'Specific starting point (since 2015, since Monday)', ar: 'نقطة بداية محددة (منذ 2015، منذ الاثنين)' }
-    ],
-    timeline: ['2020 (Since)', '--------------------------------->', 'Present'],
-    commonMistakes: [
-      { wrong: 'I have known him since 3 years.', correct: 'I have known him for 3 years.', explanation: 'Use "for" with periods.' }
-    ],
-    examples: [
-      { en: 'Mousa has been learning English since January.', ar: 'موسى يتعلم الإنجليزية منذ يناير.', explanation: 'Exact starting month.' }
-    ],
-    quiz: [
-      { question: 'Complete: "She has worked here ___ 2021."', options: ['for', 'since', 'in', 'at'], answer: 1, explanation: '2021 is a specific starting year.' }
-    ],
-    dailyUsage: 'I have felt confident since I started this advanced platform.',
-    businessUsage: 'Our enterprise has grown exponentially since restructuring.',
-    academicUsage: 'This theory has remained unchallenged since publication.'
-  },
-  {
-    id: 'from',
-    title: 'FROM',
-    category: 'Prepositions of Origin & Source',
-    color: 'from-violet-500 to-purple-700',
-    icon: '🚀',
-    definition: {
-      en: 'Indicates the origin, starting point, or source of something.',
-      ar: 'يدل على الأصل، أو نقطة البداية، أو المصدر لشيء ما.'
-    },
-    whenToUse: {
-      en: 'Indicating where someone/something starts or originates.',
-      ar: 'تحديد نقطة انطلاق الأشخاص أو الأشياء.'
-    },
-    rules: [
-      { en: 'Origin or source (I am from Dubai)', ar: 'الأصل أو المصدر (أنا من دبي)' },
-      { en: 'Starting time (open from 9 AM)', ar: 'وقت البداية (مفتوح من الساعة 9)' }
-    ],
-    timeline: ['Start Point (From)', '------------------>', 'Destination'],
-    commonMistakes: [
-      { wrong: 'He comes from to Dubai.', correct: 'He comes from Dubai.', explanation: 'Do not pair "from" with "to" when stating single origin.' }
-    ],
-    examples: [
-      { en: 'Mousa is from the United Arab Emirates.', ar: 'موسى من دولة الإمارات العربية المتحدة.', explanation: 'Indicates origin/nationality.' }
-    ],
-    quiz: [
-      { question: 'Choose: "The train departs ___ Abu Dhabi."', options: ['to', 'from', 'at', 'in'], answer: 1, explanation: 'Starting point uses from.' }
-    ],
-    dailyUsage: 'I commute from home to the office daily.',
-    businessUsage: 'The wire transfer was sent from our corporate account.',
-    academicUsage: 'Data was collected from multiple peer-reviewed journals.'
-  },
-  {
-    id: 'to',
-    title: 'TO',
-    category: 'Prepositions of Direction & Destination',
-    color: 'from-blue-600 to-indigo-800',
-    icon: '🎯',
-    definition: {
-      en: 'Indicates direction, destination, or recipient of an action.',
-      ar: 'يشير إلى الاتجاه، أو الوجهة، أو المستلم لفعل ما.'
-    },
-    whenToUse: {
-      en: 'Movement toward a place, time limits, and indirect objects.',
-      ar: 'الحركة نحو مكان، حدود زمنية، والمفعول لأجله.'
-    },
-    rules: [
-      { en: 'Destination (going to work, traveling to London)', ar: 'الوجهة (الذهاب للعمل، السفر إلى لندن)' }
-    ],
-    timeline: ['Current', '--------->', 'Target (To)'],
-    commonMistakes: [
-      { wrong: 'I want to go home.', correct: 'I want to go home.', explanation: 'No "to" before home.' }
-    ],
-    examples: [
-      { en: 'I am going to the language center.', ar: 'أنا ذاهب إلى مركز اللغات.', explanation: 'Direction and destination.' }
-    ],
-    quiz: [
-      { question: 'Fill in: "She gave the report ___ the manager."', options: ['to', 'for', 'at', 'in'], answer: 0, explanation: 'Recipient of action takes to.' }
-    ],
-    dailyUsage: 'Listen carefully to the audio track.',
-    businessUsage: 'Please submit your report to HR by Thursday.',
-    academicUsage: 'Refer to page 45 for further details.'
-  },
-  {
-    id: 'by',
-    title: 'BY',
-    category: 'Prepositions of Agency & Deadline',
-    color: 'from-teal-500 to-emerald-700',
-    icon: '⚡',
-    definition: {
-      en: 'Indicates deadlines, means of transport, or the doer of an action in passive voice.',
-      ar: 'يشير إلى المواعيد النهائية، وسيلة النقل، أو الفاعل في الجمل المبنية للمجهول.'
-    },
-    whenToUse: {
-      en: 'Deadlines (by Friday), method (by car), and passive agents.',
-      ar: 'المواعيد النهائية، الوسيلة، والفاعل المبني للمجهول.'
-    },
-    rules: [
-      { en: 'Deadlines (complete this by tomorrow)', ar: 'المواعيد النهائية (أكمل هذا بحلول الغد)' },
-      { en: 'Means of transport (by bus, by plane)', ar: 'وسائل المواصلات' }
-    ],
-    timeline: ['Now', '-----------------', 'Deadline (By)'],
-    commonMistakes: [
-      { wrong: 'Go there with car.', correct: 'Go there by car.', explanation: 'Use "by" for transport.' }
-    ],
-    examples: [
-      { en: 'The project must be finished by Monday.', ar: 'يجب إنهاء المشروع بحلول يوم الاثنين.', explanation: 'Deadline preposition.' }
-    ],
-    quiz: [
-      { question: 'Choose: "Can you send the email ___ 5 PM?"', options: ['until', 'by', 'at', 'in'], answer: 1, explanation: 'Deadline uses by.' }
-    ],
-    dailyUsage: 'I travel by metro.',
-    businessUsage: 'All financial audits must be approved by the CEO.',
-    academicUsage: 'The theorem was formulated by Einstein.'
-  },
-  {
-    id: 'with',
-    title: 'WITH',
-    category: 'Prepositions of Accompaniment & Instrument',
-    color: 'from-rose-500 to-red-700',
-    icon: '🤝',
-    definition: {
-      en: 'Indicates companionship, possession, or using an instrument/tool.',
-      ar: 'يشير إلى المصاحبة، أو الملكية، أو استخدام أداة/وسيلة.'
-    },
-    whenToUse: {
-      en: 'Accompaniment (with my friends) and tools (written with a pen).',
-      ar: 'المصاحبة والأدوات.'
-    },
-    rules: [
-      { en: 'Togetherness (coffee with milk)', ar: 'الصحبة أو الإضافة' },
-      { en: 'Tools/Instruments (cut with a knife)', ar: 'الأدوات' }
-    ],
-    timeline: ['Together', 'Connected', 'Hand-in-hand'],
-    commonMistakes: [
-      { wrong: 'He opened the door by a key.', correct: 'He opened the door with a key.', explanation: 'Use "with" for tools/instruments.' }
-    ],
-    examples: [
-      { en: 'Mousa speaks English with confidence.', ar: 'موسى يتحدث الإنجليزية بثقة.', explanation: 'Manner / accompaniment.' }
-    ],
-    quiz: [
-      { question: 'Choose: "She writes her notes ___ a blue pen."', options: ['by', 'with', 'in', 'on'], answer: 1, explanation: 'Tools use with.' }
-    ],
-    dailyUsage: 'I enjoy practicing English with native speakers.',
-    businessUsage: 'We work closely with international partners.',
-    academicUsage: 'Results correlate significantly with prior findings.'
-  },
-  {
-    id: 'about',
-    title: 'ABOUT',
-    category: 'Prepositions of Topic & Approximation',
-    color: 'from-sky-500 to-indigo-600',
-    icon: '💡',
-    definition: {
-      en: 'Meaning concerning, regarding, or approximately.',
-      ar: 'تعني بخصوص، فيما يتعلق بـ، أو تقريباً.'
-    },
-    whenToUse: {
-      en: 'Subject matter (a book about history) and estimates.',
-      ar: 'الموضوع والتقديرات.'
-    },
-    rules: [
-      { en: 'Subject/Theme (talking about grammar)', ar: 'الموضوع' },
-      { en: 'Approximate numbers (about 10 minutes)', ar: 'الأرقام التقريبية' }
-    ],
-    timeline: ['Core Topic', 'Surrounding Details'],
-    commonMistakes: [
-      { wrong: 'Discuss about the topic.', correct: 'Discuss the topic.', explanation: 'Discuss does not take "about".' }
-    ],
-    examples: [
-      { en: 'We are learning about English prepositions.', ar: 'نحن نتعلم عن حروف الجر الإنجليزية.', explanation: 'Topic of discussion.' }
-    ],
-    quiz: [
-      { question: 'Choose: "There were ___ 100 students in the lecture."', options: ['about', 'around', 'of', 'in'], answer: 0, explanation: 'Approximation uses about.' }
-    ],
-    dailyUsage: 'What is this movie about?',
-    businessUsage: 'Let us talk about the quarterly budget.',
-    academicUsage: 'This thesis is about artificial intelligence applications.'
-  },
-  {
-    id: 'between',
-    title: 'BETWEEN',
-    category: 'Prepositions of Position & Relationship',
-    color: 'from-teal-400 to-cyan-600',
-    icon: '⚖️',
-    definition: {
-      en: 'Used when referring to two distinct items, people, or intervals.',
-      ar: 'يُستخدم للإشارة إلى أمرين، أو شخصين، أو فترتين متميزتين.'
-    },
-    whenToUse: {
-      en: 'Position separating two objects or choices involving two entities.',
-      ar: 'الفصل بين شيئين أو الاختيار بين أمرين.'
-    },
-    rules: [
-      { en: 'Two items (between Dubai and Abu Dhabi)', ar: 'شيئان' },
-      { en: 'Time span (between 2 PM and 4 PM)', ar: 'فترة زمنية محددة' }
-    ],
-    timeline: ['Item A', '<--- BETWEEN --->', 'Item B'],
-    commonMistakes: [
-      { wrong: 'Between you and I.', correct: 'Between you and me.', explanation: 'Prepositions take object pronouns.' }
-    ],
-    examples: [
-      { en: 'The conference is scheduled between Monday and Wednesday.', ar: 'المؤتمر مقرر بين يومي الاثنين والأربعاء.', explanation: 'Interval between two points.' }
-    ],
-    quiz: [
-      { question: 'Choose: "Choose ___ option A and option B."', options: ['among', 'between', 'in', 'with'], answer: 1, explanation: 'Two options take between.' }
-    ],
-    dailyUsage: 'Sit between your classmates.',
-    businessUsage: 'Negotiations are ongoing between the two firms.',
-    academicUsage: 'Correlation observed between variables X and Y.'
-  },
-  {
-    id: 'among',
-    title: 'AMONG',
-    category: 'Prepositions of Position & Group',
-    color: 'from-fuchsia-500 to-pink-600',
-    icon: '👥',
-    definition: {
-      en: 'Used when surrounded by a group of three or more things/people.',
-      ar: 'يُستخدم عندما يكون الشيء محاطاً بمجموعة من ثلاثة أشياء أو أشخاص أو أكثر.'
-    },
-    whenToUse: {
-      en: 'Being part of a collective group or crowd.',
-      ar: 'الوجود ضمن مجموعة أو جمع غفير.'
-    },
-    rules: [
-      { en: 'Groups of 3+ (among the students)', ar: 'مجموعات أكثر من 3' }
-    ],
-    timeline: ['Group Member', 'Surrounded by Group (Among)'],
-    commonMistakes: [
-      { wrong: 'Divided the prize among two people.', correct: 'Divided the prize between two people.', explanation: 'Use "between" for two, "among" for 3+.' }
-    ],
-    examples: [
-      { en: 'Mousa is very popular among his classmates.', ar: 'موسى يحظى بشعبية كبيرة بين زملائه في الصف.', explanation: 'Group of multiple people.' }
-    ],
-    quiz: [
-      { question: 'Choose: "Distribute the books ___ the group of students."', options: ['between', 'among', 'in', 'at'], answer: 1, explanation: 'A group of students is 3+.' }
-    ],
-    dailyUsage: 'She felt at home among her new friends.',
-    businessUsage: 'Consensus was reached among the board members.',
-    academicUsage: 'The trait is common among mammals.'
-  },
-  {
-    id: 'through',
-    title: 'THROUGH',
-    category: 'Prepositions of Movement & Process',
-    color: 'from-amber-400 to-yellow-600',
-    icon: '🌀',
-    definition: {
-      en: 'Moving from one side of an opening/space to the other, or going via a process.',
-      ar: 'المرور خلال مساحة من طرف إلى آخر، أو اجتياز عملية أو مرحلة.'
-    },
-    whenToUse: {
-      en: 'Physical passage or completion of a process.',
-      ar: 'المرور عبر الأماكن أو إنجاز المراحل.'
-    },
-    rules: [
-      { en: 'Passing inside something (walking through the tunnel)', ar: 'العبور الداخلي' },
-      { en: 'By means of / process (learning through practice)', ar: 'عن طريق الممارسة' }
-    ],
-    timeline: ['Enter', '-----> (Through) ----->', 'Exit'],
-    commonMistakes: [
-      { wrong: 'Walk across the tunnel.', correct: 'Walk through the tunnel.', explanation: 'Use "through" for enclosed spaces.' }
-    ],
-    examples: [
-      { en: 'We learn English through interactive practice.', ar: 'نتعلم الإنجليزية من خلال الممارسة التفاعلية.', explanation: 'Method/process.' }
-    ],
-    quiz: [
-      { question: 'Choose: "The train went ___ the dark mountain tunnel."', options: ['across', 'through', 'over', 'under'], answer: 1, explanation: 'Tunnels require through.' }
-    ],
-    dailyUsage: 'Look through the window.',
-    businessUsage: 'We successfully navigated through the crisis.',
-    academicUsage: 'Data is filtered through advanced algorithms.'
-  },
-  {
-    id: 'during',
-    title: 'DURING',
-    category: 'Prepositions of Time & Event',
-    color: 'from-indigo-500 to-blue-700',
-    icon: '⏳',
-    definition: {
-      en: 'Throughout the entire duration of an event or period.',
-      ar: 'طوال مدة حدث أو فترة زمنية معينة.'
-    },
-    whenToUse: {
-      en: 'Happening within the timeframe of a known event.',
-      ar: 'الحدث الواقع أثناء فترة زمنية معروفة.'
-    },
-    rules: [
-      { en: 'Followed by a noun phrase (during the lecture, during the vacation)', ar: 'يتبعه اسم' }
-    ],
-    timeline: ['Event Start', '================== (During) ==================', 'Event End'],
-    commonMistakes: [
-      { wrong: 'During I was studying, he called.', correct: 'While I was studying, he called.', explanation: 'Use "while" with clauses, "during" with nouns.' }
-    ],
-    examples: [
-      { en: 'Please turn off your phones during the study session.', ar: 'يرجى إغلاق هواتفكم خلال جلسة الدراسة.', explanation: 'Event duration.' }
-    ],
-    quiz: [
-      { question: 'Choose: "We stayed indoors ___ the heavy storm."', options: ['while', 'during', 'for', 'since'], answer: 1, explanation: 'Noun phrase storm takes during.' }
-    ],
-    dailyUsage: 'I take notes during lectures.',
-    businessUsage: 'No calls are permitted during board meetings.',
-    academicUsage: 'Subject activity was recorded during sleep cycles.'
-  },
-  {
-    id: 'before',
-    title: 'BEFORE',
-    category: 'Prepositions of Sequence & Time',
-    color: 'from-emerald-400 to-teal-600',
-    icon: '⏪',
-    definition: {
-      en: 'Earlier in time or preceding in order/position.',
-      ar: 'أسبق في الزمن أو مقدم في الترتيب أو المكان.'
-    },
-    whenToUse: {
-      en: 'Prior to a specific time or event.',
-      ar: 'قبل وقت أو حدث محدد.'
-    },
-    rules: [
-      { en: 'Time/sequence (before 5 PM, before class)', ar: 'الوقت أو التسلسل' }
-    ],
-    timeline: ['Target Event', '<--- (Before)', 'Present Moment'],
-    commonMistakes: [
-      { wrong: 'Before to start the exam...', correct: 'Before starting the exam...', explanation: 'Gerund after preposition.' }
-    ],
-    examples: [
-      { en: 'Always review your vocabulary before sleeping.', ar: 'دائمًا راجع كلماتك قبل النوم.', explanation: 'Prior sequence.' }
-    ],
-    quiz: [
-      { question: 'Choose: "Finish your assignment ___ Friday."', options: ['after', 'before', 'during', 'in'], answer: 1, explanation: 'Prior deadline uses before.' }
-    ],
-    dailyUsage: 'Wash your hands before eating.',
-    businessUsage: 'Review the contract before signing.',
-    academicUsage: 'Baseline measurements were recorded before treatment.'
-  },
-  {
-    id: 'after',
-    title: 'AFTER',
-    category: 'Prepositions of Sequence & Time',
-    color: 'from-purple-600 to-indigo-900',
-    icon: '⏩',
-    definition: {
-      en: 'Later in time or following in order/sequence.',
-      ar: 'لاحق في الزمن أو تالٍ في الترتيب.'
-    },
-    whenToUse: {
-      en: 'Subsequent to a specific time or event.',
-      ar: 'بعد وقت أو حدث محدد.'
-    },
-    rules: [
-      { en: 'Subsequent action (after lunch, after class)', ar: 'الحدث اللاحق' }
-    ],
-    timeline: ['Past Event', '-----------> (After)', 'Future Action'],
-    commonMistakes: [
-      { wrong: 'After he went, I arrived.', correct: 'After he left, I arrived.', explanation: 'Correct sequence verbs.' }
-    ],
-    examples: [
-      { en: 'We will practice conversation after the lesson.', ar: 'سنمارس المحادثة بعد الدرس.', explanation: 'Subsequent time.' }
-    ],
-    quiz: [
-      { question: 'Choose: "Let us discuss this ___ the meeting."', options: ['before', 'after', 'during', 'at'], answer: 1, explanation: 'Subsequent event uses after.' }
-    ],
-    dailyUsage: 'I go for a walk after dinner.',
-    businessUsage: 'Questions will be answered after the presentation.',
-    academicUsage: 'Follow-up tests were conducted after six months.'
-  },
-  {
-    id: 'above',
-    title: 'ABOVE',
-    category: 'Prepositions of Position & Level',
-    color: 'from-cyan-400 to-blue-500',
-    icon: '☁️',
-    definition: {
-      en: 'At a higher level or position than something else (without touching).',
-      ar: 'في مستوى أو موضع أعلى من شيء آخر (دون تلامس).'
-    },
-    whenToUse: {
-      en: 'Indicating higher elevation, measurements, or score.',
-      ar: 'الارتفاع، القياسات، أو الدرجات الأعلى.'
-    },
-    rules: [
-      { en: 'Higher than, not directly touching (clouds above the city)', ar: 'أعلى من دون تلامس مباشر' }
-    ],
-    timeline: ['Item B (Higher)', '----------------', 'Item A (Lower)'],
-    commonMistakes: [
-      { wrong: 'The bridge is above the river (touching).', correct: 'The bridge is over the river.', explanation: 'Use "over" when covering or touching.' }
-    ],
-    examples: [
-      { en: 'The airplane flew high above the clouds.', ar: 'طارت الطائرة عاليًا فوق السحب.', explanation: 'Higher position.' }
-    ],
-    quiz: [
-      { question: 'Choose: "Temperatures are ___ normal for this season."', options: ['under', 'above', 'below', 'in'], answer: 1, explanation: 'Measurements use above.' }
-    ],
-    dailyUsage: 'My apartment is on the floor above yours.',
-    businessUsage: 'Sales figures are above target this quarter.',
-    academicUsage: 'Score was well above the national average.'
-  },
-  {
-    id: 'below',
-    title: 'BELOW',
-    category: 'Prepositions of Position & Level',
-    color: 'from-slate-400 to-slate-600',
-    icon: '⚓',
-    definition: {
-      en: 'At a lower level or position than something else.',
-      ar: 'في مستوى أو موضع أدنى من شيء آخر.'
-    },
-    whenToUse: {
-      en: 'Indicating lower position, temperature, or sea level.',
-      ar: 'تحديد الموضع الأقل، درجات الحرارة، ومستوى سطح البحر.'
-    },
-    rules: [
-      { en: 'Lower than (below sea level, below freezing)', ar: 'أقل من أو أدنى من' }
-    ],
-    timeline: ['Item A (Higher)', '----------------', 'Item B (Below)'],
-    commonMistakes: [
-      { wrong: 'He hid below the bed blankets.', correct: 'He hid under the bed blankets.', explanation: 'Use "under" when covered or directly beneath.' }
-    ],
-    examples: [
-      { en: 'Sign your name in the space provided below.', ar: 'اكتب اسمك في الفراغ المخصص أدناه.', explanation: 'Position on document.' }
-    ],
-    quiz: [
-      { question: 'Choose: "The temperature dropped ___ zero."', options: ['above', 'below', 'over', 'on'], answer: 1, explanation: 'Temperature scale uses below.' }
-    ],
-    dailyUsage: 'Read the notes listed below.',
-    businessUsage: 'Performance fell below expectations.',
-    academicUsage: 'Values below 0.05 are considered statistically significant.'
-  },
-  {
-    id: 'over',
-    title: 'OVER',
-    category: 'Prepositions of Movement & Coverage',
-    color: 'from-pink-500 to-purple-600',
-    icon: '☂️',
-    definition: {
-      en: 'Directly above, covering, or moving across to the other side.',
-      ar: 'فوق مباشرة، تغطية، أو الحركة عبر شيء إلى الجانب الآخر.'
-    },
-    whenToUse: {
-      en: 'Physical coverage or movement across.',
-      ar: 'التغطية المباشرة أو القفز عبر العقبات.'
-    },
-    rules: [
-      { en: 'Covering (put a jacket over your shirt)', ar: 'التغطية' },
-      { en: 'More than numbers (over 100 students)', ar: 'أكثر من (للأرقام)' }
-    ],
-    timeline: ['Start Side', '~~~ (Over/Across) ~~~', 'Destination'],
-    commonMistakes: [
-      { wrong: 'Flying above the roof.', correct: 'Flying over the roof.', explanation: 'Use over for crossing directly above.' }
-    ],
-    examples: [
-      { en: 'Put a blanket over you; it is cold.', ar: 'ضع بطانية عليك؛ الجو بارد.', explanation: 'Coverage.' }
-    ],
-    quiz: [
-      { question: 'Choose: "There were ___ fifty people at the lecture."', options: ['above', 'over', 'under', 'between'], answer: 1, explanation: 'Quantities/numbers use over.' }
-    ],
-    dailyUsage: 'The cat jumped over the wall.',
-    businessUsage: 'We discussed the contract over coffee.',
-    academicUsage: 'The study spans over three decades.'
-  },
-  {
-    id: 'under',
-    title: 'UNDER',
-    category: 'Prepositions of Position & Coverage',
-    color: 'from-blue-400 to-indigo-600',
-    icon: '📦',
-    definition: {
-      en: 'Directly below or covered by something else.',
-      ar: 'تحت مباشرة أو مغطى بشيء آخر.'
-    },
-    whenToUse: {
-      en: 'Physical positioning underneath an object.',
-      ar: 'التواجد المباشر تحت جسم ما.'
-    },
-    rules: [
-      { en: 'Beneath/covered by (under the table, under arrest)', ar: 'أسفل أو تحت' }
-    ],
-    timeline: ['Item A (Top)', '============', 'Item B (Under)'],
-    commonMistakes: [
-      { wrong: 'Under the sea level.', correct: 'Below sea level.', explanation: 'Use "below" for vertical scales.' }
-    ],
-    examples: [
-      { en: 'The keys were hidden under the book.', ar: 'كانت المفاتيح مخبأة تحت الكتاب.', explanation: 'Directly beneath.' }
-    ],
-    quiz: [
-      { question: 'Choose: "The cat is sleeping ___ the table."', options: ['over', 'under', 'above', 'on'], answer: 1, explanation: 'Position beneath uses under.' }
-    ],
-    dailyUsage: 'Keep your documents secure under lock and key.',
-    businessUsage: 'The company is operating under new management.',
-    academicUsage: 'Cells were kept under constant observation.'
-  },
-  {
-    id: 'into',
-    title: 'INTO',
-    category: 'Prepositions of Motion & Entrance',
-    color: 'from-emerald-500 to-teal-700',
-    icon: '🚪',
-    definition: {
-      en: 'Expressing movement or insertion from the outside to the inside.',
-      ar: 'التعبير عن الحركة أو الدخول من الخارج إلى الداخل.'
-    },
-    whenToUse: {
-      en: 'Entering enclosed spaces or transformation states.',
-      ar: 'الدخول إلى مساحات مغلقة أو التحول من حال إلى حال.'
-    },
-    rules: [
-      { en: 'Movement inward (walked into the classroom)', ar: 'حركة للداخل' },
-      { en: 'Transformation (turned into ice)', ar: 'التحول' }
-    ],
-    timeline: ['Outside', '---------> (Into)', 'Inside'],
-    commonMistakes: [
-      { wrong: 'He walked in the room.', correct: 'He walked into the room.', explanation: 'Use "into" for dynamic entry.' }
-    ],
-    examples: [
-      { en: 'Mousa walked into the study room.', ar: 'دخل موسى إلى غرفة الدراسة.', explanation: 'Motion from outside to inside.' }
-    ],
-    quiz: [
-      { question: 'Choose: "She poured water ___ the glass."', options: ['in', 'into', 'on', 'at'], answer: 1, explanation: 'Movement inside uses into.' }
-    ],
-    dailyUsage: 'Put your keys into your pocket.',
-    businessUsage: 'Let us dive into the details of the project.',
-    academicUsage: 'Water vapor condenses into liquid.'
-  },
-  {
-    id: 'out_of',
-    title: 'OUT OF',
-    category: 'Prepositions of Motion & Exit',
-    color: 'from-red-500 to-rose-700',
-    icon: '🚪',
-    definition: {
-      en: 'Movement from the inside of a space to the outside.',
-      ar: 'الحركة من داخل مساحة معينة إلى الخارج.'
-    },
-    whenToUse: {
-      en: 'Exiting spaces or running short of supply.',
-      ar: 'مغادرة الأماكن أو نفاد الكمية.'
-    },
-    rules: [
-      { en: 'Exit movement (ran out of the building)', ar: 'الخروج' },
-      { en: 'Lack of supply (out of time, out of money)', ar: 'نفاد الشيء' }
-    ],
-    timeline: ['Inside', '<-------- (Out of)', 'Outside'],
-    commonMistakes: [
-      { wrong: 'Get out from the car.', correct: 'Get out of the car.', explanation: 'Correct phrasal preposition is out of.' }
-    ],
-    examples: [
-      { en: 'He walked out of the office.', ar: 'خرج من المكتب.', explanation: 'Exit movement.' }
-    ],
-    quiz: [
-      { question: 'Choose: "We are running ___ time for the quiz."', options: ['out of', 'into', 'through', 'over'], answer: 0, explanation: 'Running out of means lacking.' }
-    ],
-    dailyUsage: 'I am out of coffee.',
-    businessUsage: 'The product is currently out of stock.',
-    academicUsage: 'Data was selected out of thousands of samples.'
-  },
-  {
-    id: 'across',
-    title: 'ACROSS',
-    category: 'Prepositions of Movement & Surface',
-    color: 'from-cyan-500 to-blue-600',
-    icon: '🌉',
-    definition: {
-      en: 'From one side to the other of a flat surface, line, or area.',
-      ar: 'من جانب إلى آخر عبر سطح مستوٍ أو خط أو مساحة.'
-    },
-    whenToUse: {
-      en: 'Crossing a street, river, or bridge.',
-      ar: 'عبور الشارع، النهر، أو الجسر.'
-    },
-    rules: [
-      { en: 'Surface crossing (swim across the river)', ar: 'العبور السطحي' }
-    ],
-    timeline: ['Side A', '~~~~~~~~ (Across) ~~~~~~~~', 'Side B'],
-    commonMistakes: [
-      { wrong: 'Walk across the tunnel.', correct: 'Walk through the tunnel.', explanation: 'Use through for 3D tunnels.' }
-    ],
-    examples: [
-      { en: 'They walked safely across the busy street.', ar: 'مشيا بأمان عبر الشارع المزدحم.', explanation: 'Surface crossing.' }
-    ],
-    quiz: [
-      { question: 'Choose: "The bookstore is right ___ the street."', options: ['across', 'through', 'over', 'under'], answer: 0, explanation: 'On the other side uses across.' }
-    ],
-    dailyUsage: 'Draw a line across the paper.',
-    businessUsage: 'Our branches are spread across the country.',
-    academicUsage: 'Global trends observed across multiple cohorts.'
-  },
-  {
-    id: 'along',
-    title: 'ALONG',
-    category: 'Prepositions of Direction & Line',
-    color: 'from-emerald-400 to-green-600',
-    icon: '🛤️',
-    definition: {
-      en: 'Moving in a constant direction on a line, path, or road.',
-      ar: 'الحركة بمحاذاة خط أو مسار أو طريق مستمر.'
-    },
-    whenToUse: {
-      en: 'Walking beside a linear object (along the beach, along the river).',
-      ar: 'السير بمحاذاة الشاطئ أو النهر أو الطريق.'
-    },
-    rules: [
-      { en: 'Linear path movement (walking along the coast)', ar: 'الحركة بمحاذاة خط مستقيم' }
-    ],
-    timeline: ['Start Path', '=========> (Along)', 'End Path'],
-    commonMistakes: [
-      { wrong: 'Walking across the riverbank.', correct: 'Walking along the riverbank.', explanation: 'Use along for parallel path movement.' }
-    ],
-    examples: [
-      { en: 'Mousa enjoys walking along the beach.', ar: 'يستمتع موسى بالمشي بمحاذاة الشاطئ.', explanation: 'Linear movement.' }
-    ],
-    quiz: [
-      { question: 'Choose: "We jogged ___ the river bank every morning."', options: ['across', 'along', 'through', 'over'], answer: 1, explanation: 'Parallel path uses along.' }
-    ],
-    dailyUsage: 'Drive along this highway.',
-    businessUsage: 'Align your career goals along company objectives.',
-    academicUsage: 'Data points distributed uniformly along the axis.'
-  },
-  {
-    id: 'around',
-    title: 'AROUND',
-    category: 'Prepositions of Position & Circumference',
-    color: 'from-purple-500 to-pink-500',
-    icon: '🔄',
-    definition: {
-      en: 'Surrounding something in a circular direction or in the vicinity.',
-      ar: 'الدوران حول شيء في اتجاه دائري أو في الجوار القريب.'
-    },
-    whenToUse: {
-      en: 'Circular movement or approximate location.',
-      ar: 'الحركة الدائرية أو المكان القريب.'
-    },
-    rules: [
-      { en: 'Circumference (walk around the park)', ar: 'الدوران' },
-      { en: 'Approximation (around 5 o’clock)', ar: 'التقدير' }
-    ],
-    timeline: ['(Start)', 'O', '(End Loop)'],
-    commonMistakes: [
-      { wrong: 'Turn round the corner.', correct: 'Turn around the corner.', explanation: 'Around is standard for wrapping or turning.' }
-    ],
-    examples: [
-      { en: 'The Earth revolves around the sun.', ar: 'تدور الأرض حول الشمس.', explanation: 'Circular orbit.' }
-    ],
-    quiz: [
-      { question: 'Choose: "The runners completed a lap ___ the track."', options: ['across', 'around', 'through', 'along'], answer: 1, explanation: 'Circular track uses around.' }
-    ],
-    dailyUsage: 'Meet me around 6 PM.',
-    businessUsage: 'We will turn the project around by next week.',
-    academicUsage: 'Molecules cluster around the receptor site.'
-  }
-];
-
-export default function App() {
-  const [currentTab, setCurrentTab] = useState('home'); 
-  const [selectedTopic, setSelectedTopic] = useState(topicsData[0]);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [lang, setLang] = useState('en'); 
-  const [darkMode, setDarkMode] = useState(true);
-  const [favorites, setFavorites] = useState(['at', 'in', 'on']);
-  const [completedTopics, setCompletedTopics] = useState([]);
-  const [activeNodeTab, setActiveNodeTab] = useState('overview'); 
-  const [quizAnswers, setQuizAnswers] = useState({});
-  const [quizSubmitted, setQuizSubmitted] = useState(false);
-  const [savedNotes, setSavedNotes] = useState({});
-  const [toastMessage, setToastMessage] = useState(null);
-
-  const filteredTopics = useMemo(() => {
-    return topicsData.filter(t => 
-      t.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      t.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      t.definition.en.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      t.definition.ar.includes(searchQuery)
-    );
-  }, [searchQuery]);
-
-  const showToast = (msg) => {
-    setToastMessage(msg);
-    setTimeout(() => setToastMessage(null), 3000);
-  };
-
-  const toggleFavorite = (id) => {
-    if (favorites.includes(id)) {
-      setFavorites(favorites.filter(f => f !== id));
-      showToast(lang === 'ar' ? 'تمت الإزالة من المفضلة' : 'Removed from favorites');
-    } else {
-      setFavorites([...favorites, id]);
-      showToast(lang === 'ar' ? 'تمت الإضافة إلى المفضلة' : 'Added to favorites');
-    }
-  };
-
-  const markComplete = (id) => {
-    if (!completedTopics.includes(id)) {
-      setCompletedTopics([...completedTopics, id]);
-      showToast(lang === 'ar' ? 'تهانينا يا 𝑴𝑶𝑼𝑺𝑨! أكملت هذا الدرس بنجاح' : 'Congratulations 𝑴𝑶𝑼𝑺𝑨! Lesson completed');
-    }
-  };
-
-  const handleQuizAnswer = (qIdx, optionIdx) => {
-    setQuizAnswers({ ...quizAnswers, [qIdx]: optionIdx });
-  };
-
-  return (
-    <div className={`${darkMode ? 'bg-slate-950 text-slate-100' : 'bg-slate-50 text-slate-900'} min-h-screen font-sans transition-colors duration-300 relative overflow-x-hidden selection:bg-purple-500 selection:text-white`}>
-      
-      {toastMessage && (
-        <div className="fixed top-6 right-6 z-50 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-3 rounded-2xl shadow-2xl flex items-center gap-3 animate-bounce border border-purple-400/35">
-          <Sparkles className="w-5 h-5 animate-spin" />
-          <span className="font-semibold">{toastMessage}</span>
-        </div>
-      )}
-
-      {/* Top Navbar */}
-      <header className={`sticky top-0 z-40 backdrop-blur-xl border-b ${darkMode ? 'bg-slate-900/80 border-slate-800' : 'bg-white/80 border-slate-200'} px-6 py-4 flex items-center justify-between`}>
-        <div className="flex items-center gap-4 cursor-pointer" onClick={() => setCurrentTab('home')}>
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 via-indigo-600 to-cyan-500 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-purple-500/30">
-            𝑴
-          </div>
-          <div>
-            <h1 className="font-black text-lg bg-gradient-to-r from-purple-400 via-cyan-400 to-pink-500 bg-clip-text text-transparent">
-              منصة 𝑴𝑶𝑼𝑺𝑨 <span className="text-xs uppercase font-bold tracking-widest px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-400">Pro (25 كلمة)</span>
-            </h1>
-            <p className="text-xs text-slate-400 font-medium">
-              {lang === 'ar' ? 'الخرائط الذهنية التفاعلية لقواعد الإنجليزية' : 'Interactive English Mind-Map Hub'}
-            </p>
-          </div>
-        </div>
-
-        {/* Search bar */}
-        <div className="hidden md:flex items-center gap-2 px-4 py-2 rounded-2xl bg-slate-800/50 border border-slate-700/50 w-80 focus-within:border-purple-500 transition-all">
-          <Search className="w-4 h-4 text-slate-400" />
-          <input 
-            type="text" 
-            placeholder={lang === 'ar' ? 'ابحث في الـ 25 كلمة...' : 'Search all 25 words...'} 
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="bg-transparent text-sm w-full outline-none text-slate-200 placeholder-slate-500"
-          />
-        </div>
-
-        {/* Quick controls */}
-        <div className="flex items-center gap-3">
-          <button 
-            onClick={() => setLang(lang === 'en' ? 'ar' : 'en')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-bold transition-all ${darkMode ? 'bg-slate-800 border-slate-700 hover:bg-slate-700 text-cyan-400' : 'bg-slate-100 border-slate-300 hover:bg-slate-200 text-cyan-600'}`}
-          >
-            <Globe className="w-3.5 h-3.5" />
-            {lang === 'en' ? 'العربية' : 'English'}
-          </button>
-
-          <button 
-            onClick={() => setDarkMode(!darkMode)}
-            className={`p-2 rounded-xl border transition-all ${darkMode ? 'bg-slate-800 border-slate-700 hover:bg-slate-700 text-amber-400' : 'bg-slate-100 border-slate-300 hover:bg-slate-200 text-slate-700'}`}
-          >
-            {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-          </button>
-
-          <div className="hidden sm:flex items-center gap-2 pl-3 border-l border-slate-700">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 flex items-center justify-center font-bold text-white text-xs shadow-md">
-              𝑴
-            </div>
-            <div className="text-left">
-              <span className="text-xs font-black block text-slate-200">𝑴𝑶𝑼𝑺𝑨</span>
-              <span className="text-[10px] text-cyan-400 font-semibold block">Active Learner</span>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Container */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-
-        {/* Navigation Breadcrumb / Tabs */}
-        <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
-          <div className="flex items-center gap-2">
-            <button 
-              onClick={() => setCurrentTab('home')}
-              className={`px-4 py-2 rounded-xl font-bold text-sm transition-all flex items-center gap-2 ${currentTab === 'home' ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-500/30' : 'bg-slate-800/40 text-slate-400 hover:text-white'}`}
-            >
-              <Compass className="w-4 h-4" />
-              {lang === 'ar' ? 'الرئيسية (25 كلمة)' : 'Hub (25 Words)'}
-            </button>
-
-            {currentTab === 'mindmap' && (
-              <button 
-                className="px-4 py-2 rounded-xl font-bold text-sm bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-lg shadow-cyan-500/30 flex items-center gap-2 animate-fade-in"
-              >
-                <Layers className="w-4 h-4" />
-                {selectedTopic.title} Mind Map
-              </button>
-            )}
-
-            <button 
-              onClick={() => setCurrentTab('favorites')}
-              className={`px-4 py-2 rounded-xl font-bold text-sm transition-all flex items-center gap-2 ${currentTab === 'favorites' ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-500/30' : 'bg-slate-800/40 text-slate-400 hover:text-white'}`}
-            >
-              <Heart className="w-4 h-4" />
-              {lang === 'ar' ? 'المفضلة' : 'Favorites'} ({favorites.length})
-            </button>
-          </div>
-
-          <div className="flex items-center gap-3 text-xs text-slate-400 font-medium">
-            <span className="flex items-center gap-1 bg-purple-500/10 px-3 py-1.5 rounded-xl border border-purple-500/20 text-purple-400">
-              <Award className="w-4 h-4" />
-              {completedTopics.length} / {topicsData.length} {lang === 'ar' ? 'موضوع منجز' : 'Mastered'}
-            </span>
-          </div>
-        </div>
-
-        {/* TAB 1: HOME */}
-        {currentTab === 'home' && (
-          <div className="space-y-8 animate-fade-in">
-            <div className="relative rounded-3xl overflow-hidden p-8 sm:p-12 bg-gradient-to-r from-purple-900/50 via-indigo-900/50 to-cyan-900/50 border border-purple-500/30 backdrop-blur-xl shadow-2xl">
-              <div className="absolute -right-10 -bottom-10 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none"></div>
-              <div className="absolute -left-10 -top-10 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
-
-              <div className="relative z-10 max-w-2xl space-y-4">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
-                  <Sparkles className="w-3.5 h-3.5" /> {lang === 'ar' ? 'مرحباً بك في منصة 𝑴𝑶𝑼𝑺𝑨 الخاصة' : 'Welcome to 𝑴𝑶𝑼𝑺𝑨 Platform'}
-                </span>
-                <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
-                  {lang === 'ar' ? 'الـ 25 كلمة وحروف الجر الأساسية باللغة الإنجليزية' : 'The Complete 25 English Prepositions Mind Maps'}
-                </h2>
-                <p className="text-slate-300 text-sm sm:text-base">
-                  {lang === 'ar' 
-                    ? 'انقر على أي بطاقة من الـ 25 أدناه لتنتقل فوراً إلى خريطة ذهنية مفصلة مع القواعد والأمثلة واختبارات الفهم.' 
-                    : 'Click any of the 25 word cards below to expand its gorgeous interactive mind map instantly.'}
-                </p>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <h3 className="text-xl font-black text-slate-100 flex items-center gap-2">
-                  <BookOpen className="w-5 h-5 text-purple-400" />
-                  {lang === 'ar' ? 'اختر من الـ 25 كلمة الدراسية' : 'Select from 25 Grammar Topics'}
-                </h3>
-                <span className="text-xs text-slate-400 font-semibold">{filteredTopics.length} / 25 {lang === 'ar' ? 'موضوع معروض' : 'topics displayed'}</span>
-              </div>
-
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                {filteredTopics.map((topic) => {
-                  const isFav = favorites.includes(topic.id);
-                  const isDone = completedTopics.includes(topic.id);
-
-                  return (
-                    <div 
-                      key={topic.id}
-                      onClick={() => {
-                        setSelectedTopic(topic);
-                        setCurrentTab('mindmap');
-                      }}
-                      className={`group relative rounded-2xl p-5 border cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-xl ${darkMode ? 'bg-slate-900/60 border-slate-800 hover:border-purple-500/50' : 'bg-white border-slate-200 hover:border-purple-400'} flex flex-col justify-between overflow-hidden`}
-                    >
-                      <div className={`absolute inset-0 bg-gradient-to-br ${topic.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
-                      
-                      <div className="flex items-start justify-between relative z-10 mb-4">
-                        <span className="text-3xl p-2 rounded-xl bg-slate-800/50 border border-slate-700/50 shadow-inner">
-                          {topic.icon}
-                        </span>
-                        
-                        <div className="flex items-center gap-1.5">
-                          <button 
-                            onClick={(e) => { e.stopPropagation(); toggleFavorite(topic.id); }}
-                            className={`p-1.5 rounded-lg transition-colors ${isFav ? 'text-pink-500 bg-pink-500/10' : 'text-slate-500 hover:text-slate-300'}`}
-                          >
-                            <Heart className={`w-4 h-4 ${isFav ? 'fill-current' : ''}`} />
-                          </button>
-                        </div>
-                      </div>
-
-                      <div className="relative z-10 space-y-1">
-                        <div className="flex items-center justify-between">
-                          <h4 className="text-xl font-black tracking-wider text-white group-hover:text-cyan-400 transition-colors">
-                            {topic.title}
-                          </h4>
-                          {isDone && <CheckCircle2 className="w-4 h-4 text-emerald-400" />}
-                        </div>
-                        <p className="text-xs text-slate-400 line-clamp-2">
-                          {lang === 'ar' ? topic.definition.ar : topic.definition.en}
-                        </p>
-                      </div>
-
-                      <div className="mt-4 pt-3 border-t border-slate-800/60 flex items-center justify-between text-[11px] font-bold text-purple-400 group-hover:text-cyan-400">
-                        <span>{lang === 'ar' ? 'افتح الخريطة' : 'Open Mind Map'}</span>
-                        <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* TAB 2: MIND MAP */}
-        {currentTab === 'mindmap' && selectedTopic && (
-          <div className="space-y-8 animate-fade-in">
-            <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-800">
-              <button 
-                onClick={() => setCurrentTab('home')}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 font-bold text-sm transition-all"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                {lang === 'ar' ? 'العودة لقائمة الـ 25 كلمة' : 'Back to 25 Words Hub'}
-              </button>
-
-              <div className="flex items-center gap-3">
-                <button 
-                  onClick={() => markComplete(selectedTopic.id)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-sm transition-all ${completedTopics.includes(selectedTopic.id) ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-purple-600 text-white hover:bg-purple-500 shadow-lg shadow-purple-500/30'}`}
-                >
-                  <CheckCircle2 className="w-4 h-4" />
-                  {completedTopics.includes(selectedTopic.id) ? (lang === 'ar' ? 'مكتمل' : 'Completed') : (lang === 'ar' ? 'تم حفظ الدرس' : 'Mark as Complete')}
-                </button>
-
-                <button 
-                  onClick={() => toggleFavorite(selectedTopic.id)}
-                  className={`p-2.5 rounded-xl border ${favorites.includes(selectedTopic.id) ? 'bg-pink-500/20 border-pink-500/30 text-pink-400' : 'bg-slate-800 border-slate-700 text-slate-400'}`}
-                >
-                  <Heart className={`w-4 h-4 ${favorites.includes(selectedTopic.id) ? 'fill-current' : ''}`} />
-                </button>
-              </div>
-            </div>
-
-            <div className={`relative rounded-3xl p-8 bg-gradient-to-r ${selectedTopic.color} text-white shadow-2xl overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6`}>
-              <div className="absolute right-0 top-0 w-96 h-96 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
-              
-              <div className="space-y-3 z-10 text-center md:text-left">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/20 backdrop-blur-md text-xs font-bold text-white/90">
-                  <span>{selectedTopic.icon}</span>
-                  <span>{selectedTopic.category}</span>
-                </div>
-                <h2 className="text-5xl font-black tracking-wider">{selectedTopic.title}</h2>
-                <p className="text-sm md:text-base text-white/90 max-w-xl">
-                  {lang === 'ar' ? selectedTopic.definition.ar : selectedTopic.definition.en}
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-              {[
-                { id: 'overview', label: lang === 'ar' ? 'نظرة عامة والقواعد' : 'Overview & Rules' },
-                { id: 'timeline', label: lang === 'ar' ? 'التسلسل الزمني والمكاني' : 'Timeline' },
-                { id: 'examples', label: lang === 'ar' ? 'الأمثلة والأخطاء' : 'Examples & Mistakes' },
-                { id: 'usage', label: lang === 'ar' ? 'استخدامات يومية وأكاديمية' : 'Daily & Business' },
-                { id: 'quiz', label: lang === 'ar' ? 'اختبار تفاعلي' : 'Mini Quiz' },
-                { id: 'notes', label: lang === 'ar' ? 'ملاحظاتي' : 'My Notes' },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveNodeTab(tab.id)}
-                  className={`px-5 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap transition-all ${activeNodeTab === tab.id ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/20' : 'bg-slate-800/50 text-slate-400 hover:text-white border border-slate-700/50'}`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-
-            {activeNodeTab === 'overview' && (
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 animate-fade-in">
-                <div className="rounded-2xl p-6 bg-slate-900/60 border border-slate-800 space-y-4">
-                  <div className="flex items-center gap-2 text-cyan-400 font-bold">
-                    <Sparkles className="w-5 h-5" />
-                    <h3>{lang === 'ar' ? 'متى تستخدمها؟' : 'When To Use'}</h3>
-                  </div>
-                  <p className="text-slate-300 text-sm leading-relaxed">
-                    {lang === 'ar' ? selectedTopic.definition.ar : selectedTopic.whenToUse.en}
-                  </p>
-                </div>
-
-                <div className="rounded-2xl p-6 bg-slate-900/60 border border-slate-800 space-y-4 lg:col-span-2">
-                  <div className="flex items-center gap-2 text-purple-400 font-bold">
-                    <BookOpen className="w-5 h-5" />
-                    <h3>{lang === 'ar' ? 'القواعد الأساسية' : 'Core Rules'}</h3>
-                  </div>
-                  <div className="space-y-3">
-                    {selectedTopic.rules.map((rule, idx) => (
-                      <div key={idx} className="p-4 rounded-xl bg-slate-800/40 border border-slate-700/50 flex items-start gap-3">
-                        <span className="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xs flex items-center justify-center shrink-0">
-                          {idx + 1}
-                        </span>
-                        <div>
-                          <p className="text-sm font-semibold text-white">{rule.en}</p>
-                          <p className="text-xs text-cyan-400 mt-1" dir="rtl">{rule.ar}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {activeNodeTab === 'timeline' && (
-              <div className="rounded-2xl p-8 bg-slate-900/60 border border-slate-800 space-y-6 animate-fade-in">
-                <div className="flex items-center gap-2 text-amber-400 font-bold">
-                  <Zap className="w-5 h-5" />
-                  <h3>{lang === 'ar' ? 'التدفق الزمني والمكاني' : 'Timeline & Spatial Flow'}</h3>
-                </div>
-                <div className="relative border-l-2 border-purple-500/50 ml-4 pl-6 space-y-6">
-                  {selectedTopic.timeline.map((point, idx) => (
-                    <div key={idx} className="relative group">
-                      <div className="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-purple-500 border-4 border-slate-900"></div>
-                      <div className="p-4 rounded-2xl bg-slate-800/50 border border-slate-700/60 shadow-lg">
-                        <span className="text-xs font-bold uppercase tracking-wider text-purple-400">Node #{idx + 1}</span>
-                        <h4 className="text-lg font-black text-white mt-1">{point}</h4>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {activeNodeTab === 'examples' && (
-              <div className="space-y-6 animate-fade-in">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {selectedTopic.examples.map((ex, idx) => (
-                    <div key={idx} className="rounded-2xl p-6 bg-slate-900/60 border border-slate-800 space-y-4 shadow-xl flex flex-col justify-between">
-                      <div className="space-y-3">
-                        <div className="flex items-center justify-between">
-                          <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-pink-500/10 text-pink-400 border border-pink-500/20">
-                            Example #{idx + 1}
-                          </span>
-                          <button 
-                            onClick={() => {
-                              navigator.clipboard.writeText(ex.en);
-                              showToast(lang === 'ar' ? 'تم نسخ الجملة' : 'Copied to clipboard');
-                            }}
-                            className="text-xs text-slate-400 hover:text-white flex items-center gap-1 bg-slate-800 px-2 py-1 rounded-lg"
-                          >
-                            Copy
-                          </button>
-                        </div>
-                        <p className="text-base font-bold text-white">{ex.en}</p>
-                        <p className="text-sm font-medium text-cyan-400" dir="rtl">{ex.ar}</p>
-                      </div>
-
-                      <div className="pt-4 border-t border-slate-800 text-xs text-slate-400 bg-slate-950/30 p-3 rounded-xl">
-                        <strong>Grammar Note:</strong> {ex.explanation}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {activeNodeTab === 'usage' && (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in">
-                <div className="rounded-2xl p-6 bg-slate-900/60 border border-slate-800 space-y-3">
-                  <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">🗣️</div>
-                  <h4 className="font-bold text-white text-base">{lang === 'ar' ? 'الاستخدام اليومي' : 'Daily Usage'}</h4>
-                  <p className="text-sm text-slate-300 leading-relaxed bg-slate-800/40 p-4 rounded-xl border border-slate-700/50">
-                    "{selectedTopic.dailyUsage}"
-                  </p>
-                </div>
-
-                <div className="rounded-2xl p-6 bg-slate-900/60 border border-slate-800 space-y-3">
-                  <div className="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold">💼</div>
-                  <h4 className="font-bold text-white text-base">{lang === 'ar' ? 'لغة الأعمال' : 'Business English'}</h4>
-                  <p className="text-sm text-slate-300 leading-relaxed bg-slate-800/40 p-4 rounded-xl border border-slate-700/50">
-                    "{selectedTopic.businessUsage}"
-                  </p>
-                </div>
-
-                <div className="rounded-2xl p-6 bg-slate-900/60 border border-slate-800 space-y-3">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">🎓</div>
-                  <h4 className="font-bold text-white text-base">{lang === 'ar' ? 'اللغة الأكاديمية' : 'Academic Usage'}</h4>
-                  <p className="text-sm text-slate-300 leading-relaxed bg-slate-800/40 p-4 rounded-xl border border-slate-700/50">
-                    "{selectedTopic.academicUsage}"
-                  </p>
-                </div>
-              </div>
-            )}
-
-            {activeNodeTab === 'quiz' && (
-              <div className="max-w-2xl mx-auto rounded-3xl p-8 bg-slate-900/80 border border-slate-800 shadow-2xl space-y-6 animate-fade-in">
-                <div className="text-center space-y-2">
-                  <span className="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400 text-xs font-bold">Interactive Quiz</span>
-                  <h3 className="text-2xl font-black text-white">{lang === 'ar' ? 'اختبر فهمك السريع' : 'Test Your Knowledge'}</h3>
-                </div>
-
-                {selectedTopic.quiz.map((q, qIdx) => (
-                  <div key={qIdx} className="space-y-4">
-                    <p className="text-lg font-bold text-slate-200">{q.question}</p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {q.options.map((opt, optIdx) => {
-                        const isSelected = quizAnswers[qIdx] === optIdx;
-                        const isCorrect = q.answer === optIdx;
-                        let btnStyle = "bg-slate-800 border-slate-700 hover:bg-slate-700 text-slate-200";
-
-                        if (quizSubmitted) {
-                          if (isCorrect) btnStyle = "bg-emerald-600/30 border-emerald-500 text-emerald-300 font-bold";
-                          else if (isSelected && !isCorrect) btnStyle = "bg-rose-600/30 border-rose-500 text-rose-300";
-                        } else if (isSelected) {
-                          btnStyle = "bg-purple-600/40 border-purple-500 text-white font-bold";
-                        }
-
-                        return (
-                          <button
-                            key={optIdx}
-                            onClick={() => !quizSubmitted && handleQuizAnswer(qIdx, optIdx)}
-                            className={`p-4 rounded-2xl border text-left transition-all flex items-center justify-between ${btnStyle}`}
-                          >
-                            <span>{opt}</span>
-                            {quizSubmitted && isCorrect && <CheckCircle2 className="w-5 h-5 text-emerald-400" />}
-                            {quizSubmitted && isSelected && !isCorrect && <XCircle className="w-5 h-5 text-rose-400" />}
-                          </button>
-                        );
-                      })}
-                    </div>
-
-                    {quizSubmitted && (
-                      <div className="p-4 rounded-xl bg-slate-950/50 border border-slate-800 text-xs text-slate-300 space-y-1">
-                        <strong>Explanation:</strong> {q.explanation}
-                      </div>
-                    )}
-                  </div>
-                ))}
-
-                <div className="pt-4 flex justify-center">
-                  {!quizSubmitted ? (
-                    <button
-                      onClick={() => setQuizSubmitted(true)}
-                      className="px-8 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 font-bold text-white shadow-lg shadow-purple-500/30 hover:opacity-90 transition-all"
-                    >
-                      {lang === 'ar' ? 'تحقق من الإجابة' : 'Submit Answer'}
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => { setQuizSubmitted(false); setQuizAnswers({}); }}
-                      className="px-8 py-3 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 font-bold text-sm flex items-center gap-2"
-                    >
-                      <RotateCcw className="w-4 h-4" /> {lang === 'ar' ? 'إعادة الاختبار' : 'Try Again'}
-                    </button>
-                  )}
-                </div>
-              </div>
-            )}
-
-            {activeNodeTab === 'notes' && (
-              <div className="max-w-2xl mx-auto rounded-3xl p-8 bg-slate-900/80 border border-slate-800 shadow-2xl space-y-4 animate-fade-in">
-                <h3 className="text-xl font-black text-white">{lang === 'ar' ? 'ملاحظات 𝑴𝑶𝑼𝑺𝑨 الشخصية' : '𝑴𝑶𝑼𝑺𝑨 Notes'}</h3>
-                <textarea 
-                  rows="5"
-                  value={savedNotes[selectedTopic.id] || ''}
-                  onChange={(e) => setSavedNotes({ ...savedNotes, [selectedTopic.id]: e.target.value })}
-                  placeholder={lang === 'ar' ? 'اكتب ملاحظتك هنا...' : 'Write your notes here...'}
-                  className="w-full rounded-2xl bg-slate-950 border border-slate-800 p-4 text-slate-200 text-sm focus:border-purple-500 outline-none"
-                />
-                <button 
-                  onClick={() => showToast(lang === 'ar' ? 'تم حفظ الملاحظة بنجاح' : 'Note saved successfully!')}
-                  className="px-6 py-2.5 rounded-xl bg-purple-600 text-white font-bold text-sm hover:bg-purple-500 shadow-lg shadow-purple-500/30"
-                >
-                  {lang === 'ar' ? 'حفظ الملاحظة' : 'Save Note'}
-                </button>
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* TAB 3: FAVORITES */}
-        {currentTab === 'favorites' && (
-          <div className="space-y-6 animate-fade-in">
-            <h3 className="text-2xl font-black text-white flex items-center gap-2">
-              <Heart className="w-6 h-6 text-pink-500 fill-current" />
-              {lang === 'ar' ? 'المواضيع المفضلة' : 'Favorite Topics'}
-            </h3>
-
-            {favorites.length === 0 ? (
-              <div className="text-center py-16 space-y-3 bg-slate-900/40 rounded-3xl border border-slate-800">
-                <Heart className="w-12 h-12 text-slate-600 mx-auto" />
-                <p className="text-slate-400 text-sm">{lang === 'ar' ? 'لا توجد مواضيع في المفضلة حالياً' : 'No favorite topics saved yet.'}</p>
-              </div>
-            ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                {topicsData.filter(t => favorites.includes(t.id)).map((topic) => (
-                  <div 
-                    key={topic.id}
-                    onClick={() => { setSelectedTopic(topic); setCurrentTab('mindmap'); }}
-                    className="rounded-2xl p-5 bg-slate-900/60 border border-slate-800 cursor-pointer hover:border-purple-500/50 transition-all space-y-3"
-                  >
-                    <span className="text-3xl">{topic.icon}</span>
-                    <h4 className="text-xl font-black text-white">{topic.title}</h4>
-                    <p className="text-xs text-slate-400 line-clamp-2">{lang === 'ar' ? topic.definition.ar : topic.definition.en}</p>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
-
-      </main>
-
-      {/* Footer */}
-      <footer className="mt-20 border-t border-slate-800 py-8 text-center text-xs text-slate-500 space-y-2">
-        <p>منصة 𝑴𝑶𝑼𝑺𝑨 لقواعد اللغة الإنجليزية • جميع الحقوق محفوظة</p>
-        <p className="text-[10px] text-slate-600">الـ 25 كلمة وحروف الجر في واجهة خريطة ذهنية متطورة.</p>
-      </footer>
-
+  <!-- Top Navbar -->
+  <header class="sticky top-0 z-40 glass-dark border-b border-slate-800 px-6 py-4 flex items-center justify-between transition-all">
+    <div class="flex items-center gap-3 cursor-pointer" onclick="showHome()">
+      <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-purple-600 via-indigo-600 to-cyan-500 flex items-center justify-center font-black text-xl text-white shadow-lg shadow-purple-500/30">𝑴</div>
+      <div>
+        <h1 class="font-black text-lg bg-gradient-to-r from-purple-400 via-cyan-400 to-pink-500 bg-clip-text text-transparent">منصة 𝑴𝑶𝑼𝑺𝑨 Pro</h1>
+        <p class="text-[10px] text-slate-400 font-semibold" id="navSubtitle">25 Grammar Mind-Maps & Mastery Hub</p>
+      </div>
     </div>
-  );
-}
+
+    <!-- Quick Search & Controls -->
+    <div class="flex items-center gap-3">
+      <div class="relative hidden sm:block">
+        <input type="text" id="searchInput" placeholder="بحث شامل عن قاعدة أو كلمة..." onkeyup="filterTopics()" class="px-4 py-2 rounded-2xl bg-slate-900/80 border border-slate-700 text-xs outline-none w-64 focus:border-purple-500 text-slate-200">
+      </div>
+      <button onclick="toggleLang()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-400 font-bold text-xs border border-slate-700 transition" id="langBtn">العربية</button>
+      <button onclick="toggleTheme()" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-400 border border-slate-700 transition" id="themeBtn">☀️</button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-7xl mx-auto px-4 py-8">
+    
+    <!-- Home Dashboard View -->
+    <div id="homeView" class="space-y-8 animate-fade">
+      <div class="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-purple-900/60 via-indigo-900/60 to-cyan-900/60 border border-purple-500/30 shadow-2xl relative overflow-hidden">
+        <div class="absolute right-0 top-0 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="relative z-10 space-y-3 max-w-2xl">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">✨ مرحباً بك يا 𝑴𝑶𝑼𝑺𝑨 في محطة إتقان القواعد</span>
+          <h2 class="text-3xl sm:text-5xl font-black tracking-tight text-white">الخرائط الذهنية لـ 25 حرف جر وقاعدة</h2>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">انقر على أي بطاقة أدناه لاستكشاف الخريطة الذهنية التفاعلية، الشروحات المتقدمة، استخدامات برليتز اليومية، والاختبارات المتنوعة.</p>
+        </div>
+      </div>
+
+      <!-- Filters & Stats -->
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div class="flex gap-2" id="filterButtons">
+          <button onclick="filterCategory('all')" class="px-4 py-1.5 rounded-xl font-bold text-xs bg-purple-600 text-white shadow-md">الكل (25)</button>
+          <button onclick="filterCategory('Time')" class="px-4 py-1.5 rounded-xl font-bold text-xs bg-slate-800 text-slate-300 hover:bg-slate-700">الزمن Time</button>
+          <button onclick="filterCategory('Place')" class="px-4 py-1.5 rounded-xl font-bold text-xs bg-slate-800 text-slate-300 hover:bg-slate-700">المكان Place</button>
+          <button onclick="filterCategory('Movement')" class="px-4 py-1.5 rounded-xl font-bold text-xs bg-slate-800 text-slate-300 hover:bg-slate-700">الحركة Movement</button>
+        </div>
+        <div class="text-xs font-bold text-purple-400 bg-purple-500/10 px-3 py-1.5 rounded-xl border border-purple-500/20" id="progressCounter">
+          مواضيع منجزة: 0 / 25
+        </div>
+      </div>
+
+      <!-- Grid of 25 Topics -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4" id="topicsGrid"></div>
+    </div>
+
+    <!-- Mind Map & Advanced Study View -->
+    <div id="detailView" class="space-y-6 hidden">
+      <div class="flex items-center justify-between">
+        <button onclick="showHome()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-sm font-bold flex items-center gap-2 transition text-slate-200">
+          ← العودة للرئيسية
+        </button>
+        <button onclick="toggleFavoriteCurrent()" id="favBtn" class="px-4 py-2 rounded-xl bg-slate-800 text-pink-400 text-sm font-bold border border-slate-700">
+          ❤️ إضافة للمفضلة
+        </button>
+      </div>
+
+      <div id="detailHeader" class="p-8 rounded-3xl text-white shadow-2xl relative overflow-hidden"></div>
+
+      <!-- Navigation Tabs -->
+      <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-none">
+        <button onclick="switchTab('overview')" id="btn-overview" class="px-5 py-2.5 rounded-xl font-bold text-xs bg-cyan-600 text-white shadow-lg whitespace-nowrap">نظرة عامة والقواعد</button>
+        <button onclick="switchTab('timeline')" id="btn-timeline" class="px-5 py-2.5 rounded-xl font-bold text-xs bg-slate-800 text-slate-300 hover:bg-slate-700 whitespace-nowrap">التسلسل الزمني</button>
+        <button onclick="switchTab('examples')" id="btn-examples" class="px-5 py-2.5 rounded-xl font-bold text-xs bg-slate-800 text-slate-300 hover:bg-slate-700 whitespace-nowrap">الأمثلة والأخطاء</button>
+        <button onclick="switchTab('usage')" id="btn-usage" class="px-5 py-2.5 rounded-xl font-bold text-xs bg-slate-800 text-slate-300 hover:bg-slate-700 whitespace-nowrap">استخدامات يومية وأكاديمية</button>
+        <button onclick="switchTab('quiz')" id="btn-quiz" class="px-5 py-2.5 rounded-xl font-bold text-xs bg-slate-800 text-slate-300 hover:bg-slate-700 whitespace-nowrap">اختبار تفاعلي ⚡</button>
+        <button onclick="switchTab('notes')" id="btn-notes" class="px-5 py-2.5 rounded-xl font-bold text-xs bg-slate-800 text-slate-300 hover:bg-slate-700 whitespace-nowrap">ملاحظاتي 📝</button>
+      </div>
+
+      <div id="tabContent" class="p-6 sm:p-8 rounded-3xl glass-dark space-y-6 shadow-2xl border border-slate-800"></div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-20 border-t border-slate-800 py-8 text-center text-xs text-slate-500 space-y-2">
+    <p>منصة 𝑴𝑶𝑼𝑺𝑨 الاحترافية لتعلم اللغة الإنجليزية • جميع الحقوق محفوظة</p>
+    <p class="text-[10px] text-slate-600">مصممة خصيصاً لتطوير مهارات القواعد والخرائط الذهنية المتكاملة.</p>
+  </footer>
+
+  <script>
+    // Complete 25 Grammar Topics Database with Bilingual details & quizzes
+    const topicsData = [
+      { id: 'at', title: 'AT', cat: 'Time', color: 'from-purple-500 to-indigo-600', icon: '🧭', defEn: 'Used to point out specific times, exact locations, or specific points.', defAr: 'يُستخدم للإشارة إلى أوقات محددة، أو أماكن دقيقة، أو نقاط معينة.', rules: ['Use AT for precise times (at 5:00 PM, at midnight, at noon)', 'Use AT for specific locations (at home, at the station)'], timeline: ['at 6:00 AM', 'at noon', 'at 7:30 PM', 'at midnight'], examples: [{ en: 'She arrived at the airport at 3 PM.', ar: 'وصلت إلى المطار الساعة 3 مساءً.', exp: 'Specific time and location.' }], mistakes: [{ wrong: 'I am at home in Cairo.', correct: 'I am at home / in Cairo.', exp: 'Use at for point, in for cities.' }], daily: 'I wake up at 7 AM every day.', business: 'The meeting is scheduled at 10:00 AM sharp.', academic: 'The experiment begins precisely at 00:00 hours.', quiz: { q: 'Choose the correct preposition: "My flight departs ___ 6:30 AM."', options: ['in', 'on', 'at', 'by'], ans: 2, exp: 'Clock times always take at.' } },
+      { id: 'in', title: 'IN', cat: 'Time', color: 'from-cyan-500 to-blue-600', icon: '📦', defEn: 'Used for unspecific times during a day, month, season, year, and enclosed spaces.', defAr: 'يُستخدم للأوقات غير المحددة والأماكن المغلقة.', rules: ['Months, years, seasons (in January, in 2026)', 'Cities, countries (in Dubai, in Paris)'], timeline: ['Morning', 'Afternoon', '2026', 'Century'], examples: [{ en: 'Mousa is studying English in Dubai.', ar: 'موسى يدرس اللغة الإنجليزية في دبي.', exp: 'Cities and countries use in.' }], mistakes: [{ wrong: 'She was born in Monday.', correct: 'She was born on Monday.', exp: 'Days require on.' }], daily: 'I like reading books in the morning.', business: 'Our company was founded in London in 2010.', academic: 'Discoveries made in the 19th century.', quiz: { q: 'Fill in the blank: "We love traveling ___ summer."', options: ['at', 'in', 'on', 'by'], ans: 1, exp: 'Seasons take in.' } },
+      { id: 'on', title: 'ON', cat: 'Time', color: 'from-emerald-500 to-teal-600', icon: '📍', defEn: 'Used for days of the week, dates, surfaces, and electronic media.', defAr: 'يُستخدم لأيام الأسبوع، التواريخ، والأسطح.', rules: ['Days of the week (on Sunday)', 'Surfaces & devices (on the desk)'], timeline: ['Sunday', 'Monday', 'Tuesday'], examples: [{ en: 'My birthday is on October 12th.', ar: 'عيد ميلادي في 12 أكتوبر.', exp: 'Specific dates use on.' }], mistakes: [{ wrong: 'See you on the morning.', correct: 'See you in the morning.', exp: 'Parts of the day take in.' }], daily: 'I have conversation practice on Tuesdays.', business: 'Policy goes live on the intranet next month.', academic: 'Data published on university portal weekly.', quiz: { q: 'Choose: "The report must be on my desk ___ Monday."', options: ['at', 'in', 'on', 'by'], ans: 2, exp: 'Days require on.' } },
+      { id: 'for', title: 'FOR', cat: 'Time', color: 'from-pink-500 to-rose-600', icon: '⏳', defEn: 'Duration of time or recipient.', defAr: 'فترة زمنية مستمرة أو المستلم.', rules: ['Duration of time (for 3 years, for 2 hours)'], timeline: ['Start', '--- (For 5 Hours) ---', 'End'], examples: [{ en: 'She has been studying for two hours.', ar: 'هي تدرس منذ ساعتين.', exp: 'Duration of time.' }], mistakes: [{ wrong: 'I have lived here for 2020.', correct: 'I have lived here since 2020.', exp: 'Use since for starting point.' }], daily: 'I practice listening for 30 minutes daily.', business: 'We signed a contract for five years.', academic: 'Grant awarded for twelve months.', quiz: { q: 'Choose: "We stayed at the hotel ___ three nights."', options: ['since', 'for', 'during', 'at'], ans: 1, exp: 'Duration uses for.' } },
+      { id: 'since', title: 'SINCE', cat: 'Time', color: 'from-amber-500 to-orange-600', icon: '⏰', defEn: 'Starting point in past up to now.', defAr: 'نقطة بداية في الماضي حتى الآن.', rules: ['Specific starting point (since 2020)'], timeline: ['2020', '--------->', 'Now'], examples: [{ en: 'Mousa has been learning since January.', ar: 'موسى يتعلم منذ يناير.', exp: 'Exact starting point.' }], mistakes: [{ wrong: 'I have known him since 3 years.', correct: 'I have known him for 3 years.', exp: 'Use for with periods.' }], daily: 'I have felt confident since joining.', business: 'Enterprise grew since restructuring.', academic: 'Theory unchallenged since publication.', quiz: { q: 'Complete: "She has worked here ___ 2021."', options: ['for', 'since', 'in', 'at'], ans: 1, exp: 'Specific year uses since.' } },
+      { id: 'from', title: 'FROM', cat: 'Place', color: 'from-violet-500 to-purple-700', icon: '🚀', defEn: 'Origin, starting point, or source.', defAr: 'الأصل، نقطة البداية، أو المصدر.', rules: ['Origin or source (from Dubai)'], timeline: ['Start', '-------->', 'Destination'], examples: [{ en: 'Mousa is from the UAE.', ar: 'موسى من دولة الإمارات.', exp: 'Indicates origin.' }], mistakes: [{ wrong: 'He comes from to Dubai.', correct: 'He comes from Dubai.', exp: 'Do not pair from with to.' }], daily: 'I commute from home daily.', business: 'Wire transfer sent from corporate account.', academic: 'Data collected from peer journals.', quiz: { q: 'Choose: "The train departs ___ Abu Dhabi."', options: ['to', 'from', 'at', 'in'], ans: 1, exp: 'Source uses from.' } },
+      { id: 'to', title: 'TO', cat: 'Movement', color: 'from-blue-600 to-indigo-800', icon: '🎯', defEn: 'Destination, direction, or recipient.', defAr: 'الوجهة، الاتجاه، أو المستلم.', rules: ['Destination (traveling to London)'], timeline: ['Current', '--------->', 'Target'], examples: [{ en: 'I am going to the center.', ar: 'أنا ذاهب إلى المركز.', exp: 'Destination.' }], mistakes: [{ wrong: 'I want to go home.', correct: 'I want to go home.', exp: 'No to before home.' }], daily: 'Listen carefully to the audio.', business: 'Submit report to HR.', academic: 'Refer to page 45.', quiz: { q: 'Choose: "She gave the report ___ manager."', options: ['to', 'for', 'at', 'in'], ans: 0, exp: 'Recipient uses to.' } },
+      { id: 'by', title: 'BY', cat: 'Time', color: 'from-teal-500 to-emerald-700', icon: '⚡', defEn: 'Deadlines, transport, or passive agent.', defAr: 'المواعيد النهائية، الوسيلة، أو الفاعل.', rules: ['Deadlines (by Friday)', 'Transport (by bus)'], timeline: ['Now', '-----------------', 'Deadline'], examples: [{ en: 'Project finished by Monday.', ar: 'المشروع ينتهي بحلول الاثنين.', exp: 'Deadline.' }], mistakes: [{ wrong: 'Go there with car.', correct: 'Go there by car.', exp: 'Transport uses by.' }], daily: 'I travel by metro.', business: 'Audits approved by CEO.', academic: 'Theorem formulated by Einstein.', quiz: { q: 'Choose: "Send email ___ 5 PM?"', options: ['until', 'by', 'at', 'in'], ans: 1, exp: 'Deadline uses by.' } },
+      { id: 'with', title: 'WITH', cat: 'Place', color: 'from-rose-500 to-red-700', icon: '🤝', defEn: 'Companionship, possession, or tool.', defAr: 'المصاحبة، الملكية، أو الأداة.', rules: ['Tools/Instruments (with a pen)'], timeline: ['Together', 'Connected'], examples: [{ en: 'Mousa speaks with confidence.', ar: 'موسى يتحدث بثقة.', exp: 'Manner.' }], mistakes: [{ wrong: 'Opened door by a key.', correct: 'Opened door with a key.', exp: 'Tools use with.' }], daily: 'Practicing with native speakers.', business: 'Working with international partners.', academic: 'Results correlate with findings.', quiz: { q: 'Choose: "Writes ___ a pen."', options: ['by', 'with', 'in', 'on'], ans: 1, exp: 'Tools use with.' } },
+      { id: 'about', title: 'ABOUT', cat: 'Place', color: 'from-sky-500 to-indigo-600', icon: '💡', defEn: 'Concerning, regarding, or approx.', defAr: 'بخصوص أو تقريباً.', rules: ['Subject matter (about grammar)'], timeline: ['Topic', 'Details'], examples: [{ en: 'Learning about prepositions.', ar: 'نتعلم عن حروف الجر.', exp: 'Topic.' }], mistakes: [{ wrong: 'Discuss about topic.', correct: 'Discuss topic.', exp: 'Discuss takes no preposition.' }], daily: 'What is this movie about?', business: 'Talk about quarterly budget.', academic: 'Thesis about AI.', quiz: { q: 'Choose: "There were ___ 100 students."', options: ['about', 'around', 'of', 'in'], ans: 0, exp: 'Approx uses about.' } },
+      { id: 'between', title: 'BETWEEN', cat: 'Place', color: 'from-teal-400 to-cyan-600', icon: '⚖️', defEn: 'Two distinct items or people.', defAr: 'بين أمرين أو شخصين متميزين.', rules: ['Two distinct items'], timeline: ['A', '<--- BETWEEN --->', 'B'], examples: [{ en: 'Between Monday and Wednesday.', ar: 'بين الاثنين والأربعاء.', exp: 'Two points.' }], mistakes: [{ wrong: 'Between you and I.', correct: 'Between you and me.', exp: 'Object pronouns.' }], daily: 'Sit between classmates.', business: 'Negotiations between firms.', academic: 'Correlation between X and Y.', quiz: { q: 'Choose: "Choose ___ A and B."', options: ['among', 'between', 'in', 'with'], ans: 1, exp: 'Two items use between.' } },
+      { id: 'among', title: 'AMONG', cat: 'Place', color: 'from-fuchsia-500 to-pink-600', icon: '👥', defEn: 'Surrounded by a group of 3+.', defAr: 'مجموعة من ثلاثة أو أكثر.', rules: ['Groups of 3+'], timeline: ['Member', 'Group'], examples: [{ en: 'Popular among classmates.', ar: 'محبوب بين الزملاء.', exp: 'Group.' }], mistakes: [{ wrong: 'Prize among two.', correct: 'Prize between two.', exp: 'Between for two.' }], daily: 'Felt at home among friends.', business: 'Consensus among board.', academic: 'Trait common among mammals.', quiz: { q: 'Choose: "Distribute among ___ students."', options: ['between', 'among', 'in', 'at'], ans: 1, exp: 'Groups use among.' } },
+      { id: 'through', title: 'THROUGH', cat: 'Movement', color: 'from-amber-400 to-yellow-600', icon: '🌀', defEn: 'Passing through opening or process.', defAr: 'العبور خلال مساحة أو عملية.', rules: ['Tunnel passage', 'Process (through practice)'], timeline: ['Enter', '----->', 'Exit'], examples: [{ en: 'Learn through practice.', ar: 'نتعلم بالممارسة.', exp: 'Process.' }], mistakes: [{ wrong: 'Walk across tunnel.', correct: 'Walk through tunnel.', exp: 'Enclosed spaces use through.' }], daily: 'Look through window.', business: 'Navigated through crisis.', academic: 'Filtered through algorithms.', quiz: { q: 'Choose: "Went ___ tunnel."', options: ['across', 'through', 'over', 'under'], ans: 1, exp: 'Tunnels use through.' } },
+      { id: 'during', title: 'DURING', cat: 'Time', color: 'from-indigo-500 to-blue-700', icon: '⏳', defEn: 'Throughout duration of event.', defAr: 'طوال مدة حدث معين.', rules: ['Followed by noun phrase'], timeline: ['Start', '=== During ===', 'End'], examples: [{ en: 'Silence during the lesson.', ar: 'هدوء خلال الدرس.', exp: 'Event duration.' }], mistakes: [{ wrong: 'During I studied...', correct: 'While I studied...', exp: 'While for clauses.' }], daily: 'Take notes during lecture.', business: 'No calls during meetings.', academic: 'Activity recorded during sleep.', quiz: { q: 'Choose: "Indoors ___ storm."', options: ['while', 'during', 'for', 'since'], ans: 1, exp: 'Nouns take during.' } },
+      { id: 'before', title: 'BEFORE', cat: 'Time', color: 'from-emerald-400 to-teal-600', icon: '⏪', defEn: 'Earlier in time or preceding.', defAr: 'أسبق في الزمن أو مقدم.', rules: ['Prior sequence'], timeline: ['Event', '<--', 'Now'], examples: [{ en: 'Review before sleeping.', ar: 'راجع قبل النوم.', exp: 'Prior sequence.' }], mistakes: [{ wrong: 'Before to start...', correct: 'Before starting...', exp: 'Gerund after prep.' }], daily: 'Wash hands before eating.', business: 'Review before signing.', academic: 'Baseline before treatment.', quiz: { q: 'Choose: "Finish ___ Friday."', options: ['after', 'before', 'during', 'in'], ans: 1, exp: 'Prior deadline.' } },
+      { id: 'after', title: 'AFTER', cat: 'Time', color: 'from-purple-600 to-indigo-900', icon: '⏩', defEn: 'Later in time or following.', defAr: 'لاحق في الزمن أو تالٍ.', rules: ['Subsequent action'], timeline: ['Past', '--->', 'Future'], examples: [{ en: 'Practice after lesson.', ar: 'مارس بعد الدرس.', exp: 'Subsequent time.' }], mistakes: [{ wrong: 'After he went...', correct: 'After he left...', exp: 'Correct verbs.' }], daily: 'Walk after dinner.', business: 'Answers after presentation.', academic: 'Tests after 6 months.', quiz: { q: 'Choose: "Discuss ___ meeting."', options: ['before', 'after', 'during', 'at'], ans: 1, exp: 'Subsequent event.' } },
+      { id: 'above', title: 'ABOVE', cat: 'Place', color: 'from-cyan-400 to-blue-500', icon: '☁️', defEn: 'Higher level without touching.', defAr: 'في مستوى أعلى بدون تلامس.', rules: ['Higher, no touch'], timeline: ['High', 'Low'], examples: [{ en: 'Above the clouds.', ar: 'فوق السحب.', exp: 'Higher position.' }], mistakes: [{ wrong: 'Bridge above river.', correct: 'Bridge over river.', exp: 'Over for covering.' }], daily: 'Apartment above yours.', business: 'Sales above target.', academic: 'Score above average.', quiz: { q: 'Choose: "Temperatures ___ normal."', options: ['under', 'above', 'below', 'in'], ans: 1, exp: 'Scales use above.' } },
+      { id: 'below', title: 'BELOW', cat: 'Place', color: 'from-slate-400 to-slate-600', icon: '⚓', defEn: 'Lower level or position.', defAr: 'في مستوى أدنى.', rules: ['Lower scale'], timeline: ['High', 'Below'], examples: [{ en: 'Signed below.', ar: 'موقع أدناه.', exp: 'Lower position.' }], mistakes: [{ wrong: 'Below blankets.', correct: 'Under blankets.', exp: 'Under for covered.' }], daily: 'Read notes below.', business: 'Performance below expectations.', academic: 'Values below 0.05.', quiz: { q: 'Choose: "Dropped ___ zero."', options: ['above', 'below', 'over', 'on'], ans: 1, exp: 'Scales use below.' } },
+      { id: 'over', title: 'OVER', cat: 'Movement', color: 'from-pink-500 to-purple-600', icon: '☂️', defEn: 'Covering or more than numbers.', defAr: 'تغطية أو أكثر من.', rules: ['Coverage', 'More than numbers'], timeline: ['Start', '~~~', 'End'], examples: [{ en: 'Blanket over you.', ar: 'بطانية عليك.', exp: 'Coverage.' }], mistakes: [{ wrong: 'Flying above roof.', correct: 'Flying over roof.', exp: 'Over for crossing.' }], daily: 'Cat jumped over wall.', business: 'Discussed over coffee.', academic: 'Spans over decades.', quiz: { q: 'Choose: "Over 50 people."', options: ['above', 'over', 'under', 'between'], ans: 1, exp: 'Quantities use over.' } },
+      { id: 'under', title: 'UNDER', cat: 'Place', color: 'from-blue-400 to-indigo-600', icon: '📦', defEn: 'Directly below or covered.', defAr: 'تحت مباشرة أو مغطى.', rules: ['Beneath/covered'], timeline: ['Top', 'Under'], examples: [{ en: 'Keys under book.', ar: 'المفاتيح تحت الكتاب.', exp: 'Beneath.' }], mistakes: [{ wrong: 'Under sea level.', correct: 'Below sea level.', exp: 'Below for vertical.' }], daily: 'Under lock and key.', business: 'New management.', academic: 'Constant observation.', quiz: { q: 'Choose: "Sleeping ___ table."', options: ['over', 'under', 'above', 'on'], ans: 1, exp: 'Beneath uses under.' } },
+      { id: 'into', title: 'INTO', cat: 'Movement', color: 'from-emerald-500 to-teal-700', icon: '🚪', defEn: 'Movement from outside to inside.', defAr: 'حركة من الخارج للداخل.', rules: ['Inward motion'], timeline: ['Out', '-->', 'In'], examples: [{ en: 'Walked into room.', ar: 'دخل الغرفة.', exp: 'Inward entry.' }], mistakes: [{ wrong: 'Walked in room.', correct: 'Walked into room.', exp: 'Dynamic entry.' }], daily: 'Put keys into pocket.', business: 'Dive into details.', academic: 'Vapor condenses into liquid.', quiz: { q: 'Choose: "Poured ___ glass."', options: ['in', 'into', 'on', 'at'], ans: 1, exp: 'Inward entry.' } },
+      { id: 'out_of', title: 'OUT OF', cat: 'Movement', color: 'from-red-500 to-rose-700', icon: '🚪', defEn: 'Movement outside or lacking.', defAr: 'خروج أو نفاد.', rules: ['Exit movement'], timeline: ['In', '<--', 'Out'], examples: [{ en: 'Walked out of office.', ar: 'خرج من المكتب.', exp: 'Exit.' }], mistakes: [{ wrong: 'Out from car.', correct: 'Out of car.', exp: 'Fixed preposition.' }], daily: 'Out of coffee.', business: 'Out of stock.', academic: 'Selected out of samples.', quiz: { q: 'Choose: "Running ___ time."', options: ['out of', 'into', 'through', 'over'], ans: 0, exp: 'Lacking uses out of.' } },
+      { id: 'across', title: 'ACROSS', cat: 'Movement', color: 'from-cyan-500 to-blue-600', icon: '🌉', defEn: 'From one side to another.', defAr: 'من جانب لآخر عبر سطح.', rules: ['Surface crossing'], timeline: ['A', '~~~', 'B'], examples: [{ en: 'Across the street.', ar: 'عبر الشارع.', exp: 'Crossing.' }], mistakes: [{ wrong: 'Across tunnel.', correct: 'Through tunnel.', exp: 'Tunnels use through.' }], daily: 'Draw line across paper.', business: 'Spread across country.', academic: 'Trends across cohorts.', quiz: { q: 'Choose: "Bookstore ___ street."', options: ['across', 'through', 'over', 'under'], ans: 0, exp: 'Other side.' } },
+      { id: 'along', title: 'ALONG', cat: 'Movement', color: 'from-emerald-400 to-green-600', icon: '🛤️', defEn: 'Moving on a linear path.', defAr: 'الحركة بمحاذاة طريق.', rules: ['Linear path movement'], timeline: ['Start', '=====>', 'End'], examples: [{ en: 'Along the beach.', ar: 'بمحاذاة الشاطئ.', exp: 'Linear path.' }], mistakes: [{ wrong: 'Across riverbank.', correct: 'Along riverbank.', exp: 'Parallel path.' }], daily: 'Drive along highway.', business: 'Align along objectives.', academic: 'Distributed along axis.', quiz: { q: 'Choose: "Jogged ___ river."', options: ['across', 'along', 'through', 'over'], ans: 1, exp: 'Parallel path.' } },
+      { id: 'around', title: 'AROUND', cat: 'Movement', color: 'from-purple-500 to-pink-500', icon: '🔄', defEn: 'Surrounding or circular direction.', defAr: 'دولي أو محيط.', rules: ['Circumference'], timeline: ['(Start)', 'O', '(End)'], examples: [{ en: 'Around the sun.', ar: 'حول الشمس.', exp: 'Orbit.' }], mistakes: [{ wrong: 'Turn round corner.', correct: 'Turn around corner.', exp: 'Standard usage.' }], daily: 'Meet around 6 PM.', business: 'Turn project around.', academic: 'Molecules cluster around site.', quiz: { q: 'Choose: "Lap ___ track."', options: ['across', 'around', 'through', 'along'], ans: 1, exp: 'Circular track.' } }
+    ];
+
+    let currentTopic = topicsData[0];
+    let currentTab = 'overview';
+    let currentLang = 'ar';
+    let currentTheme = 'dark';
+    let favorites = JSON.parse(localStorage.getItem('mousa_favs') || '[]');
+    let completed = JSON.parse(localStorage.getItem('mousa_done') || '[]');
+    let notes = JSON.parse(localStorage.getItem('mousa_notes') || '{}');
+
+    // Theme & Lang toggles
+    function toggleTheme() {
+      currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      const body = document.getElementById('bodyTheme');
+      const btn = document.getElementById('themeBtn');
+      if(currentTheme === 'light') {
+        body.className = "bg-slate-50 text-slate-900 min-h-screen selection:bg-purple-500 selection:text-white";
+        btn.innerHTML = "🌙";
+      } else {
+        body.className = "bg-slate-950 text-slate-100 min-h-screen selection:bg-purple-500 selection:text-white";
+        btn.innerHTML = "☀️";
+      }
+    }
+
+    function toggleLang() {
+      currentLang = currentLang === 'ar' ? 'en' : 'ar';
+      document.getElementById('langBtn').innerText = currentLang === 'ar' ? 'English' : 'العربية';
+      document.getElementById('navSubtitle').innerText = currentLang === 'ar' ? '25 Grammar Mind-Maps & Mastery Hub' : 'منصة موسى الشاملة للخرائط الذهنية';
+      renderGrid(topicsData);
+      if(document.getElementById('detailView').classList.contains('hidden') === false) {
+        openTopic(currentTopic.id);
+      }
+    }
+
+    function updateProgress() {
+      document.getElementById('progressCounter').innerText = currentLang === 'ar' ? `مواضيع منجزة: ${completed.length} / 25` : `Mastered: ${completed.length} / 25`;
+    }
+
+    // Render Grid
+    function renderGrid(data) {
+      const grid = document.getElementById('topicsGrid');
+      grid.innerHTML = data.map(t => {
+        const isFav = favorites.includes(t.id);
+        const isDone = completed.includes(t.id);
+        return `
+          <div onclick="openTopic('${t.id}')" class="${currentTheme === 'dark' ? 'glass-dark' : 'glass-light'} p-5 rounded-3xl cursor-pointer hover:border-purple-500 transition-all hover:scale-105 flex flex-col justify-between space-y-3 group shadow-lg relative overflow-hidden">
+            <div class="flex items-center justify-between">
+              <span class="text-3xl p-2 rounded-2xl bg-slate-900/40">${t.icon}</span>
+              <div class="flex gap-1">
+                ${isDone ? '<span class="text-emerald-400 text-xs">✅</span>' : ''}
+                ${isFav ? '<span class="text-pink-500 text-xs">❤️</span>' : ''}
+              </div>
+            </div>
+            <div>
+              <h3 class="text-xl font-black group-hover:text-cyan-400 transition-colors">${t.title}</h3>
+              <p class="text-xs text-slate-400 mt-1 line-clamp-2">${currentLang === 'ar' ? t.defAr : t.defEn}</p>
+            </div>
+          </div>
+        `;
+      }).join('');
+      updateProgress();
+    }
+
+    function filterCategory(cat) {
+      if(cat === 'all') renderGrid(topicsData);
+      else renderGrid(topicsData.filter(t => t.cat === cat));
+    }
+
+    function filterTopics() {
+      const q = document.getElementById('searchInput').value.toLowerCase();
+      renderGrid(topicsData.filter(t => t.title.toLowerCase().includes(q) || t.defAr.includes(q) || t.defEn.toLowerCase().includes(q)));
+    }
+
+    function showHome() {
+      document.getElementById('homeView').classList.remove('hidden');
+      document.getElementById('detailView').classList.add('hidden');
+    }
+
+    function toggleFavoriteCurrent() {
+      if(favorites.includes(currentTopic.id)) {
+        favorites = favorites.filter(id => id !== currentTopic.id);
+      } else {
+        favorites.push(currentTopic.id);
+      }
+      localStorage.setItem('mousa_favs', JSON.stringify(favorites));
+      document.getElementById('favBtn').innerText = favorites.includes(currentTopic.id) ? '❤️ إزالة من المفضلة' : '🤍 إضافة للمفضلة';
+    }
+
+    function openTopic(id) {
+      currentTopic = topicsData.find(t => t.id === id);
+      document.getElementById('homeView').classList.add('hidden');
+      document.getElementById('detailView').classList.remove('hidden');
+
+      document.getElementById('favBtn').innerText = favorites.includes(id) ? '❤️ إزالة من المفضلة' : '🤍 إضافة للمفضلة';
+
+      const header = document.getElementById('detailHeader');
+      header.className = `p-8 rounded-3xl bg-gradient-to-r ${currentTopic.color} text-white shadow-2xl relative overflow-hidden`;
+      header.innerHTML = `
+        <span class="text-4xl mb-3 inline-block">${currentTopic.icon}</span>
+        <h2 class="text-4xl sm:text-5xl font-black">${currentTopic.title}</h2>
+        <p class="text-sm sm:text-base opacity-90 mt-2 leading-relaxed">${currentLang === 'ar' ? currentTopic.defAr : currentTopic.defEn}</p>
+      `;
+      switchTab('overview');
+    }
+
+    function switchTab(tab) {
+      currentTab = tab;
+      ['overview', 'timeline', 'examples', 'usage', 'quiz', 'notes'].forEach(t => {
+        const btn = document.getElementById(`btn-${t}`);
+        if(t === tab) {
+          btn.className = "px-5 py-2.5 rounded-xl font-bold text-xs bg-cyan-600 text-white shadow-lg whitespace-nowrap";
+        } else {
+          btn.className = "px-5 py-2.5 rounded-xl font-bold text-xs bg-slate-800 text-slate-300 hover:bg-slate-700 whitespace-nowrap";
+        }
+      });
+
+      const content = document.getElementById('tabContent');
+      if(tab === 'overview') {
+        content.innerHTML = `
+          <h3 class="font-bold text-cyan-400 text-lg mb-4">القواعد الأساسية وحالات الاستخدام:</h3>
+          <div class="space-y-3">
+            ${currentTopic.rules.map((r, i) => `<div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 text-sm font-semibold flex gap-3 items-start"><span class="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 font-bold">${i+1}</span><div>${r}</div></div>`).join('')}
+          </div>
+        `;
+      } else if(tab === 'timeline') {
+        content.innerHTML = `
+          <h3 class="font-bold text-amber-400 text-lg mb-4">التسلسل الزمني والمكاني:</h3>
+          <div class="border-l-2 border-purple-500/50 pl-6 space-y-6 ml-2">
+            ${currentTopic.timeline.map((item, idx) => `<div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-800"><span class="text-xs text-purple-400 font-bold uppercase tracking-wider">المرحلة ${idx+1}</span><p class="text-lg font-black text-white mt-1">${item}</p></div>`).join('')}
+          </div>
+        `;
+      } else if(tab === 'examples') {
+        content.innerHTML = `
+          <h3 class="font-bold text-pink-400 text-lg mb-4">الأمثلة التوضيحية والأخطاء الشائعة:</h3>
+          <div class="space-y-4">
+            ${currentTopic.examples.map(ex => `
+              <div class="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2">
+                <p class="text-base font-bold text-white">${ex.en}</p>
+                <p class="text-sm text-cyan-300 font-medium" dir="rtl">${ex.ar}</p>
+                <p class="text-xs text-slate-400 pt-2 border-t border-slate-800">💡 <strong>شرح القاعدة:</strong> ${ex.exp}</p>
+              </div>
+            `).join('')}
+            ${currentTopic.mistakes ? currentTopic.mistakes.map(m => `
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div class="p-3 rounded-xl bg-rose-950/20 border border-rose-500/30 text-rose-300 text-xs font-semibold">❌ خطأ شائع: ${m.wrong}</div>
+                <div class="p-3 rounded-xl bg-emerald-950/20 border border-emerald-500/30 text-emerald-300 text-xs font-semibold">✅ الصحيح: ${m.correct} (${m.exp})</div>
+              </div>
+            `).join('') : ''}
+          </div>
+        `;
+      } else if(tab === 'usage') {
+        content.innerHTML = `
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="p-5 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-3">
+              <span class="text-2xl">🗣️</span>
+              <h4 class="font-bold text-white">الاستخدام اليومي</h4>
+              <p class="text-xs text-slate-300 bg-slate-950/40 p-3 rounded-xl">"${currentTopic.daily}"</p>
+            </div>
+            <div class="p-5 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-3">
+              <span class="text-2xl">💼</span>
+              <h4 class="font-bold text-white">لغة الأعمال</h4>
+              <p class="text-xs text-slate-300 bg-slate-950/40 p-3 rounded-xl">"${currentTopic.business}"</p>
+            </div>
+            <div class="p-5 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-3">
+              <span class="text-2xl">🎓</span>
+              <h4 class="font-bold text-white">اللغة الأكاديمية</h4>
+              <p class="text-xs text-slate-300 bg-slate-950/40 p-3 rounded-xl">"${currentTopic.academic}"</p>
+            </div>
+          </div>
+        `;
+      } else if(tab === 'quiz') {
+        content.innerHTML = `
+          <div class="max-w-xl mx-auto space-y-6 text-center">
+            <h3 class="font-bold text-purple-400 text-xl">اختبر فهمك السريع</h3>
+            <p class="font-bold text-lg text-white">${currentTopic.quiz.q}</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              ${currentTopic.quiz.options.map((opt, idx) => `<button onclick="checkAnswer(${idx})" class="p-4 rounded-2xl bg-slate-800 border border-slate-700 hover:bg-purple-600 transition font-bold text-sm text-center">${opt}</button>`).join('')}
+            </div>
+            <div id="quizResult" class="font-bold text-sm mt-4"></div>
+          </div>
+        `;
+      } else if(tab === 'notes') {
+        const savedNote = notes[currentTopic.id] || '';
+        content.innerHTML = `
+          <div class="max-w-xl mx-auto space-y-4">
+            <h3 class="font-bold text-cyan-400 text-lg">ملاحظات 𝑴𝑶𝑼𝑺𝑨 الشخصية</h3>
+            <textarea id="userNoteArea" rows="5" class="w-full rounded-2xl bg-slate-950 border border-slate-800 p-4 text-slate-200 text-sm focus:border-purple-500 outline-none" placeholder="اكتب ملاحظاتك الخاصة هنا...">${savedNote}</textarea>
+            <button onclick="saveNote('${currentTopic.id}')" class="px-6 py-2.5 rounded-xl bg-purple-600 text-white font-bold text-sm hover:bg-purple-500 shadow-lg">حفظ الملاحظة</button>
+          </div>
+        `;
+      }
+    }
+
+    function checkAnswer(selectedIdx) {
+      const res = document.getElementById('quizResult');
+      if(selectedIdx === currentTopic.quiz.ans) {
+        res.innerHTML = `<span class="text-emerald-400 text-base">✅ إجابة صحيحة تماماً! ${currentTopic.quiz.exp}</span>`;
+        if(!completed.includes(currentTopic.id)) {
+          completed.push(currentTopic.id);
+          localStorage.setItem('mousa_done', JSON.stringify(completed));
+          updateProgress();
+        }
+      } else {
+        res.innerHTML = `<span class="text-rose-400 text-base">❌ إجابة خاطئة. حاول مرة أخرى.</span>`;
+      }
+    }
+
+    function saveNote(id) {
+      const val = document.getElementById('userNoteArea').value;
+      notes[id] = val;
+      localStorage.setItem('mousa_notes', JSON.stringify(notes));
+      alert('تم حفظ الملاحظة بنجاح!');
+    }
+
+    // Initial render
+    renderGrid(topicsData);
+  </script>
+</body>
+</html>
 
 ```
