@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PrepositionMaster - Interactive English Grammar Mind Maps</title>
+    <title>PrepositionMaster - Created for 𝑴𝑶𝑼𝑺𝑨</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -12,26 +13,21 @@
             theme: {
                 extend: {
                     fontFamily: { 
-                        sans: ['Inter', 'system-ui', 'sans-serif'], 
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
                         arabic: ['Noto Naskh Arabic', 'serif'] 
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
-                        'float-delay': 'float 6s ease-in-out 3s infinite',
                         'glow': 'glow 2s ease-in-out infinite alternate',
-                        'ripple': 'ripple 0.6s ease-out',
-                        'node-expand': 'nodeExpand 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                        'fade-in-up': 'fadeInUp 0.6s ease-out',
-                        'pulse-soft': 'pulseSoft 2s ease-in-out infinite',
+                        'fade-in-up': 'fadeInUp 0.5s ease-out',
+                        'bounce-in': 'bounceIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
                     },
                     keyframes: {
-                        float: { '0%, 100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-20px)' } },
-                        glow: { '0%': { boxShadow: '0 0 20px rgba(139, 92, 246, 0.3)' }, '100%': { boxShadow: '0 0 40px rgba(139, 92, 246, 0.6)' } },
-                        ripple: { '0%': { transform: 'scale(0)', opacity: '1' }, '100%': { transform: 'scale(4)', opacity: '0' } },
-                        nodeExpand: { '0%': { transform: 'scale(0) rotate(-10deg)', opacity: '0' }, '100%': { transform: 'scale(1) rotate(0deg)', opacity: '1' } },
-                        fadeInUp: { '0%': { transform: 'translateY(30px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } },
-                        pulseSoft: { '0%, 100%': { transform: 'scale(1)' }, '50%': { transform: 'scale(1.03)' } },
-                    },
+                        float: { '0%, 100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-15px)' } },
+                        glow: { '0%': { boxShadow: '0 0 15px rgba(139, 92, 246, 0.3)' }, '100%': { boxShadow: '0 0 35px rgba(139, 92, 246, 0.6)' } },
+                        fadeInUp: { '0%': { transform: 'translateY(20px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } },
+                        bounceIn: { '0%': { transform: 'scale(0.8)', opacity: '0' }, '100%': { transform: 'scale(1)', opacity: '1' } }
+                    }
                 }
             }
         }
@@ -39,42 +35,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --glass-bg: rgba(255, 255, 255, 0.18);
-            --glass-border: rgba(255, 255, 255, 0.3);
-            --glass-shadow: rgba(0, 0, 0, 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --glass-shadow: rgba(0, 0, 0, 0.05);
         }
         .dark {
-            --glass-bg: rgba(30, 30, 50, 0.45);
-            --glass-border: rgba(255, 255, 255, 0.12);
-            --glass-shadow: rgba(0, 0, 0, 0.35);
+            --glass-bg: rgba(15, 23, 42, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: rgba(0, 0, 0, 0.3);
         }
         .glass {
             background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--glass-border);
             box-shadow: 0 8px 32px var(--glass-shadow);
         }
         .glass-strong {
             background: var(--glass-bg);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             border: 1px solid var(--glass-border);
             box-shadow: 0 12px 40px var(--glass-shadow);
-        }
-        .neumorph {
-            background: linear-gradient(145deg, #e8ecf1, #ffffff);
-            box-shadow: 8px 8px 16px #d1d5db, -8px -8px 16px #ffffff;
-        }
-        .dark .neumorph {
-            background: linear-gradient(145deg, #1e293b, #334155);
-            box-shadow: 8px 8px 16px #0f172a, -8px -8px 16px #3b4f6b;
         }
         .gradient-text {
             background: linear-gradient(135deg, #8b5cf6, #06b6d4, #ec4899, #8b5cf6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
             background-size: 200% auto;
             animation: gradientShift 4s ease-in-out infinite;
         }
@@ -83,11 +70,11 @@
             50% { background-position: 200% center; }
         }
         .card-hover {
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .card-hover:hover {
-            transform: translateY(-12px) scale(1.03);
-            box-shadow: 0 25px 50px rgba(139, 92, 246, 0.35);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.25);
         }
         .particle {
             position: fixed;
@@ -105,204 +92,229 @@
         .scrollbar-thin::-webkit-scrollbar { width: 6px; }
         .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
         .scrollbar-thin::-webkit-scrollbar-thumb { background: rgba(139, 92, 246, 0.4); border-radius: 10px; }
-        .mindmap-container { perspective: 1000px; }
-        .mindmap-node { transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); cursor: pointer; }
-        .mindmap-node:hover { transform: scale(1.04); z-index: 10; }
-        @keyframes bounceIn {
-            0% { transform: scale(0); }
-            50% { transform: scale(1.15); }
-            70% { transform: scale(0.95); }
-            100% { transform: scale(1); }
-        }
-        .bounce-in { animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
     </style>
 </head>
-<body class="bg-gradient-to-br from-slate-50 via-purple-50 to-cyan-50 dark:from-slate-900 dark:via-purple-950 dark:to-slate-900 min-h-screen transition-colors duration-700 font-sans overflow-x-hidden text-slate-800 dark:text-slate-100">
+<body class="bg-gradient-to-br from-slate-50 via-purple-50 to-cyan-50 dark:from-slate-900 dark:via-purple-950 dark:to-slate-900 min-h-screen transition-colors duration-500 font-sans text-slate-800 dark:text-slate-100 overflow-x-hidden">
 
-    <!-- Particle Background -->
+    <!-- Background Particle Animation -->
     <div id="particles" class="fixed inset-0 pointer-events-none z-0"></div>
 
-    <!-- App Shell -->
+    <!-- Application Structure -->
     <div id="app" class="relative z-10">
-        <!-- Header -->
-        <header class="glass-strong sticky top-3 z-50 mx-3 mt-3 rounded-3xl px-5 py-3 flex items-center justify-between flex-wrap gap-3 transition-all duration-500">
-            <div class="flex items-center gap-3 cursor-pointer" onclick="navigateHome()">
-                <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-purple-600 via-pink-500 to-cyan-500 flex items-center justify-center text-white font-black text-2xl shadow-lg">P</div>
+        <!-- Navigation Header -->
+        <header class="glass-strong sticky top-3 z-50 mx-3 mt-3 rounded-2xl px-5 py-3 flex items-center justify-between flex-wrap gap-3">
+            <div class="flex items-center gap-3 cursor-pointer" id="navLogo">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-purple-600 via-pink-500 to-cyan-500 flex items-center justify-center text-white font-black text-xl shadow-lg">P</div>
                 <div>
                     <h1 class="text-xl md:text-2xl font-black gradient-text">PrepositionMaster</h1>
-                    <div class="text-[11px] text-purple-600 dark:text-purple-300 font-semibold tracking-wide">PRO LEARNING SUITE</div>
+                    <!-- MOUSA's Name Banner -->
+                    <div class="text-xs font-extrabold text-amber-500 dark:text-amber-400 tracking-wider flex items-center gap-1">
+                        ✨ <span>𝑴𝑶𝑼𝑺𝑨</span>
+                    </div>
                 </div>
             </div>
 
             <div class="flex items-center gap-2 flex-wrap">
-                <!-- Search -->
-                <div class="relative group">
-                    <input type="text" id="searchInput" placeholder="Search prepositions..." class="w-36 md:w-56 px-4 py-2.5 rounded-2xl bg-white/60 dark:bg-slate-800/60 backdrop-blur-md border border-purple-200 dark:border-purple-800 focus:border-purple-500 focus:ring-2 focus:ring-purple-400 outline-none transition-all duration-300 text-sm dark:text-white dark:placeholder-gray-400" oninput="handleSearch(this.value)">
-                    <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                    <div id="searchResults" class="absolute top-full mt-2 left-0 right-0 bg-white/95 dark:bg-slate-800/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-purple-100 dark:border-purple-900 hidden max-h-60 overflow-y-auto scrollbar-thin z-50"></div>
+                <!-- Search Filter -->
+                <div class="relative">
+                    <input type="text" id="searchInput" placeholder="Search topics..." class="w-36 md:w-52 px-3.5 py-2 rounded-xl bg-white/70 dark:bg-slate-800/70 backdrop-blur-md border border-purple-200 dark:border-purple-800 focus:outline-none focus:ring-2 focus:ring-purple-400 text-sm dark:text-white">
+                    <div id="searchResults" class="absolute top-full mt-2 left-0 right-0 bg-white/95 dark:bg-slate-800/95 backdrop-blur-xl rounded-xl shadow-2xl border border-purple-100 dark:border-purple-900 hidden max-h-60 overflow-y-auto scrollbar-thin z-50"></div>
                 </div>
 
-                <!-- Global Quick Test Button -->
-                <button onclick="startGlobalChallenge()" class="px-3.5 py-2.5 rounded-2xl bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-500 hover:to-cyan-400 text-white font-bold text-sm shadow-md transition-all flex items-center gap-1.5" title="Practice Random Exercises">
-                    <span>⚡</span> <span class="hidden sm:inline">Challenge</span>
+                <!-- Global Challenge Trigger -->
+                <button id="btnChallenge" class="px-3 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-500 hover:to-cyan-400 text-white font-bold text-xs shadow-md transition-all flex items-center gap-1" title="Random Practice">
+                    <span>⚡</span> <span>Challenge</span>
                 </button>
 
-                <!-- Language Toggle -->
-                <button onclick="toggleLanguage()" class="px-3.5 py-2.5 rounded-2xl bg-white/60 dark:bg-slate-800/60 backdrop-blur-md border border-purple-200 dark:border-purple-800 hover:border-purple-500 transition-all duration-300 text-sm font-semibold flex items-center gap-2 dark:text-white" id="langBtn">
+                <!-- Language and Theme Toggles -->
+                <button id="btnLang" class="px-3 py-2 rounded-xl glass hover:bg-purple-100 dark:hover:bg-purple-900/40 text-xs font-bold flex items-center gap-1 dark:text-white">
                     <span id="langIcon">🇬🇧</span> <span id="langText">EN</span>
                 </button>
-
-                <!-- Dark Mode Toggle -->
-                <button onclick="toggleDarkMode()" class="px-3.5 py-2.5 rounded-2xl bg-white/60 dark:bg-slate-800/60 backdrop-blur-md border border-purple-200 dark:border-purple-800 hover:border-purple-500 transition-all duration-300 text-sm font-semibold dark:text-white flex items-center gap-2" id="darkBtn">
+                <button id="btnDark" class="px-3 py-2 rounded-xl glass hover:bg-purple-100 dark:hover:bg-purple-900/40 text-xs font-bold dark:text-white">
                     <span id="darkIcon">🌙</span>
                 </button>
             </div>
         </header>
 
-        <!-- Breadcrumb & Status -->
-        <div class="mx-6 mt-4 flex justify-between items-center flex-wrap gap-2">
+        <!-- Breadcrumb & Status Bar -->
+        <div class="mx-6 mt-3 flex justify-between items-center flex-wrap gap-2">
             <nav id="breadcrumb" class="flex items-center gap-2 text-sm text-purple-600 dark:text-purple-400 font-medium">
-                <span class="cursor-pointer hover:underline" onclick="navigateHome()">🏠 Home</span>
+                <span class="cursor-pointer hover:underline" id="navHomeLink">🏠 Home</span>
                 <span id="breadcrumbPath"></span>
             </nav>
-            <div id="masteryBadge" class="glass px-3 py-1 rounded-full text-xs font-bold text-purple-700 dark:text-purple-300 flex items-center gap-1">
-                🏆 Rank: <span id="rankTitle">Grammar Novice</span>
+            <div class="glass px-3.5 py-1.5 rounded-full text-xs font-bold text-purple-700 dark:text-purple-300 flex items-center gap-1.5 shadow-sm">
+                <span>🏆 Owner & Student:</span>
+                <span class="text-amber-600 dark:text-amber-400 font-extrabold">𝑴𝑶𝑼𝑺𝑨</span>
+                <span>•</span>
+                <span id="rankTitle">Grammar Novice</span>
             </div>
         </div>
 
-        <!-- Main Content Area -->
-        <main id="mainContent" class="px-3 md:px-6 py-6 transition-all duration-500">
-            <!-- Homepage View -->
-            <div id="homepageView" class="space-y-8">
-                <div class="text-center mb-6 animate-fade-in-up">
-                    <h2 class="text-3xl md:text-5xl font-black gradient-text mb-3">Master English Prepositions</h2>
-                    <p class="text-gray-600 dark:text-gray-300 text-base md:text-xl max-w-2xl mx-auto">Interactive mind maps, native speech audio, bilingual translation, and smart practice exercises.</p>
+        <!-- Main Workspace -->
+        <main class="px-4 md:px-8 py-6">
+            <!-- Homepage Grid View -->
+            <div id="homepageView" class="space-y-6 animate-fade-in-up">
+                <div class="text-center my-2">
+                    <h2 class="text-3xl md:text-5xl font-black gradient-text mb-2">Master English Prepositions</h2>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm md:text-base max-w-2xl mx-auto">Welcome 𝑴𝑶𝑼𝑺𝑨! Interactive mind maps with abundant examples, native audio, and quizzes.</p>
                 </div>
 
-                <!-- Gamified Stats Bar -->
-                <div class="flex justify-center gap-4 flex-wrap mb-6" id="statsBar">
-                    <div class="glass rounded-2xl px-5 py-3 text-center min-w-[110px]">
-                        <div class="text-2xl font-black text-purple-600 dark:text-purple-400" id="lessonsCompleted">0 / 30</div>
-                        <div class="text-xs text-gray-500 dark:text-gray-400">Mastered</div>
-                    </div>
-                    <div class="glass rounded-2xl px-5 py-3 text-center min-w-[110px]">
-                        <div class="text-2xl font-black text-cyan-600 dark:text-cyan-400" id="totalScore">0</div>
-                        <div class="text-xs text-gray-500 dark:text-gray-400">XP Points</div>
-                    </div>
-                    <div class="glass rounded-2xl px-5 py-3 text-center min-w-[110px]">
-                        <div class="text-2xl font-black text-emerald-600 dark:text-emerald-400" id="streakDays">1</div>
-                        <div class="text-xs text-gray-500 dark:text-gray-400">Day Streak</div>
-                    </div>
+                <!-- Performance Dashboard -->
+                <div class="flex justify-center gap-4 text-center">
+                    <div class="glass rounded-2xl px-5 py-2.5 min-w-[100px]"><div class="text-xl font-black text-purple-600 dark:text-purple-400" id="lessonsCompleted">0 / 30</div><div class="text-xs text-gray-500">Mastered</div></div>
+                    <div class="glass rounded-2xl px-5 py-2.5 min-w-[100px]"><div class="text-xl font-black text-cyan-600 dark:text-cyan-400" id="totalScore">0</div><div class="text-xs text-gray-500">XP Points</div></div>
                 </div>
 
-                <!-- Category Filters Bar -->
-                <div class="flex justify-center gap-2 flex-wrap text-sm" id="categoryFilterBar">
-                    <button onclick="filterCategory('ALL')" class="cat-btn active glass px-4 py-2 rounded-2xl font-semibold border-purple-500 text-purple-600 dark:text-purple-300" data-cat="ALL">All (30)</button>
-                    <button onclick="filterCategory('TIME')" class="cat-btn glass px-4 py-2 rounded-2xl font-semibold dark:text-gray-300" data-cat="TIME">⏰ Time</button>
-                    <button onclick="filterCategory('PLACE')" class="cat-btn glass px-4 py-2 rounded-2xl font-semibold dark:text-gray-300" data-cat="PLACE">📍 Place & Space</button>
-                    <button onclick="filterCategory('DIRECTION')" class="cat-btn glass px-4 py-2 rounded-2xl font-semibold dark:text-gray-300" data-cat="DIRECTION">🏃 Movement</button>
-                    <button onclick="filterCategory('FAVORITES')" class="cat-btn glass px-4 py-2 rounded-2xl font-semibold dark:text-gray-300" data-cat="FAVORITES">⭐ Bookmarked</button>
+                <!-- Category Filters -->
+                <div class="flex justify-center gap-2 flex-wrap text-xs font-bold" id="categoryFilterBar">
+                    <button class="cat-btn glass px-3.5 py-2 rounded-xl text-purple-600 dark:text-purple-300 border-purple-500" data-cat="ALL">All (30)</button>
+                    <button class="cat-btn glass px-3.5 py-2 rounded-xl text-gray-600 dark:text-gray-300" data-cat="TIME">⏰ Time</button>
+                    <button class="cat-btn glass px-3.5 py-2 rounded-xl text-gray-600 dark:text-gray-300" data-cat="PLACE">📍 Place</button>
+                    <button class="cat-btn glass px-3.5 py-2 rounded-xl text-gray-600 dark:text-gray-300" data-cat="DIRECTION">🏃 Movement</button>
+                    <button class="cat-btn glass px-3.5 py-2 rounded-xl text-gray-600 dark:text-gray-300" data-cat="FAVORITES">⭐ Saved</button>
                 </div>
 
                 <!-- Cards Grid -->
                 <div id="cardsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4"></div>
             </div>
 
-            <!-- Mind Map Detail View -->
-            <div id="mindmapView" class="hidden transition-all duration-700">
+            <!-- Mindmap Detail View -->
+            <div id="mindmapView" class="hidden animate-fade-in-up">
                 <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
-                    <button onclick="navigateHome()" class="glass rounded-2xl px-4 py-2.5 hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-all duration-300 flex items-center gap-2 text-sm font-semibold dark:text-white">
-                        ← Back to All Prepositions
+                    <button id="btnBackHome" class="glass rounded-xl px-4 py-2 text-sm font-semibold hover:bg-purple-100 dark:hover:bg-purple-900/40 transition-all">
+                        ← Back to Topics
                     </button>
-                    <div class="flex gap-2 flex-wrap" id="actionButtons"></div>
+                    <div id="actionButtons" class="flex gap-2 flex-wrap"></div>
                 </div>
-                <div id="mindmapContent" class="glass-strong rounded-3xl p-4 md:p-8 min-h-[70vh] overflow-auto scrollbar-thin"></div>
-            </div>
-
-            <!-- Quiz Modal -->
-            <div id="quizModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-                <div class="glass-strong rounded-3xl p-6 md:p-8 max-w-lg w-full max-h-[85vh] overflow-y-auto scrollbar-thin bounce-in">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-xl font-bold dark:text-white flex items-center gap-2">📝 <span>Practice Quiz</span></h3>
-                        <button onclick="closeQuiz()" class="text-gray-400 hover:text-red-500 text-2xl font-bold">✕</button>
-                    </div>
-                    <div id="quizContent"></div>
-                </div>
-            </div>
-
-            <!-- Flashcard Modal -->
-            <div id="flashcardModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-                <div class="glass-strong rounded-3xl p-6 md:p-8 max-w-md w-full bounce-in text-center">
-                    <button onclick="closeFlashcard()" class="float-right text-gray-400 hover:text-red-500 text-2xl font-bold">✕</button>
-                    <div id="flashcardContent" class="mt-4"></div>
-                </div>
+                <div id="mindmapContent" class="glass-strong rounded-3xl p-6 md:p-8 min-h-[65vh]"></div>
             </div>
         </main>
     </div>
 
+    <!-- Quiz Modal -->
+    <div id="quizModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+        <div class="glass-strong rounded-3xl p-6 md:p-8 max-w-lg w-full animate-bounce-in shadow-2xl bg-white/90 dark:bg-slate-800/90">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold dark:text-white">📝 Practice Quiz</h3>
+                <button id="btnCloseQuiz" class="text-gray-400 hover:text-red-500 font-bold text-xl">✕</button>
+            </div>
+            <div id="quizContent"></div>
+        </div>
+    </div>
+
+    <!-- Flashcard Modal -->
+    <div id="flashcardModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+        <div class="glass-strong rounded-3xl p-6 max-w-sm w-full animate-bounce-in text-center bg-white/90 dark:bg-slate-800/90">
+            <button id="btnCloseFlashcard" class="float-right text-gray-400 hover:text-red-500 font-bold text-xl">✕</button>
+            <div id="flashcardContent" class="mt-4"></div>
+        </div>
+    </div>
+
     <script>
-        // ==================== EXPANDED PREPOSITION DATASTORE (30 ITEMS) ====================
+        // Expanded Preposition Dataset with Extra Examples for MOUSA
         const prepositionData = {
-            'AT': {
-                id: 'AT', category: 'TIME', color: 'from-purple-600 to-violet-500', bgColor: 'bg-purple-100 dark:bg-purple-900/30', textColor: 'text-purple-700 dark:text-purple-300', icon: '📍',
-                definition: { en: 'Used to indicate a specific point in time or a precise location.', ar: 'تُستخدم للإشارة إلى نقطة زمنية محددة أو موقع دقيق.' },
-                sections: {
+            'AT': { 
+                id: 'AT', category: 'TIME', color: 'from-purple-600 to-violet-500', icon: '📍', 
+                definition: { en: 'Used for specific points in time or precise locations.', ar: 'تُستخدم للإشارة إلى نقطة زمنية محددة أو موقع دقيق.' }, 
+                sections: { 
                     'Time Points': { icon: '🕐', items: [
-                        { en: 'at 7 o\'clock', ar: 'في الساعة السابعة', note: 'Specific clock time' },
-                        { en: 'at noon / at midnight', ar: 'عند الظهر / منتصف الليل', note: 'Fixed time of day' },
-                        { en: 'at the moment', ar: 'في هذه اللحظة', note: 'Current instant' }
-                    ]},
-                    'Precise Locations': { icon: '🏫', items: [
-                        { en: 'at school / work / home', ar: 'في المدرسة / العمل / المنزل', note: 'General location' },
-                        { en: 'at the station', ar: 'في المحطة', note: 'Transport stop' },
-                        { en: 'at the front door', ar: 'عند الباب الأمامي', note: 'Specific point' }
-                    ]},
-                    'Common Idioms': { icon: '💬', items: [
-                        { en: 'at first', ar: 'في البداية', note: 'Initial state' },
-                        { en: 'at least', ar: 'على الأقل', note: 'Minimum amount' },
-                        { en: 'at once', ar: 'فوراً', note: 'Immediately' }
-                    ]}
-                },
-                quiz: [
-                    { question: 'I\'ll meet you ___ the entrance.', options: ['at', 'in', 'on'], correct: 0, explanation: 'Use AT for specific exact locations.' },
-                    { question: 'Our class starts ___ 9:00 AM.', options: ['in', 'at', 'on'], correct: 1, explanation: 'Use AT for specific clock times.' }
-                ]
+                        { en: 'at 7 o\'clock', ar: 'في الساعة السابعة', note: 'Exact clock time' }, 
+                        { en: 'at noon / midnight', ar: 'عند الظهر / منتصف الليل', note: 'Fixed time' }, 
+                        { en: 'at the moment', ar: 'في هذه اللحظة', note: 'Current time' },
+                        { en: 'at sunrise / sunset', ar: 'عند شروق / غروب الشمس', note: 'Natural time point' },
+                        { en: 'at the end of the day', ar: 'في نهاية اليوم', note: 'Specific time mark' }
+                    ] }, 
+                    'Place & Location': { icon: '🏫', items: [
+                        { en: 'at school / work / home', ar: 'في المدرسة / العمل / المنزل', note: 'General place' }, 
+                        { en: 'at the entrance door', ar: 'عند مدخل الباب', note: 'Specific point' },
+                        { en: 'at the bus stop', ar: 'عند موقف الحافلة', note: 'Exact location' },
+                        { en: 'at the top of the page', ar: 'في أعلا الصفحة', note: 'Point on page' }
+                    ] } 
+                }, 
+                quiz: [{ question: 'I\'ll meet you ___ the bus stop.', options: ['at', 'in', 'on'], correct: 0, explanation: 'Use AT for specific precise points.' }] 
             },
-            'IN': {
-                id: 'IN', category: 'TIME', color: 'from-cyan-600 to-blue-500', bgColor: 'bg-cyan-100 dark:bg-cyan-900/30', textColor: 'text-cyan-700 dark:text-cyan-300', icon: '📦',
-                definition: { en: 'Used for enclosed spaces, cities, countries, months, and long periods.', ar: 'تُستخدم للأماكن المغلقة، المدن، الدول، الشهور والفترات الزمنية الطويلة.' },
-                sections: {
+            'IN': { 
+                id: 'IN', category: 'TIME', color: 'from-cyan-600 to-blue-500', icon: '📦', 
+                definition: { en: 'Used for enclosed spaces, cities, months, and years.', ar: 'تُستخدم للأماكن المغلقة، المدن، الشهور والسنوات.' }, 
+                sections: { 
                     'Time (Long Periods)': { icon: '📅', items: [
-                        { en: 'in the morning / afternoon', ar: 'في الصباح / الظهيرة', note: 'Part of day' },
-                        { en: 'in July', ar: 'في شهر يوليو', note: 'Months' },
-                        { en: 'in 2026', ar: 'في عام ٢٠٢٦', note: 'Years' },
-                        { en: 'in summer', ar: 'في الصيف', note: 'Seasons' }
-                    ]},
-                    'Enclosed / Areas': { icon: '🏠', items: [
-                        { en: 'in the room / building', ar: 'في الغرفة / المبنى', note: 'Enclosed space' },
-                        { en: 'in London / UAE', ar: 'في لندن / الإمارات', note: 'Cities & countries' },
-                        { en: 'in a car', ar: 'في السيارة', note: 'Private vehicle' }
-                    ]}
-                },
-                quiz: [
-                    { question: 'She was born ___ 1998.', options: ['at', 'in', 'on'], correct: 1, explanation: 'Use IN for years and months.' },
-                    { question: 'The keys are ___ my pocket.', options: ['on', 'at', 'in'], correct: 2, explanation: 'Use IN for inside enclosed spaces.' }
-                ]
+                        { en: 'in June / July', ar: 'في شهر يونيو / يوليو', note: 'Month' }, 
+                        { en: 'in 2026', ar: 'في عام ٢٠٢٦', note: 'Year' },
+                        { en: 'in the morning', ar: 'في الصباح', note: 'Part of day' },
+                        { en: 'in the summer', ar: 'في الصيف', note: 'Season' },
+                        { en: 'in two weeks', ar: 'خلال أسبوعين', note: 'Future duration' }
+                    ] }, 
+                    'Enclosed Places': { icon: '🏠', items: [
+                        { en: 'in the living room', ar: 'في غرفة المعيشة', note: 'Enclosed space' }, 
+                        { en: 'in London / UAE', ar: 'في لندن / الإمارات', note: 'City & Country' },
+                        { en: 'in a box / bag', ar: 'في الصندوق / الحقيبة', note: 'Container' },
+                        { en: 'in the water', ar: 'في الماء', note: 'Submerged' }
+                    ] } 
+                }, 
+                quiz: [{ question: 'She lives ___ Paris.', options: ['at', 'in', 'on'], correct: 1, explanation: 'Use IN for cities and countries.' }] 
             },
-            'ON': {
-                id: 'ON', category: 'PLACE', color: 'from-emerald-600 to-green-500', bgColor: 'bg-emerald-100 dark:bg-emerald-900/30', textColor: 'text-emerald-700 dark:text-emerald-300', icon: '📋',
-                definition: { en: 'Used for surfaces, specific days/dates, and public transport.', ar: 'تُستخدم للأسطح، الأيام والتواريخ المحددة، ووسائل النقل العام.' },
-                sections: {
+            'ON': { 
+                id: 'ON', category: 'PLACE', color: 'from-emerald-600 to-green-500', icon: '📋', 
+                definition: { en: 'Used for surfaces, specific days, dates, and transport.', ar: 'تُستخدم للأسطح، الأيام المحددة، والتواريخ.' }, 
+                sections: { 
                     'Days & Dates': { icon: '📆', items: [
-                        { en: 'on Monday', ar: 'يوم الإثنين', note: 'Day of week' },
-                        { en: 'on May 15th', ar: 'في الخامس عشر من مايو', note: 'Specific date' },
-                        { en: 'on my birthday', ar: 'في عيد ميلادي', note: 'Special day' }
-                    ]},
-                    'Surfaces & Media': { icon: '📄', items: [
-                        { en: 'on the table / wall', ar: 'على الطاولة / الحائط', note: 'Physical surface' },
-                        { en: 'on TV / the Internet', ar: 'على التلفزيون / الإنترنت', note: 'Electronic media' },
-                        { en: 'on the bus / train', ar: 'على متن الحافلة / القطار', note: 'Public transport' }
-                    ]}
-                },
-                quiz: [
-                    { question: 'The
+                        { en: 'on Monday', ar: 'يوم الإثنين', note: 'Day of week' }, 
+                        { en: 'on my birthday', ar: 'في عيد ميلادي', note: 'Special day' },
+                        { en: 'on May 15th', ar: 'في 15 مايو', note: 'Specific date' },
+                        { en: 'on New Year\'s Eve', ar: 'في عشية رأس السنة', note: 'Holiday day' }
+                    ] }, 
+                    'Surfaces & Transport': { icon: '📄', items: [
+                        { en: 'on the table / desk', ar: 'على الطاولة / المكتب', note: 'Surface' }, 
+                        { en: 'on the bus / train', ar: 'على متن الحافلة / القطار', note: 'Public transport' },
+                        { en: 'on the second floor', ar: 'في الطابق الثاني', note: 'Floor level' },
+                        { en: 'on the screen', ar: 'على الشاشة', note: 'Electronic display' }
+                    ] } 
+                }, 
+                quiz: [{ question: 'The book is ___ the table.', options: ['at', 'in', 'on'], correct: 2, explanation: 'Use ON for surfaces.' }] 
+            },
+            'FOR': { 
+                id: 'FOR', category: 'TIME', color: 'from-orange-500 to-amber-500', icon: '🎯', 
+                definition: { en: 'Indicates purpose, duration, or recipient.', ar: 'تشير إلى الغرض، المدة الزمنية، أو المستلم.' }, 
+                sections: { 
+                    'Duration & Purpose': { icon: '⏳', items: [
+                        { en: 'for 3 hours', ar: 'لمدة ٣ ساعات', note: 'Time duration' }, 
+                        { en: 'for a long time', ar: 'لفترة طويلة', note: 'Extended period' },
+                        { en: 'for ten years', ar: 'لمدة عشر سنوات', note: 'Long span' },
+                        { en: 'this gift is for MOUSA', ar: 'هذه الهدية لموسى', note: 'Recipient' },
+                        { en: 'study for success', ar: 'دراسة من أجل النجاح', note: 'Goal' }
+                    ] } 
+                }, 
+                quiz: [{ question: 'I waited ___ two hours.', options: ['since', 'for', 'from'], correct: 1, explanation: 'Use FOR for duration.' }] 
+            },
+            'SINCE': { 
+                id: 'SINCE', category: 'TIME', color: 'from-pink-500 to-rose-500', icon: '⏰', 
+                definition: { en: 'Indicates the starting point of an action.', ar: 'تشير إلى نقطة بداية حدوث فعل مستمر.' }, 
+                sections: { 
+                    'Start Point': { icon: '📍', items: [
+                        { en: 'since 2015', ar: 'منذ عام ٢٠١٥', note: 'Year start' }, 
+                        { en: 'since morning', ar: 'منذ الصباح', note: 'Time start' },
+                        { en: 'since Monday', ar: 'منذ يوم الإثنين', note: 'Day start' },
+                        { en: 'since I was a child', ar: 'منذ أن كنت طفلاً', note: 'Past life event' }
+                    ] } 
+                }, 
+                quiz: [{ question: 'I have lived here ___ 2018.', options: ['for', 'since', 'from'], correct: 1, explanation: 'Use SINCE for a specific starting point.' }] 
+            },
+            'FROM': { 
+                id: 'FROM', category: 'DIRECTION', color: 'from-indigo-500 to-blue-500', icon: '➡️', 
+                definition: { en: 'Indicates origin, source, or starting point.', ar: 'تشير إلى الأصل، المصدر، أو نقطة البداية.' }, 
+                sections: { 
+                    'Origin & Source': { icon: '🏠', items: [
+                        { en: 'from UAE', ar: 'من الإمارات', note: 'Country origin' }, 
+                        { en: 'from 9 AM to 5 PM', ar: 'من ٩ صباحاً حتى ٥ مساءً', note: 'Range' },
+                        { en: 'a letter from a friend', ar: 'رسالة من صديق', note: 'Source' },
+                        { en: 'from head to toe', ar: 'من الرأس إلى الأخمص', note: 'Complete range' }
+                    ] } 
+                }, 
+                quiz: [{ question: 'Where are you ___?', options: ['from', 'of', 'by'], correct: 0, explanation: 'Use FROM for origins.' }] 
+            },
+            'TO': { 
+                id: 'TO', category: 'DIRECTION', color: 'from-teal-500 to-cyan-500', icon: '🏁', 
+                definition: { en: 'Indicates direction, destination, or purpose.', ar: 'تشير إلى الاتجاه، الوجهة، أو الغرض.' }, 
+                sections: { 
+                    'Destination & Purpose': { icon: '🧭', items: [
+         
