@@ -1,76 +1,383 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Preposition Quiz Test</title>
-  <style>
-    body { font-family: sans-serif; padding: 20px; background: #f0f4f8; }
-    .card { background: white; padding: 20px; border-radius: 12px; max-width: 500px; margin: 0 auto; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-    button { display: block; width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; background: #fff; text-align: right; }
-    button:hover { background: #eef2ff; }
-    .correct { color: green; font-weight: bold; }
-    .wrong { color: red; font-weight: bold; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrepositionMaster - Interactive Mind Maps</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        arabic: ['Noto Naskh Arabic', 'serif'] 
+                    },
+                    animation: {
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'bounce-soft': 'bounceSoft 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                    },
+                    keyframes: {
+                        glow: { 
+                            '0%': { boxShadow: '0 0 15px rgba(139, 92, 246, 0.3)' },
+                            '100%': { boxShadow: '0 0 30px rgba(139, 92, 246, 0.6)' } 
+                        },
+                        bounceSoft: {
+                            '0%': { transform: 'scale(0.9)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.4);
+        }
+        .dark {
+            --glass-bg: rgba(15, 23, 42, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px -5px rgba(139, 92, 246, 0.25);
+        }
+        .scrollbar-thin::-webkit-scrollbar { width: 6px; }
+        .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+        .scrollbar-thin::-webkit-scrollbar-thumb { background: rgba(139, 92, 246, 0.3); border-radius: 10px; }
+    </style>
 </head>
-<body>
+<body class="bg-slate-50 dark:bg-slate-900 min-h-screen transition-colors duration-300 font-sans text-slate-800 dark:text-slate-100">
 
-<div class="card">
-  <h2>📝 اختبار حروف الجر (تجربة)</h2>
-  <div id="quizContainer"></div>
-</div>
+    <!-- Navigation Header -->
+    <header class="glass sticky top-2 z-50 mx-3 my-2 rounded-2xl px-4 py-3 flex items-center justify-between flex-wrap gap-3 shadow-sm">
+        <div class="flex items-center gap-3 cursor-pointer" onclick="navigateHome()">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-cyan-500 flex items-center justify-center text-white font-black text-xl shadow-md">P</div>
+            <h1 class="text-xl md:text-2xl font-bold gradient-text">PrepositionMaster</h1>
+        </div>
+        
+        <div class="flex items-center gap-2 flex-wrap">
+            <!-- Search Container -->
+            <div class="relative">
+                <input type="text" id="searchInput" placeholder="Search..." class="w-36 md:w-48 px-3 py-1.5 rounded-xl bg-white/80 dark:bg-slate-800/80 border border-purple-200 dark:border-purple-800 focus:outline-none focus:ring-2 focus:ring-purple-400 text-sm dark:text-white" oninput="handleSearch(this.value)">
+                <div id="searchResults" class="absolute top-full mt-2 left-0 right-0 bg-white dark:bg-slate-800 rounded-xl shadow-2xl border border-purple-100 dark:border-purple-900 hidden max-h-60 overflow-y-auto scrollbar-thin z-50"></div>
+            </div>
 
-<script>
-  const quizData = [
-    { question: "I'll meet you ___ the bus stop.", options: ["at", "in", "on"], correct: 0, explanation: "نستخدم AT مع النقاط والأماكن المحددة." },
-    { question: "She lives ___ New York.", options: ["at", "in", "on"], correct: 1, explanation: "نستخدم IN مع المدن والدول." }
-  ];
+            <!-- Controls -->
+            <button onclick="toggleLanguage()" class="px-3 py-1.5 rounded-xl glass hover:bg-purple-100 dark:hover:bg-purple-900/40 text-sm font-semibold flex items-center gap-1" id="langBtn">
+                <span id="langIcon">🇬🇧</span> <span id="langText">EN</span>
+            </button>
+            <button onclick="toggleDarkMode()" class="px-3 py-1.5 rounded-xl glass hover:bg-purple-100 dark:hover:bg-purple-900/40 text-sm" id="darkBtn">🌙</button>
+        </div>
+    </header>
 
-  let currentQ = 0;
-  let score = 0;
+    <!-- Breadcrumb -->
+    <nav id="breadcrumb" class="mx-6 mt-3 text-sm text-purple-600 dark:text-purple-400 flex items-center gap-2">
+        <span class="cursor-pointer hover:underline font-medium" onclick="navigateHome()">🏠 Home</span>
+        <span id="breadcrumbPath"></span>
+    </nav>
 
-  function loadQuestion() {
-    if (currentQ >= quizData.length) {
-      document.getElementById('quizContainer').innerHTML = `
-        <h3>🎉 اكتمل الاختبار!</h3>
-        <p>النتيجة النهائية: ${score} من ${quizData.length}</p>
-        <button onclick="restart()">إعادة الاختبار</button>
-      `;
-      return;
-    }
+    <!-- Main Container -->
+    <main class="px-4 md:px-8 py-4">
+        <!-- Homepage Grid View -->
+        <div id="homepageView" class="space-y-6">
+            <div class="text-center my-6">
+                <h2 class="text-3xl md:text-4xl font-extrabold gradient-text mb-2">Master English Prepositions</h2>
+                <p class="text-gray-500 dark:text-gray-400 text-sm md:text-base">Explore interactive mind maps, examples, and practice quizzes</p>
+            </div>
 
-    const q = quizData[currentQ];
-    let html = `<p><b>سؤال ${currentQ + 1}:</b> ${q.question}</p>`;
-    q.options.forEach((opt, idx) => {
-      html += `<button onclick="checkAnswer(${idx})">${opt}</button>`;
-    });
-    html += `<div id="feedback" style="margin-top:10px;"></div>`;
-    document.getElementById('quizContainer').innerHTML = html;
-  }
+            <!-- Stats Bar -->
+            <div class="flex justify-center gap-4 text-center">
+                <div class="glass rounded-xl px-4 py-2"><div class="text-xl font-bold text-purple-600" id="lessonsCompleted">0</div><div class="text-xs text-gray-400">Completed</div></div>
+                <div class="glass rounded-xl px-4 py-2"><div class="text-xl font-bold text-cyan-600" id="totalScore">0</div><div class="text-xs text-gray-400">Score</div></div>
+            </div>
 
-  function checkAnswer(selected) {
-    const q = quizData[currentQ];
-    const feedback = document.getElementById('feedback');
-    if (selected === q.correct) {
-      score++;
-      feedback.innerHTML = `<span class="correct">✅ إجابة صحيحة!</span><br><small>${q.explanation}</small>`;
-    } else {
-      feedback.innerHTML = `<span class="wrong">❌ إجابة خاطئة!</span>`;
-    }
+            <!-- Grid -->
+            <div id="cardsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
+        </div>
 
-    setTimeout(() => {
-      currentQ++;
-      loadQuestion();
-    }, 1200);
-  }
+        <!-- Mind Map View -->
+        <div id="mindmapView" class="hidden">
+            <div class="flex items-center gap-3 mb-4 flex-wrap">
+                <button onclick="navigateHome()" class="glass rounded-xl px-4 py-2 text-sm font-semibold hover:bg-purple-100 dark:hover:bg-purple-900/40 transition-all">← Back</button>
+                <div id="actionButtons" class="flex gap-2 flex-wrap"></div>
+            </div>
+            <div id="mindmapContent" class="glass rounded-3xl p-6 md:p-8 min-h-[60vh]"></div>
+        </div>
+    </main>
 
-  function restart() {
-    currentQ = 0;
-    score = 0;
-    loadQuestion();
-  }
+    <!-- Quiz Modal -->
+    <div id="quizModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+        <div class="glass rounded-3xl p-6 max-w-md w-full animate-bounce-soft shadow-2xl bg-white dark:bg-slate-800">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold dark:text-white">📝 Practice Quiz</h3>
+                <button onclick="closeQuiz()" class="text-gray-400 hover:text-red-500 font-bold text-xl">✕</button>
+            </div>
+            <div id="quizContent"></div>
+        </div>
+    </div>
 
-  loadQuestion();
-</script>
+    <!-- Flashcard Modal -->
+    <div id="flashcardModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+        <div class="glass rounded-3xl p-6 max-w-sm w-full animate-bounce-soft text-center bg-white dark:bg-slate-800">
+            <button onclick="closeFlashcard()" class="float-right text-gray-400 hover:text-red-500 font-bold text-xl">✕</button>
+            <div id="flashcardContent" class="mt-4"></div>
+        </div>
+    </div>
 
-</body>
-</html>
+    <script>
+        // Data Structure
+        const prepositionData = {
+            'AT': {
+                id: 'AT',
+                color: 'from-purple-600 to-indigo-600',
+                bgColor: 'bg-purple-100 dark:bg-purple-900/40',
+                textColor: 'text-purple-700 dark:text-purple-300',
+                icon: '📍',
+                definition: { en: 'Used for specific points in time or exact locations.', ar: 'تُستخدم للأوقات المحددة أو الأماكن الدقيقة.' },
+                sections: {
+                    'Specific Time': {
+                        icon: '⏰',
+                        items: [
+                            { en: 'at 7 o\'clock', ar: 'في الساعة 7', note: 'Clock time' },
+                            { en: 'at midnight', ar: 'في منتصف الليل', note: 'Specific point' },
+                            { en: 'at the moment', ar: 'في الوقت الحالي', note: 'Present time' }
+                        ]
+                    },
+                    'Specific Places': {
+                        icon: '🏫',
+                        items: [
+                            { en: 'at home', ar: 'في المنزل', note: 'Specific place' },
+                            { en: 'at the entrance', ar: 'عند المدخل', note: 'Exact point' }
+                        ]
+                    }
+                },
+                quiz: [
+                    { question: "I will meet you ___ 8:00 PM.", options: ["at", "in", "on"], correct: 0, explanation: "Use AT for specific clock times." },
+                    { question: "She is waiting ___ the door.", options: ["in", "at", "on"], correct: 1, explanation: "Use AT for specific points." }
+                ]
+            },
+            'IN': {
+                id: 'IN',
+                color: 'from-cyan-600 to-blue-600',
+                bgColor: 'bg-cyan-100 dark:bg-cyan-900/40',
+                textColor: 'text-cyan-700 dark:text-cyan-300',
+                icon: '📦',
+                definition: { en: 'Used for enclosed spaces, cities, months, and years.', ar: 'تُستخدم للأماكن المغلقة، المدن، الشهور والسنوات.' },
+                sections: {
+                    'Long Periods': {
+                        icon: '📅',
+                        items: [
+                            { en: 'in June', ar: 'في شهر يونيو', note: 'Months' },
+                            { en: 'in 2024', ar: 'في عام 2024', note: 'Years' },
+                            { en: 'in the morning', ar: 'في الصباح', note: 'Part of day' }
+                        ]
+                    },
+                    'Enclosed / Areas': {
+                        icon: '🏙️',
+                        items: [
+                            { en: 'in London', ar: 'في لندن', note: 'Cities' },
+                            { en: 'in the room', ar: 'في الغرفة', note: 'Enclosed space' }
+                        ]
+                    }
+                },
+                quiz: [
+                    { question: "My birthday is ___ July.", options: ["at", "in", "on"], correct: 1, explanation: "Use IN for months." },
+                    { question: "He lives ___ Paris.", options: ["on", "at", "in"], correct: 2, explanation: "Use IN for cities." }
+                ]
+            },
+            'ON': {
+                id: 'ON',
+                color: 'from-emerald-600 to-teal-600',
+                bgColor: 'bg-emerald-100 dark:bg-emerald-900/40',
+                textColor: 'text-emerald-700 dark:text-emerald-300',
+                icon: '📋',
+                definition: { en: 'Used for surfaces, days, and dates.', ar: 'تُستخدم للأسطح، الأيام والتواريخ.' },
+                sections: {
+                    'Days & Dates': {
+                        icon: '📆',
+                        items: [
+                            { en: 'on Monday', ar: 'يوم الإثنين', note: 'Day of week' },
+                            { en: 'on July 4th', ar: 'في الرابع من يوليو', note: 'Specific date' }
+                        ]
+                    },
+                    'Surfaces': {
+                        icon: '🪑',
+                        items: [
+                            { en: 'on the table', ar: 'على الطاولة', note: 'Surface' },
+                            { en: 'on the wall', ar: 'على الحائط', note: 'Vertical surface' }
+                        ]
+                    }
+                },
+                quiz: [
+                    { question: "The book is ___ the desk.", options: ["at", "in", "on"], correct: 2, explanation: "Use ON for surfaces." },
+                    { question: "See you ___ Friday!", options: ["on", "at", "in"], correct: 0, explanation: "Use ON for days." }
+                ]
+            },
+            'FOR': {
+                id: 'FOR',
+                color: 'from-amber-500 to-orange-600',
+                bgColor: 'bg-amber-100 dark:bg-amber-900/40',
+                textColor: 'text-amber-700 dark:text-amber-300',
+                icon: '⏳',
+                definition: { en: 'Indicates duration or purpose.', ar: 'تُستخدم للإشارة إلى المدة الزمنية أو الغرض.' },
+                sections: {
+                    'Duration': {
+                        icon: '⏱️',
+                        items: [
+                            { en: 'for 2 hours', ar: 'لمدة ساعتين', note: 'Time length' },
+                            { en: 'for a long time', ar: 'لفترة طويلة', note: 'Unspecified duration' }
+                        ]
+                    }
+                },
+                quiz: [
+                    { question: "I studied ___ three hours.", options: ["since", "for", "at"], correct: 1, explanation: "Use FOR for duration." }
+                ]
+            },
+            'SINCE': {
+                id: 'SINCE',
+                color: 'from-rose-500 to-pink-600',
+                bgColor: 'bg-rose-100 dark:bg-rose-900/40',
+                textColor: 'text-rose-700 dark:text-rose-300',
+                icon: '📍',
+                definition: { en: 'Indicates the starting point of an action.', ar: 'تُشير إلى نقطة بداية حدوث الفعل.' },
+                sections: {
+                    'Start Time': {
+                        icon: '⏰',
+                        items: [
+                            { en: 'since 2010', ar: 'منذ عام 2010', note: 'Start year' },
+                            { en: 'since morning', ar: 'منذ الصباح', note: 'Start time' }
+                        ]
+                    }
+                },
+                quiz: [
+                    { question: "I have lived here ___ 2015.", options: ["for", "since", "from"], correct: 1, explanation: "Use SINCE with starting points." }
+                ]
+            }
+        };
+
+        // Application State
+        let state = {
+            darkMode: false,
+            language: 'en',
+            currentTopic: null,
+            completedLessons: JSON.parse(localStorage.getItem('completedLessons') || '[]'),
+            totalScore: parseInt(localStorage.getItem('totalScore') || '0'),
+            bookmarks: JSON.parse(localStorage.getItem('bookmarks') || '[]')
+        };
+
+        function saveState() {
+            localStorage.setItem('completedLessons', JSON.stringify(state.completedLessons));
+            localStorage.setItem('totalScore', state.totalScore.toString());
+            localStorage.setItem('bookmarks', JSON.stringify(state.bookmarks));
+            updateStats();
+        }
+
+        function updateStats() {
+            document.getElementById('lessonsCompleted').textContent = state.completedLessons.length;
+            document.getElementById('totalScore').textContent = state.totalScore;
+        }
+
+        function toggleDarkMode() {
+            state.darkMode = !state.darkMode;
+            document.documentElement.classList.toggle('dark', state.darkMode);
+            document.getElementById('darkBtn').textContent = state.darkMode ? '☀️' : '🌙';
+        }
+
+        function toggleLanguage() {
+            state.language = state.language === 'en' ? 'ar' : 'en';
+            document.getElementById('langIcon').textContent = state.language === 'en' ? '🇬🇧' : '🇸🇦';
+            document.getElementById('langText').textContent = state.language === 'en' ? 'EN' : 'AR';
+            document.documentElement.dir = state.language === 'ar' ? 'rtl' : 'ltr';
+            if (state.currentTopic) renderMindMap(state.currentTopic);
+            renderCards();
+        }
+
+        function t(enText, arText) {
+            return state.language === 'en' ? enText : arText;
+        }
+
+        function navigateHome() {
+            state.currentTopic = null;
+            document.getElementById('homepageView').classList.remove('hidden');
+            document.getElementById('mindmapView').classList.add('hidden');
+            document.getElementById('breadcrumbPath').textContent = '';
+            document.getElementById('searchResults').classList.add('hidden');
+        }
+
+        function navigateToTopic(topicId) {
+            state.currentTopic = topicId;
+            document.getElementById('homepageView').classList.add('hidden');
+            document.getElementById('mindmapView').classList.remove('hidden');
+            document.getElementById('breadcrumbPath').innerHTML = `<span class="text-gray-400">›</span> <span class="font-bold">${topicId}</span>`;
+            document.getElementById('searchResults').classList.add('hidden');
+            renderMindMap(topicId);
+
+            if (!state.completedLessons.includes(topicId)) {
+                state.completedLessons.push(topicId);
+                state.totalScore += 10;
+                saveState();
+            }
+        }
+
+        function renderCards() {
+            const grid = document.getElementById('cardsGrid');
+            grid.innerHTML = Object.keys(prepositionData).map(topicId => {
+                const data = prepositionData[topicId];
+                const isCompleted = state.completedLessons.includes(topicId);
+                return `
+                <div class="card-hover glass rounded-2xl p-4 cursor-pointer relative flex flex-col justify-between" onclick="navigateToTopic('${topicId}')">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-2xl">${data.icon}</span>
+                            ${isCompleted ? '<span class="text-green-500 text-xs font-bold">✅</span>' : ''}
+                        </div>
+                        <h3 class="text-xl font-black bg-gradient-to-r ${data.color} bg-clip-text text-transparent">${topicId}</h3>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">${t(data.definition.en, data.definition.ar)}</p>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function renderMindMap(topicId) {
+            const data = prepositionData[topicId];
+            const container = document.getElementById('mindmapContent');
+
+            document.getElementById('actionButtons').innerHTML = `
+                <button onclick="startQuiz('${topicId}')" class="glass rounded-xl px-3 py-1.5 text-xs md:text-sm font-semibold hover:bg-purple-100 dark:hover:bg-purple-900/40">📝 Quiz</button>
+                <button onclick="startFlashcards('${topicId}')" class="glass rounded-xl px-3 py-1.5 text-xs md:text-sm font-semibold hover:bg-cyan-100 dark:hover:bg-cyan-900/40">🃏 Flashcards</button>
+            `;
+
+            let html = `
+                <div class="text-center mb-8">
+                    <div class="w-20 h-20 rounded-full bg-gradient-to-br ${data.color} flex items-center justify-center text-white text-3xl font-black shadow-lg mx-auto mb-3">${topicId}</div>
+                    <h2 class="text-2xl font-black dark:text-white">${topicId}</h2>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 max-w-md mx-auto mt-1">${t(data.definition.en, data.definition.ar)}</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">`;
+
+            Object.entries(data.sections).forEach(([secName, section]) => {
+                html += `
+                    <div class="glass rounded-2xl p-4 border-l-4 border-purple-500">
+                        <h4 class="font-bold text-base mb-3 flex items-center gap-2 dark:text-white"><span>${section.icon}</span> ${secName}</h4>
+                        <div class="space-y-2">
+                            ${section.items.map(item => `
+                 
