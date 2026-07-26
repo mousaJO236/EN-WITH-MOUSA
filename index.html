@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة 𝑴𝑶𝑼𝑺𝑨 - Master English Prepositions</title>
+    <title>منصة 𝑴𝑶𝑼𝑺𝑨 - Advanced English Prepositions</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -96,10 +96,10 @@
 </head>
 <body class="bg-gradient-to-br from-slate-50 via-purple-50 to-cyan-50 dark:from-slate-900 dark:via-purple-950 dark:to-slate-900 min-h-screen transition-colors duration-500 font-sans text-slate-800 dark:text-slate-100 overflow-x-hidden">
 
-    <!-- Particle Background -->
+    <!-- Floating Particles Background -->
     <div id="particles" class="fixed inset-0 pointer-events-none z-0"></div>
 
-    <!-- Application Wrapper -->
+    <!-- Application Shell -->
     <div id="app" class="relative z-10">
         <!-- Navigation Header -->
         <header class="glass-strong sticky top-3 z-50 mx-3 mt-3 rounded-2xl px-5 py-3 flex items-center justify-between flex-wrap gap-3">
@@ -107,19 +107,19 @@
                 <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-purple-600 via-pink-500 to-cyan-500 flex items-center justify-center text-white font-black text-xl shadow-lg">M</div>
                 <div>
                     <h1 class="text-xl md:text-2xl font-black gradient-text">منصة 𝑴𝑶𝑼𝑺𝑨</h1>
-                    <div class="text-[10px] text-purple-600 dark:text-purple-300 font-bold tracking-wider">ADVANCED GRAMMAR HUB</div>
+                    <div class="text-[10px] text-purple-600 dark:text-purple-300 font-bold tracking-wider">BERLITZ PRO HUB</div>
                 </div>
             </div>
 
             <div class="flex items-center gap-2 flex-wrap">
                 <!-- Search Box -->
                 <div class="relative">
-                    <input type="text" id="searchInput" placeholder="Search topics..." class="w-36 md:w-52 px-3.5 py-2 rounded-xl bg-white/70 dark:bg-slate-800/70 backdrop-blur-md border border-purple-200 dark:border-purple-800 focus:outline-none focus:ring-2 focus:ring-purple-400 text-sm dark:text-white">
+                    <input type="text" id="searchInput" placeholder="Search prepositions..." class="w-36 md:w-52 px-3.5 py-2 rounded-xl bg-white/70 dark:bg-slate-800/70 backdrop-blur-md border border-purple-200 dark:border-purple-800 focus:outline-none focus:ring-2 focus:ring-purple-400 text-sm dark:text-white">
                     <div id="searchResults" class="absolute top-full mt-2 left-0 right-0 bg-white/95 dark:bg-slate-800/95 backdrop-blur-xl rounded-xl shadow-2xl border border-purple-100 dark:border-purple-900 hidden max-h-60 overflow-y-auto scrollbar-thin z-50"></div>
                 </div>
 
                 <!-- Hard Challenge Button -->
-                <button id="btnChallenge" class="px-3 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-500 hover:to-cyan-400 text-white font-bold text-xs shadow-md transition-all flex items-center gap-1" title="Tricky Quiz Challenge">
+                <button id="btnChallenge" class="px-3 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-500 hover:to-cyan-400 text-white font-bold text-xs shadow-md transition-all flex items-center gap-1" title="All-Questions Hard Challenge">
                     <span>🔥</span> <span>Hard Challenge</span>
                 </button>
 
@@ -140,10 +140,10 @@
                 <span id="breadcrumbPath"></span>
             </nav>
             <div class="glass px-3.5 py-1.5 rounded-full text-xs font-bold text-purple-700 dark:text-purple-300 flex items-center gap-1.5 shadow-sm">
-                <span>👤 Welcome:</span>
+                <span>👤 Student:</span>
                 <span class="text-amber-500 dark:text-amber-400 font-black">𝑴𝑶𝑼𝑺𝑨</span>
                 <span>•</span>
-                <span id="rankTitle">Grammar Novice</span>
+                <span id="rankTitle">Berlitz Novice</span>
             </div>
         </div>
 
@@ -153,7 +153,7 @@
             <div id="homepageView" class="space-y-6 animate-fade-in-up">
                 <div class="text-center my-2">
                     <h2 class="text-3xl md:text-5xl font-black gradient-text mb-2">منصة 𝑴𝑶𝑼𝑺𝑨</h2>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm md:text-base max-w-2xl mx-auto">Master complex English prepositions, tricky exceptions, native audio, and high-difficulty quizzes.</p>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm md:text-base max-w-2xl mx-auto">Master all 30 complex English prepositions, tricky exceptions, native audio, and high-difficulty tests tailored for 𝑴𝑶𝑼𝑺𝑨.</p>
                 </div>
 
                 <!-- Stats Dashboard -->
@@ -192,7 +192,7 @@
     <div id="quizModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
         <div class="glass-strong rounded-3xl p-6 md:p-8 max-w-lg w-full animate-bounce-in shadow-2xl bg-white/95 dark:bg-slate-800/95">
             <div class="flex justify-between items-center mb-4">
-                <h3 class="text-lg font-bold dark:text-white flex items-center gap-2">🔥 <span>Challenge Quiz</span></h3>
+                <h3 class="text-lg font-bold dark:text-white flex items-center gap-2">🔥 <span>Berlitz Tricky Quiz</span></h3>
                 <button id="btnCloseQuiz" class="text-gray-400 hover:text-red-500 font-bold text-xl">✕</button>
             </div>
             <div id="quizContent"></div>
@@ -208,7 +208,22 @@
     </div>
 
     <script>
-        // Data Structure with Multiple Extremely Tricky Quizzes for EVERY Word
+        function safeGetStorage(key, fallback) {
+            try {
+                const item = localStorage.getItem(key);
+                return item ? JSON.parse(item) : fallback;
+            } catch (e) {
+                return fallback;
+            }
+        }
+
+        function safeSetStorage(key, val) {
+            try {
+                localStorage.setItem(key, typeof val === 'string' ? val : JSON.stringify(val));
+            } catch (e) {}
+        }
+
+        // Complete 30 Prepositions Database with Multiple Tricky/Hard Quiz Questions for EACH word
         const prepositionData = {
             'AT': { 
                 id: 'AT', category: 'TIME', color: 'from-purple-600 to-violet-500', icon: '📍', 
@@ -216,17 +231,19 @@
                 sections: { 
                     'Time & Milestones': { icon: '🕐', items: [
                         { en: 'at 7:15 AM sharp', ar: 'في تمام الساعة 7:15 صباحاً', note: 'Exact clock time' }, 
-                        { en: 'at the age of 25', ar: 'في سن الخامسة والعشرين', note: 'Milestone' }
+                        { en: 'at the age of 25', ar: 'في سن الخامسة والعشرين', note: 'Milestone' },
+                        { en: 'at dawn / at dusk', ar: 'عند الفجر / الغسق', note: 'Natural time point' }
                     ] }, 
                     'Reaction Targets': { icon: '🎯', items: [
                         { en: 'astonished at the news', ar: 'مندهش من الأخبار', note: 'Reaction' }, 
-                        { en: 'good at math', ar: 'متمكن في الرياضيات', note: 'Skill' }
+                        { en: 'good at grammar', ar: 'متمكن في القواعد', note: 'Skill' },
+                        { en: 'stare at the board', ar: 'التحديق في السبورة', note: 'Fixed look' }
                     ] } 
                 }, 
                 quiz: [
                     { question: 'The diplomat arrived ___ the airport late, but arrived ___ London on time.', options: ['at / in', 'in / at', 'at / at', 'in / in'], correct: 0, explanation: 'Use AT for specific hubs/airports and IN for large cities.' },
-                    { question: 'She was deeply offended ___ his insensitive remark during the meeting.', options: ['at', 'with', 'by', 'on'], correct: 0, explanation: 'Being offended/astonished reacting to an event takes AT.' },
-                    { question: 'The soldiers fired their rifles directly ___ the target.', options: ['at', 'to', 'towards', 'on'], correct: 0, explanation: 'Verbs of targeting (fire, aim, point) strictly take AT.' }
+                    { question: 'She was deeply offended ___ his insensitive remark during the seminar.', options: ['at', 'with', 'by', 'on'], correct: 0, explanation: 'Being offended/astonished reacting to an event takes AT.' },
+                    { question: 'The security guards fired their weapons directly ___ the fleeing suspect.', options: ['at', 'to', 'towards', 'on'], correct: 0, explanation: 'Verbs of targeting (fire, aim, point) strictly take AT.' }
                 ] 
             },
             'IN': { 
@@ -235,13 +252,14 @@
                 sections: { 
                     'States & Mind': { icon: '🧠', items: [
                         { en: 'in a hurry / in pain', ar: 'في عجلة / في ألم', note: 'Condition' }, 
-                        { en: 'in love / in despair', ar: 'في حب / في يأس', note: 'Emotion' }
+                        { en: 'in love / in despair', ar: 'في حب / في يأس', note: 'Emotion' },
+                        { en: 'in deep thought', ar: 'في تفكير عميق', note: 'Mental state' }
                     ] } 
                 }, 
                 quiz: [
-                    { question: 'She succeeded ___ passing the hardest exam of the term.', options: ['in', 'at', 'on', 'with'], correct: 0, explanation: 'The verb "succeed" always requires IN.' },
-                    { question: '___ the end, after many arguments, they signed the peace treaty.', options: ['In', 'At', 'On', 'By'], correct: 0, explanation: '"In the end" means eventually/finally. "At the end" refers to a point/edge.' },
-                    { question: 'He is currently involved ___ a major international investigation.', options: ['in', 'with', 'at', 'about'], correct: 0, explanation: 'Being involved/engaging in an activity uses IN.' }
+                    { question: '𝑴𝑶𝑼𝑺𝑨 succeeded ___ mastering English prepositions within weeks.', options: ['in', 'at', 'on', 'with'], correct: 0, explanation: 'The verb "succeed" always requires IN.' },
+                    { question: '___ the end, after intense debates, they reached a brilliant consensus.', options: ['In', 'At', 'On', 'By'], correct: 0, explanation: '"In the end" means eventually/finally.' },
+                    { question: 'He is heavily involved ___ a high-profile corporate merger.', options: ['in', 'with', 'at', 'about'], correct: 0, explanation: 'Being involved/engaging in an activity uses IN.' }
                 ] 
             },
             'ON': { 
@@ -250,13 +268,14 @@
                 sections: { 
                     'Special States': { icon: '💡', items: [
                         { en: 'on fire / on sale', ar: 'مشتعل / معروض للبيع', note: 'Idiom' }, 
-                        { en: 'a book on physics', ar: 'كتاب في الفيزياء', note: 'Subject' }
+                        { en: 'a thesis on linguistics', ar: 'أطروحة في علم اللغويات', note: 'Subject' },
+                        { en: 'on provisional bail', ar: 'بكفالة مؤقتة', note: 'Legal state' }
                     ] } 
                 }, 
                 quiz: [
-                    { question: 'The contract was signed ___ the evening of October 24th.', options: ['on', 'in', 'at', 'by'], correct: 0, explanation: 'Though we say "in the evening", adding a specific date overrides it to ON.' },
-                    { question: 'He congratulates you ___ winning the gold medal.', options: ['on', 'for', 'about', 'at'], correct: 0, explanation: 'The verb "congratulate" takes ON.' },
-                    { question: 'The suspect was released ___ bail after paying a fee.', options: ['on', 'in', 'under', 'at'], correct: 0, explanation: 'Idiomatic legal state: "released ON bail".' }
+                    { question: 'The treaty was ratified ___ the freezing morning of December 12th.', options: ['on', 'in', 'at', 'by'], correct: 0, explanation: 'Though we say "in the morning", adding a specific date overrides it to ON.' },
+                    { question: 'The instructor congratulated MOUSA ___ passing Berlitz level 5.', options: ['on', 'for', 'about', 'at'], correct: 0, explanation: 'The verb "congratulate" takes ON.' },
+                    { question: 'He delivered an extraordinary lecture ___ advanced syntax.', options: ['on', 'about', 'in', 'over'], correct: 0, explanation: 'Academic/formal lectures or treatises take ON.' }
                 ] 
             },
             'FOR': { 
@@ -264,12 +283,12 @@
                 definition: { en: 'Indicates duration, trade exchange, cause, or intended recipient.', ar: 'تشير للمدة، المقابل المادي، السبب، أو المستلم.' }, 
                 sections: { 
                     'Exchange': { icon: '💵', items: [
-                        { en: 'traded for a gold watch', ar: 'استُبدل بساعة ذهبية', note: 'Trade' }
+                        { en: 'exchanged for crypto', ar: 'مُستبدل بعملات رقمية', note: 'Trade' }
                     ] } 
                 }, 
                 quiz: [
-                    { question: 'She mistook my friendliness ___ weakness.', options: ['for', 'with', 'as', 'to'], correct: 0, explanation: 'The phrasal verb is "mistake [X] FOR [Y]".' },
-                    { question: 'He paid $20,000 ___ the secondhand car.', options: ['for', 'with', 'by', 'to'], correct: 0, explanation: 'Financial exchange always takes FOR.' }
+                    { question: 'She mistook his polite manners ___ arrogance.', options: ['for', 'with', 'as', 'to'], correct: 0, explanation: 'The phrasal verb is "mistake [X] FOR [Y]".' },
+                    { question: 'He paid an exorbitant price ___ the antique manuscript.', options: ['for', 'with', 'by', 'to'], correct: 0, explanation: 'Financial exchange and payment always takes FOR.' }
                 ] 
             },
             'SINCE': { 
@@ -277,14 +296,19 @@
                 definition: { en: 'Refers strictly to the past temporal starting point of an ongoing action.', ar: 'تشير إلى لحظة بدء حدث ما يزال مستمراً.' }, 
                 sections: { 
                     'Time Start': { icon: '📍', items: [
-                        { en: 'since ancient times', ar: 'منذ العصور القديمة', note: 'Start' }
+                        { en: 'since time immemorial', ar: 'منذ أقدم العصور', note: 'Start' }
                     ] } 
                 }, 
                 quiz: [
-                    { question: '___ leaving university, she has written three best-selling novels.', options: ['Since', 'For', 'From', 'After'], correct: 0, explanation: 'SINCE + [verb-ing] introduces the temporal starting point.' },
-                    { question: 'It has been ten years ___ we last met in Cairo.', options: ['since', 'for', 'from', 'when'], correct: 0, explanation: 'Time elapsed + SINCE + simple past event.' }
+                    { question: '___ graduating from Berlitz, MOUSA has traveled across four continents.', options: ['Since', 'For', 'From', 'After'], correct: 0, explanation: 'SINCE + [verb-ing] introduces the temporal starting point.' },
+                    { question: 'It has been precisely five years ___ we last collaborated.', options: ['since', 'for', 'from', 'when'], correct: 0, explanation: 'Time elapsed + SINCE + simple past event.' }
                 ] 
             },
-            'FROM': { id: 'FROM', category: 'DIRECTION', color: 'from-indigo-500 to-blue-500', icon: '➡️', definition: { en: 'Indicates origin, cause, or separation.', ar: 'تشير للمصدر أو الانفصال.' }, sections: { 'Protection': { icon: '🛡️', items: [{ en: 'prevent from failing', ar: 'المنع من الفشل', note: 'Protection' }] } }, quiz: [{ question: 'He is suffering ___ a severe fever.', options: ['from', 'of', 'with', 'by'], correct: 0, explanation: 'Suffer + FROM.' }, { question: 'Discriminate right ___ wrong.', options: ['from', 'between', 'to', 'against'], correct: 0, explanation: 'Discriminate one thing FROM another.' }] },
-            'TO': { id: 'TO', category: 'DIRECTION', color: 'from-teal-500 to-cyan-500', icon: '🏁', definition: { en: 'Indicates destination or attachment.', ar: 'تشير نحو الوجهة النهائية.' }, sections: { 'Limit': { icon: '🏁', items: [{ en: 'to the extreme limit', ar: 'لأقصى حد', note: 'Limit' }] } }, quiz: [{ question: 'He objects ___ working on weekends.', options: ['to', 'for', 'about', 'at'], correct: 0, explanation: '"Object to" takes a gerund (-ing).' }, { question: 'She is addicted ___ playing online chess.', options: ['to', 'with', 'on', 'in'], correct: 0, explanation: 'Addicted + TO.' }] },
-            'BY': { id: 'BY', category: 'DIRECTION', color: 'from-violet-500 to-purple-500', icon: '🚗', definition: { en: 'Indicates agent, transport, or deadline.', ar: 'تشير للفاعل أو الموعد النهائي.' }, sections: { 'Agent': { icon: '🎨', items: [{ en: 'painted by an artist', ar: 'رُسمت بواسطة فنان', note: 'Agent' }] } }, quiz: [{ question: '___ all accounts, he is an exceptio
+            'FROM': { 
+                id: 'FROM', category: 'DIRECTION', color: 'from-indigo-500 to-blue-500', icon: '➡️', 
+                definition: { en: 'Indicates origin, cause, or separation.', ar: 'تشير للمصدر أو الانفصال.' }, 
+                sections: { 
+                    'Protection': { icon: '🛡️', items: [{ en: 'shield from danger', ar: 'الحماية من الخطر', note: 'Protection' }] } 
+                }, 
+                quiz: [
+                    { question: 'He is suffering ___ a rare neurological disorder.', options: ['from', 'of', 'with', 'by'], correct: 0, explanation: 'Suffer + FRO
