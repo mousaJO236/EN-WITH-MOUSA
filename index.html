@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PrepositionMaster · Interactive Grammar Mind Maps</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrepositionMaster - Interactive English Grammar Mind Maps</title>
     <script src="https://cdn.tailwindcss.com">
     </script>
     <script>
@@ -11,85 +12,75 @@
             darkMode: 'class',
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'], arabic: ['Noto Naskh Arabic', 'serif'] },
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'], arabic: ['Noto Naskh Arabic',
+                            'serif'
+                        ] },
                     animation: {
-                        float: 'float 6s ease-in-out infinite',
-                        glow: 'glow 2s ease-in-out infinite alternate',
-                        nodeExpand: 'nodeExpand 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                        fadeInUp: 'fadeInUp 0.6s ease-out',
-                        pulseSoft: 'pulseSoft 2s ease-in-out infinite',
-                        shimmer: 'shimmer 3s ease-in-out infinite',
-                        breathe: 'breathe 4s ease-in-out infinite',
-                        slideUp: 'slideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                        scaleIn: 'scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                        floatGlow: 'floatGlow 5s ease-in-out infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delay': 'float 6s ease-in-out 3s infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'ripple': 'ripple 0.6s ease-out',
+                        'node-expand': 'nodeExpand 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                        'fade-in-up': 'fadeInUp 0.6s ease-out',
+                        'pulse-soft': 'pulseSoft 2s ease-in-out infinite',
                     },
                     keyframes: {
-                        float: { '0%,100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-20px)' } },
-                        glow: { '0%': { boxShadow: '0 0 20px rgba(139,92,246,0.2)' }, '100%': { boxShadow: '0 0 50px rgba(139,92,246,0.6)' } },
-                        nodeExpand: { '0%': { transform: 'scale(0) rotate(-8deg)', opacity: '0' }, '100%': { transform: 'scale(1) rotate(0deg)', opacity: '1' } },
-                        fadeInUp: { '0%': { transform: 'translateY(40px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } },
-                        pulseSoft: { '0%,100%': { transform: 'scale(1)' }, '50%': { transform: 'scale(1.04)' } },
-                        shimmer: { '0%': { backgroundPosition: '-200% center' }, '100%': { backgroundPosition: '200% center' } },
-                        breathe: { '0%,100%': { opacity: '0.6' }, '50%': { opacity: '1' } },
-                        slideUp: { '0%': { transform: 'translateY(30px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } },
-                        scaleIn: { '0%': { transform: 'scale(0.8)', opacity: '0' }, '100%': { transform: 'scale(1)', opacity: '1' } },
-                        floatGlow: { '0%,100%': { transform: 'translateY(0px) scale(1)', filter: 'brightness(1)' }, '50%': { transform: 'translateY(-10px) scale(1.02)', filter: 'brightness(1.1)' } },
+                        float: { '0%, 100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-20px)' } },
+                        glow: { '0%': { boxShadow: '0 0 20px rgba(139, 92, 246, 0.3)' },
+                            '100%': { boxShadow: '0 0 40px rgba(139, 92, 246, 0.6)' } },
+                        ripple: { '0%': { transform: 'scale(0)', opacity: '1' }, '100%': { transform: 'scale(4)',
+                                opacity: '0' } },
+                        nodeExpand: { '0%': { transform: 'scale(0) rotate(-10deg)', opacity: '0' },
+                            '100%': { transform: 'scale(1) rotate(0deg)', opacity: '1' } },
+                        fadeInUp: { '0%': { transform: 'translateY(30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' } },
+                        pulseSoft: { '0%, 100%': { transform: 'scale(1)' }, '50%': { transform: 'scale(1.03)' } },
                     },
                 }
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ─── Root variables ─── */
         :root {
-            --glass-bg: rgba(255, 255, 255, 0.12);
-            --glass-border: rgba(255, 255, 255, 0.20);
-            --glass-shadow: rgba(0, 0, 0, 0.08);
-            --bg-start: #f8fafc;
-            --bg-end: #f0f4ff;
-            --text-primary: #0f172a;
-            --text-secondary: #475569;
-            --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
-            --glow-purple: rgba(139, 92, 246, 0.15);
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.25);
+            --glass-shadow: rgba(0, 0, 0, 0.1);
         }
         .dark {
-            --glass-bg: rgba(15, 23, 42, 0.50);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --glass-shadow: rgba(0, 0, 0, 0.40);
-            --bg-start: #0f172a;
-            --bg-end: #1e1b4b;
-            --text-primary: #f1f5f9;
-            --text-secondary: #94a3b8;
-            --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.40);
-            --glow-purple: rgba(139, 92, 246, 0.25);
+            --glass-bg: rgba(30, 30, 50, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: rgba(0, 0, 0, 0.3);
         }
-
-        /* ─── Glass morphism ─── */
         .glass {
             background: var(--glass-bg);
-            backdrop-filter: blur(20px) saturate(1.2);
-            -webkit-backdrop-filter: blur(20px) saturate(1.2);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             box-shadow: 0 8px 32px var(--glass-shadow);
         }
         .glass-strong {
             background: var(--glass-bg);
-            backdrop-filter: blur(30px) saturate(1.4);
-            -webkit-backdrop-filter: blur(30px) saturate(1.4);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
             border: 1px solid var(--glass-border);
-            box-shadow: 0 12px 48px var(--glass-shadow);
+            box-shadow: 0 12px 40px var(--glass-shadow);
         }
-
-        /* ─── Gradient text ─── */
+        .neumorph {
+            background: linear-gradient(145deg, #e8ecf1, #ffffff);
+            box-shadow: 8px 8px 16px #d1d5db, -8px -8px 16px #ffffff;
+        }
+        .dark .neumorph {
+            background: linear-gradient(145deg, #1e293b, #334155);
+            box-shadow: 8px 8px 16px #0f172a, -8px -8px 16px #3b4f6b;
+        }
         .gradient-text {
             background: linear-gradient(135deg, #8b5cf6, #06b6d4, #8b5cf6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             background-size: 200% auto;
-            animation: gradientShift 4s ease-in-out infinite;
+            animation: gradientShift 3s ease-in-out infinite;
         }
         @keyframes gradientShift {
             0%,
@@ -100,302 +91,291 @@
                 background-position: 200% center;
             }
         }
-
-        /* ─── Cards ─── */
         .card-hover {
-            transition: all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
-            will-change: transform, box-shadow;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .card-hover:hover {
             transform: translateY(-12px) scale(1.03);
-            box-shadow: 0 30px 60px var(--glow-purple);
+            box-shadow: 0 25px 50px rgba(139, 92, 246, 0.3);
         }
-
-        /* ─── Mind map nodes ─── */
-        .mindmap-node {
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            cursor: pointer;
-            will-change: transform;
-        }
-        .mindmap-node:hover {
-            transform: scale(1.08) translateY(-4px);
-            z-index: 10;
-            filter: brightness(1.05);
-        }
-        .mindmap-node.expanded {
-            transform: scale(1.04);
-            box-shadow: 0 0 40px rgba(139, 92, 246, 0.35);
-        }
-
-        /* ─── Node enter animation ─── */
-        .node-enter {
-            animation: nodeExpand 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
-        .bounce-in {
-            animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
-        @keyframes bounceIn {
-            0% {
-                transform: scale(0.6);
-                opacity: 0;
-            }
-            50% {
-                transform: scale(1.10);
-                opacity: 1;
-            }
-            70% {
-                transform: scale(0.95);
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        /* ─── Scrollbar ─── */
-        .scrollbar-thin::-webkit-scrollbar {
-            width: 5px;
-            height: 5px;
-        }
-        .scrollbar-thin::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .scrollbar-thin::-webkit-scrollbar-thumb {
-            background: rgba(139, 92, 246, 0.35);
-            border-radius: 12px;
-        }
-        .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-            background: rgba(139, 92, 246, 0.6);
-        }
-
-        /* ─── Particles ─── */
-        .particle {
-            position: fixed;
-            pointer-events: none;
-            border-radius: 50%;
-            opacity: 0.25;
-            will-change: transform;
-        }
-        @keyframes particleFloat {
-            0% {
-                transform: translateY(100vh) rotate(0deg) scale(0.5);
-                opacity: 0;
-            }
-            15% {
-                opacity: 0.5;
-            }
-            85% {
-                opacity: 0.4;
-            }
-            100% {
-                transform: translateY(-120px) rotate(720deg) scale(1.2);
-                opacity: 0;
-            }
-        }
-
-        /* ─── Line drawing for mind map ─── */
         .mindmap-line {
-            stroke-dasharray: 1200;
-            stroke-dashoffset: 1200;
-            animation: drawLine 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawLine 0.8s ease-out forwards;
         }
         @keyframes drawLine {
             to {
                 stroke-dashoffset: 0;
             }
         }
-
-        /* ─── Background glow orbs ─── */
-        .orb {
+        .node-enter {
+            animation: nodeExpand 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        .particle {
             position: fixed;
-            border-radius: 50%;
-            filter: blur(100px);
             pointer-events: none;
-            z-index: 0;
-            opacity: 0.35;
-            will-change: transform;
+            border-radius: 50%;
+            animation: particleFloat linear infinite;
+            opacity: 0.3;
         }
-        .dark .orb {
-            opacity: 0.20;
-        }
-
-        /* ─── Search results ─── */
-        .search-result-item {
-            transition: all 0.2s ease;
-            cursor: pointer;
-        }
-        .search-result-item:hover {
-            background: rgba(139, 92, 246, 0.10);
-            padding-left: 0.75rem;
-        }
-        .dark .search-result-item:hover {
-            background: rgba(139, 92, 246, 0.18);
-        }
-
-        /* ─── Responsive tweaks ─── */
-        @media (max-width: 640px) {
-            .glass-strong {
-                backdrop-filter: blur(16px);
-                -webkit-backdrop-filter: blur(16px);
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100px) rotate(720deg);
+                opacity: 0;
             }
         }
-
-        /* ─── Loading shimmer ─── */
-        .shimmer-bg {
-            background: linear-gradient(90deg, transparent 30%, rgba(139, 92, 246, 0.08) 50%, transparent 70%);
-            background-size: 200% 100%;
-            animation: shimmer 2.5s ease-in-out infinite;
+        .scrollbar-thin::-webkit-scrollbar {
+            width: 6px;
         }
-
-        /* ─── Flashcard flip ─── */
-        .flashcard-inner {
-            transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
-            transform-style: preserve-3d;
+        .scrollbar-thin::-webkit-scrollbar-track {
+            background: transparent;
         }
-        .flashcard-inner.flipped {
-            transform: rotateY(180deg);
+        .scrollbar-thin::-webkit-scrollbar-thumb {
+            background: rgba(139, 92, 246, 0.4);
+            border-radius: 10px;
         }
-        .flashcard-front,
-        .flashcard-back {
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
+        .mindmap-container {
+            perspective: 1000px;
         }
-        .flashcard-back {
-            transform: rotateY(180deg);
+        .mindmap-node {
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
         }
-
-        /* ─── Smooth page transitions ─── */
-        .page-transition {
-            transition: opacity 0.4s ease, transform 0.4s ease;
+        .mindmap-node:hover {
+            transform: scale(1.08);
+            z-index: 10;
         }
-        .page-enter {
-            opacity: 0;
-            transform: translateY(20px);
+        .mindmap-node.expanded {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
         }
-        .page-enter-active {
-            opacity: 1;
-            transform: translateY(0);
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.15);
+            }
+            70% {
+                transform: scale(0.95);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        .bounce-in {
+            animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-[var(--bg-start)] via-purple-50/30 to-[var(--bg-end)] dark:from-[var(--bg-start)] dark:via-purple-950/20 dark:to-[var(--bg-end)] min-h-screen transition-colors duration-700 font-sans overflow-x-hidden antialiased">
-
-    <!-- ─── Background Orbs ─── -->
-    <div class="orb w-[40rem] h-[40rem] -top-20 -left-20 bg-purple-400/30 dark:bg-purple-600/20 animate-breathe"></div>
-    <div class="orb w-[50rem] h-[50rem] bottom-0 -right-32 bg-cyan-400/25 dark:bg-cyan-600/15 animate-breathe" style="animation-delay:2s;"></div>
-    <div class="orb w-[30rem] h-[30rem] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-indigo-400/15 dark:bg-indigo-500/10 animate-breathe" style="animation-delay:4s;"></div>
-
-    <!-- ─── Particle Container ─── -->
+<body class="bg-gradient-to-br from-slate-50 via-purple-50 to-cyan-50 dark:from-slate-900 dark:via-purple-950 dark:to-slate-900 min-h-screen transition-colors duration-700 font-sans overflow-x-hidden">
+    <!-- Particle Background -->
     <div id="particles" class="fixed inset-0 pointer-events-none z-0"></div>
 
-    <!-- ─── App ─── -->
+    <!-- Main App Container -->
     <div id="app" class="relative z-10">
-
-        <!-- ─── Header ─── -->
-        <header class="glass-strong sticky top-3 z-50 mx-3 mt-3 rounded-3xl px-4 md:px-6 py-3 flex items-center justify-between flex-wrap gap-2 transition-all duration-500">
+        <!-- Header / Navigation -->
+        <header class="glass-strong sticky top-3 z-50 mx-3 mt-3 rounded-3xl px-5 py-3 flex items-center justify-between flex-wrap gap-3 transition-all duration-500">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-purple-600 to-cyan-500 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-purple-500/30 float-glow">P</div>
-                <h1 class="text-xl md:text-2xl font-extrabold gradient-text tracking-tight">PrepositionMaster</h1>
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-purple-600 to-cyan-500 flex items-center justify-center text-white font-bold text-xl shadow-lg">P</div>
+                <h1 class="text-xl md:text-2xl font-bold gradient-text">PrepositionMaster</h1>
             </div>
-            <div class="flex items-center gap-1.5 flex-wrap">
-
+            <div class="flex items-center gap-2 flex-wrap">
                 <!-- Search -->
                 <div class="relative group">
-                    <input type="text" id="searchInput" placeholder="Search topics…" class="w-36 md:w-52 px-4 py-2.5 rounded-2xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-md border border-purple-200/60 dark:border-purple-800/40 focus:border-purple-500 focus:ring-2 focus:ring-purple-400/50 outline-none transition-all duration-300 text-sm dark:text-white dark:placeholder-gray-400" oninput="handleSearch(this.value)" />
-                    <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-purple-400/70 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                    <div id="searchResults" class="absolute top-full mt-2 w-full bg-white/90 dark:bg-slate-800/90 backdrop-blur-xl rounded-2xl shadow-2xl border border-purple-100/50 dark:border-purple-900/50 hidden max-h-64 overflow-y-auto scrollbar-thin z-50 text-sm"></div>
+                    <input type="text" id="searchInput" placeholder="Search topics..." class="w-40 md:w-56 px-4 py-2.5 rounded-2xl bg-white/60 dark:bg-slate-800/60 backdrop-blur-md border border-purple-200 dark:border-purple-800 focus:border-purple-500 focus:ring-2 focus:ring-purple-400 outline-none transition-all duration-300 text-sm dark:text-white dark:placeholder-gray-400" oninput="handleSearch(this.value)">
+                    <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    <div id="searchResults" class="absolute top-full mt-2 w-full bg-white/90 dark:bg-slate-800/90 backdrop-blur-xl rounded-2xl shadow-2xl border border-purple-100 dark:border-purple-900 hidden max-h-60 overflow-y-auto scrollbar-thin z-50"></div>
                 </div>
-
-                <!-- Lang Toggle -->
-                <button onclick="toggleLanguage()" class="px-3.5 py-2.5 rounded-2xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-md border border-purple-200/60 dark:border-purple-800/40 hover:border-purple-500 transition-all duration-300 text-sm font-medium flex items-center gap-1.5 dark:text-white" id="langBtn">
-                    <span id="langIcon">🇬🇧</span><span id="langText">EN</span>
+                <!-- Language Toggle -->
+                <button onclick="toggleLanguage()" class="px-4 py-2.5 rounded-2xl bg-white/60 dark:bg-slate-800/60 backdrop-blur-md border border-purple-200 dark:border-purple-800 hover:border-purple-500 transition-all duration-300 text-sm font-medium flex items-center gap-2 dark:text-white" id="langBtn">
+                    <span id="langIcon">🇬🇧</span> <span id="langText">EN</span>
                 </button>
-
                 <!-- Dark Mode Toggle -->
-                <button onclick="toggleDarkMode()" class="px-3.5 py-2.5 rounded-2xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-md border border-purple-200/60 dark:border-purple-800/40 hover:border-purple-500 transition-all duration-300 text-sm font-medium dark:text-white flex items-center gap-1.5" id="darkBtn">
-                    <span id="darkIcon">🌙</span><span id="darkText">Dark</span>
+                <button onclick="toggleDarkMode()" class="px-4 py-2.5 rounded-2xl bg-white/60 dark:bg-slate-800/60 backdrop-blur-md border border-purple-200 dark:border-purple-800 hover:border-purple-500 transition-all duration-300 text-sm font-medium dark:text-white flex items-center gap-2" id="darkBtn">
+                    <span id="darkIcon">🌙</span> <span id="darkText">Dark</span>
                 </button>
-
                 <!-- Font Size -->
-                <button onclick="toggleFontSize()" class="px-3 py-2.5 rounded-2xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-md border border-purple-200/60 dark:border-purple-800/40 hover:border-purple-500 transition-all duration-300 text-sm font-medium dark:text-white" title="Toggle font size">Aa</button>
+                <button onclick="toggleFontSize()" class="px-3 py-2.5 rounded-2xl bg-white/60 dark:bg-slate-800/60 backdrop-blur-md border border-purple-200 dark:border-purple-800 hover:border-purple-500 transition-all duration-300 text-sm font-medium dark:text-white" title="Font Size">Aa</button>
             </div>
         </header>
 
-        <!-- ─── Breadcrumb ─── -->
-        <nav id="breadcrumb" class="mx-4 md:mx-6 mt-4 flex items-center gap-2 text-sm text-purple-600 dark:text-purple-400 flex-wrap transition-all duration-300">
-            <span class="cursor-pointer hover:underline font-medium" onclick="navigateHome()">🏠 Home</span>
-            <span id="breadcrumbPath" class="text-gray-400 dark:text-gray-500"></span>
+        <!-- Breadcrumb -->
+        <nav id="breadcrumb" class="mx-6 mt-4 flex items-center gap-2 text-sm text-purple-600 dark:text-purple-400 flex-wrap transition-all duration-300">
+            <span class="cursor-pointer hover:underline" onclick="navigateHome()">🏠 Home</span>
+            <span id="breadcrumbPath"></span>
         </nav>
 
-        <!-- ─── Main ─── -->
-        <main id="mainContent" class="px-3 md:px-6 py-5 transition-all duration-500">
-
-            <!-- ─── Homepage ─── -->
-            <div id="homepageView" class="space-y-7">
-                <div class="text-center mb-6 animate-fadeInUp">
-                    <h2 class="text-3xl md:text-5xl font-black gradient-text mb-3 leading-tight">Master English Prepositions</h2>
-                    <p class="text-gray-500 dark:text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">Tap any card to explore an interactive mind map with examples, quizzes &amp; bilingual explanations</p>
+        <!-- Main Content Area -->
+        <main id="mainContent" class="px-3 md:px-6 py-6 transition-all duration-500">
+            <!-- Homepage Cards Grid -->
+            <div id="homepageView" class="space-y-8">
+                <div class="text-center mb-8 animate-fade-in-up">
+                    <h2 class="text-3xl md:text-5xl font-black gradient-text mb-3">Master English Prepositions</h2>
+                    <p class="text-gray-500 dark:text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">Click any card to explore an interactive mind map with examples, quizzes, and bilingual explanations</p>
                 </div>
-
                 <!-- Stats -->
-                <div class="flex justify-center gap-3 flex-wrap" id="statsBar">
-                    <div class="glass rounded-2xl px-5 py-3 text-center transition-all hover:scale-105 duration-300"><div class="text-2xl font-bold text-purple-600" id="lessonsCompleted">0</div><div class="text-xs text-gray-500 uppercase tracking-wide">Completed</div></div>
-                    <div class="glass rounded-2xl px-5 py-3 text-center transition-all hover:scale-105 duration-300"><div class="text-2xl font-bold text-cyan-600" id="totalScore">0</div><div class="text-xs text-gray-500 uppercase tracking-wide">Score</div></div>
-                    <div class="glass rounded-2xl px-5 py-3 text-center transition-all hover:scale-105 duration-300"><div class="text-2xl font-bold text-emerald-600" id="streakDays">0</div><div class="text-xs text-gray-500 uppercase tracking-wide">Day Streak</div></div>
+                <div class="flex justify-center gap-4 flex-wrap mb-6" id="statsBar">
+                    <div class="glass rounded-2xl px-5 py-3 text-center"><div class="text-2xl font-bold text-purple-600" id="lessonsCompleted">0</div><div class="text-xs text-gray-500">Completed</div></div>
+                    <div class="glass rounded-2xl px-5 py-3 text-center"><div class="text-2xl font-bold text-cyan-600" id="totalScore">0</div><div class="text-xs text-gray-500">Score</div></div>
+                    <div class="glass rounded-2xl px-5 py-3 text-center"><div class="text-2xl font-bold text-emerald-600" id="streakDays">0</div><div class="text-xs text-gray-500">Day Streak</div></div>
                 </div>
-
                 <!-- Cards Grid -->
                 <div id="cardsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4"></div>
             </div>
 
-            <!-- ─── Mind Map Detail ─── -->
+            <!-- Mind Map Detail View -->
             <div id="mindmapView" class="hidden transition-all duration-700">
-                <div class="flex items-center gap-3 mb-5 flex-wrap">
-                    <button onclick="navigateHome()" class="glass rounded-2xl px-4 py-2.5 hover:bg-purple-100/50 dark:hover:bg-purple-900/30 transition-all duration-300 flex items-center gap-2 text-sm font-medium dark:text-white border border-transparent hover:border-purple-300/40">
-                        ← Back to Topics
+                <div class="flex items-center gap-3 mb-6 flex-wrap">
+                    <button onclick="navigateHome()" class="glass rounded-2xl px-4 py-2.5 hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-all duration-300 flex items-center gap-2 text-sm font-medium dark:text-white">
+                        ← Back to All Topics
                     </button>
                     <div class="flex gap-2 flex-wrap" id="actionButtons"></div>
                 </div>
-                <div id="mindmapContent" class="glass-strong rounded-3xl p-4 md:p-8 min-h-[70vh] overflow-auto scrollbar-thin transition-all"></div>
+                <div id="mindmapContent" class="glass-strong rounded-3xl p-4 md:p-8 min-h-[70vh] overflow-auto scrollbar-thin"></div>
             </div>
 
-            <!-- ─── Quiz Modal ─── -->
-            <div id="quizModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+            <!-- Quiz Modal -->
+            <div id="quizModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
                 <div class="glass-strong rounded-3xl p-6 md:p-8 max-w-lg w-full max-h-[85vh] overflow-y-auto scrollbar-thin bounce-in">
-                    <div class="flex justify-between items-center mb-4"><h3 class="text-xl font-bold dark:text-white">📝 Quick Quiz</h3><button onclick="closeQuiz()" class="text-gray-400 hover:text-red-500 text-2xl transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-red-50 dark:hover:bg-red-900/20">✕</button></div>
+                    <div class="flex justify-between items-center mb-4"><h3 class="text-xl font-bold dark:text-white">📝 Quick Quiz</h3><button onclick="closeQuiz()" class="text-gray-400 hover:text-red-500 text-2xl transition-colors">✕</button></div>
                     <div id="quizContent"></div>
                 </div>
             </div>
 
-            <!-- ─── Flashcard Modal ─── -->
-            <div id="flashcardModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-                <div class="glass-strong rounded-3xl p-6 md:p-8 max-w-md w-full bounce-in">
-                    <button onclick="closeFlashcard()" class="float-right text-gray-400 hover:text-red-500 text-2xl transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-red-50 dark:hover:bg-red-900/20">✕</button>
-                    <div id="flashcardContent" class="mt-2"></div>
+            <!-- Flashcard Modal -->
+            <div id="flashcardModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+                <div class="glass-strong rounded-3xl p-6 md:p-8 max-w-md w-full bounce-in text-center">
+                    <button onclick="closeFlashcard()" class="float-right text-gray-400 hover:text-red-500 text-2xl transition-colors">✕</button>
+                    <div id="flashcardContent" class="mt-4"></div>
                 </div>
             </div>
-
         </main>
     </div>
 
     <script>
-        // ═══════════════════════════════════════════════════════════════
-        //  DATA
-        // ═══════════════════════════════════════════════════════════════
-
+        // ==================== DATA STORE ====================
         const prepositionData = {
             'AT': {
                 id: 'AT',
                 color: 'from-purple-600 to-violet-500',
-                bgColor: 'bg-purple-100/60 dark:bg-purple-900/30',
+                bgColor: 'bg-purple-100 dark:bg-purple-900/30',
                 textColor: 'text-purple-700 dark:text-purple-300',
                 icon: '📍',
-                definition: { en: 'Used for specific points in time or precise locations.', ar: 'تُستخدم للإشارة إلى نقطة زمنية محددة أو موقع دقيق.' },
+                definition: {
+                    en: 'Used to indicate a specific point in time or a precise location.',
+                    ar: 'تُستخدم للإشارة إلى نقطة زمنية محددة أو موقع دقيق.'
+                },
                 sections: {
-                    'Time': { icon: '🕐', items: [{ en: 'at 7 o\'clock', ar: 'في الساعة السابعة', note: 'Specific clock time' },
-                            { en: 'at noon', ar: 'عند الظهر', note: 'Fixed time of day' }, { en: 'at midnight',
-                                ar: 'في منتصف الليل', note: 'Precise moment' }, { en: 'at sunset',
-                                ar: 'عند غروب الشمس', note: 'Natural event time' }, { en: 'at the moment',
-                                ar: 'في هذه اللحظة', note: 'Current instant' }] },
-                    'Places': { icon: '🏫', items: [{ en: 'at school', ar: 'في المدرسة', note: 'General location' },
-                            { en: 'at work', ar: 'في الع
+                    'Time': {
+                        icon: '🕐',
+                        items: [
+                            { en: 'at 7 o\'clock', ar: 'في الساعة السابعة', note: 'Specific clock time' },
+                            { en: 'at noon', ar: 'عند الظهر', note: 'Fixed time of day' },
+                            { en: 'at midnight', ar: 'في منتصف الليل', note: 'Precise moment' },
+                            { en: 'at sunset', ar: 'عند غروب الشمس', note: 'Natural event time' },
+                            { en: 'at the moment', ar: 'في هذه اللحظة', note: 'Current instant' },
+                        ]
+                    },
+                    'Places': {
+                        icon: '🏫',
+                        items: [
+                            { en: 'at school', ar: 'في المدرسة', note: 'General location' },
+                            { en: 'at work', ar: 'في العمل', note: 'Workplace' },
+                            { en: 'at home', ar: 'في المنزل', note: 'Home location' },
+                            { en: 'at the station', ar: 'في المحطة', note: 'Transport hub' },
+                            { en: 'at the door', ar: 'عند الباب', note: 'Specific point' },
+                        ]
+                    },
+                    'Expressions': {
+                        icon: '💬',
+                        items: [
+                            { en: 'at first', ar: 'في البداية', note: 'Initially' },
+                            { en: 'at last', ar: 'أخيراً', note: 'Finally' },
+                            { en: 'at least', ar: 'على الأقل', note: 'Minimum' },
+                            { en: 'at once', ar: 'فوراً', note: 'Immediately' },
+                        ]
+                    },
+                    'Common Mistakes': {
+                        icon: '⚠️',
+                        items: [
+                            { en: '❌ at Monday', ar: 'خطأ: في يوم الإثنين (باستخدام at)', correct: '✅ on Monday',
+                                note: 'Use ON for days' },
+                            { en: '❌ at London', ar: 'خطأ: في لندن (للمدن الكبيرة)', correct: '✅ in London',
+                                note: 'Use IN for large areas' },
+                        ]
+                    },
+                },
+                quiz: [
+                    { question: 'I\'ll meet you ___ the bus stop.', options: ['at', 'in', 'on'], correct: 0,
+                        explanation: 'Use AT for specific points/locations.' },
+                    { question: 'The party starts ___ 8 PM.', options: ['in', 'at', 'on'], correct: 1,
+                        explanation: 'Use AT for specific times.' },
+                ]
+            },
+            'IN': {
+                id: 'IN',
+                color: 'from-cyan-600 to-blue-500',
+                bgColor: 'bg-cyan-100 dark:bg-cyan-900/30',
+                textColor: 'text-cyan-700 dark:text-cyan-300',
+                icon: '📦',
+                definition: {
+                    en: 'Used for enclosed spaces, larger areas, and longer periods of time.',
+                    ar: 'تُستخدم للأماكن المغلقة والمساحات الكبيرة والفترات الزمنية الطويلة.'
+                },
+                sections: {
+                    'Time (Long Periods)': {
+                        icon: '📅',
+                        items: [
+                            { en: 'in the morning', ar: 'في الصباح', note: 'Part of day' },
+                            { en: 'in June', ar: 'في شهر يونيو', note: 'Month' },
+                            { en: 'in 2024', ar: 'في عام ٢٠٢٤', note: 'Year' },
+                            { en: 'in summer', ar: 'في الصيف', note: 'Season' },
+                            { en: 'in the past', ar: 'في الماضي', note: 'Historical period' },
+                        ]
+                    },
+                    'Places (Enclosed)': {
+                        icon: '🏠',
+                        items: [
+                            { en: 'in the room', ar: 'في الغرفة', note: 'Inside a space' },
+                            { en: 'in London', ar: 'في لندن', note: 'City/area' },
+                            { en: 'in the car', ar: 'في السيارة', note: 'Vehicle' },
+                            { en: 'in the water', ar: 'في الماء', note: 'Immersed' },
+                        ]
+                    },
+                    'Expressions': {
+                        icon: '🗣️',
+                        items: [
+                            { en: 'in fact', ar: 'في الواقع', note: 'Actually' },
+                            { en: 'in love', ar: 'في حالة حب', note: 'Emotional state' },
+                            { en: 'in danger', ar: 'في خطر', note: 'Situation' },
+                        ]
+                    },
+                    'Common Mistakes': {
+                        icon: '⚠️',
+                        items: [
+                            { en: '❌ in Monday', ar: 'خطأ: في يوم الإثنين (باستخدام in)', correct: '✅ on Monday',
+                                note: 'Use ON for days' },
+                        ]
+                    },
+                },
+                quiz: [
+                    { question: 'She lives ___ New York.', options: ['at', 'in', 'on'], correct: 1,
+                        explanation: 'Use IN for cities and large areas.' },
+                    { question: 'We go skiing ___ winter.', options: ['in', 'at', 'on'], correct: 0,
+                        explanation: 'Use IN for seasons.' },
+                ]
+            },
+            'ON': {
+                id: 'ON',
+                color: 'from-emerald-600 to-green-500
