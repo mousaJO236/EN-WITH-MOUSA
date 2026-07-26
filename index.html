@@ -309,4 +309,576 @@
                    { question: 'It has been precisely five years ___ we last collaborated.', options: ['since', 'for', 'from', 'when'], correct: 0, explanation: 'Time elapsed + SINCE + simple past event.' }
                ] 
            },
-           'FROM': { id: 'FROM', category: 'DIRECTION', color: 'from-indigo-500 to-blue-500', icon: '➡️', definition: { en: 'Indicates origin, cause, or separation.', ar: 'تشير للمصدر أو الانفصال.' }, sections: { 'Protection': { icon: '🛡️', items: [{ en: 'shield from danger', ar: 'الحماية من الخطر', note: 'Protection' }, { en: 'exempt from taxes', ar: 'معف
+           'FROM': { id: 'FROM', category: 'DIRECTION', color: 'from-indigo-500 to-blue-500', icon: '➡️', definition: { en: 'Indicates origin, cause, or separation.', ar: 'تشير للمصدر أو الانفصال.' }, sections: { 'Protection': { icon: '🛡️', items: [{ en: 'shield from danger', ar: 'الحماية من الخطر', note: 'Protection' }, { en: 'exempt from taxes', ar: 'معفى من الضرائب', note: 'Separation' }] } }, quiz: [{ question: 'He is suffering ___ a rare neurological disorder.', options: ['from', 'of', 'with', 'by'], correct: 0, explanation: 'Suffer + FROM.' }, { question: 'It is vital to distinguish right ___ wrong.', options: ['from', 'between', 'to', 'against'], correct: 0, explanation: 'Distinguish one thing FROM another.' }] },
+           'TO': { id: 'TO', category: 'DIRECTION', color: 'from-teal-500 to-cyan-500', icon: '🏁', definition: { en: 'Indicates destination or attachment.', ar: 'تشير نحو الوجهة النهائية.' }, sections: { 'Limit': { icon: '🏁', items: [{ en: 'committed to excellence', ar: 'ملتزم بالتفوق', note: 'Dedication' }, { en: 'adjust to new climates', ar: 'التكيف مع المناخات الجديدة', note: 'Adaptation' }] } }, quiz: [{ question: 'MOUSA objects ___ skipping grammar classes.', options: ['to', 'for', 'about', 'at'], correct: 0, explanation: '"Object to" takes a gerund (-ing).' }, { question: 'She is completely accustomed ___ intensive study.', options: ['to', 'with', 'on', 'in'], correct: 0, explanation: 'Accustomed + TO.' }] },
+           'BY': { id: 'BY', category: 'DIRECTION', color: 'from-violet-500 to-purple-500', icon: '🚗', definition: { en: 'Indicates agent, transport, or deadline.', ar: 'تشير للفاعل أو الموعد النهائي.' }, sections: { 'Agent': { icon: '🎨', items: [{ en: 'by all means', ar: 'بكل الطرق / بالتأكيد', note: 'Idiom' }, { en: 'by coincidence', ar: 'بالصدفة البحتة', note: 'Manner' }] } }, quiz: [{ question: '___ all accounts, his speech was a massive triumph.', options: ['By', 'In', 'From', 'On'], correct: 0, explanation: 'Idiom: "By all accounts".' }, { question: 'She grabbed the thief firmly ___ the wrist.', options: ['by', 'with', 'on', 'at'], correct: 0, explanation: 'Grabbing a body part uses BY (by the wrist).' }] },
+           'WITH': { id: 'WITH', category: 'PLACE', color: 'from-rose-500 to-pink-500', icon: '🤝', definition: { en: 'Indicates tool, manner, or accompaniment.', ar: 'تشير للأداة أو الكيفية.' }, sections: { 'Manner': { icon: '🔧', items: [{ en: 'proceed with caution', ar: 'المضي بحذر', note: 'Manner' }, { en: 'equipped with advanced tools', ar: 'مجهز بأدوات متقدمة', note: 'Tool' }] } }, quiz: [{ question: 'The auditorium was packed ___ enthusiastic students.', options: ['with', 'of', 'by', 'from'], correct: 0, explanation: 'Packed/Filled + WITH.' }, { question: 'He trembled visibly ___ sheer terror.', options: ['with', 'from', 'of', 'by'], correct: 0, explanation: 'Physical reaction caused by emotion uses WITH.' }] },
+           'ABOUT': { id: 'ABOUT', category: 'TIME', color: 'from-sky-500 to-blue-500', icon: '💭', definition: { en: 'Concerning or imminence.', ar: 'بخصوص أو على وشك.' }, sections: { 'Imminence': { icon: '⚡', items: [{ en: 'about to make a speech', ar: 'على وشك إلقاء خطبة', note: 'Imminent' }, { en: 'bring about major reforms', ar: 'إحداث إصلاحات كبرى', note: 'Phrasal verb' }] } }, quiz: [{ question: 'The presentation is about ___ commence in a minute.', options: ['to', 'for', 'on', 'at'], correct: 0, explanation: '"Be about to" means ready to happen.' }] },
+           'BETWEEN': { id: 'BETWEEN', category: 'PLACE', color: 'from-lime-500 to-green-500', icon: '↔️', definition: { en: 'Separating two distinct things.', ar: 'الفاصل بين شيئين محددين.' }, sections: { 'Selection': { icon: '⚖️', items: [{ en: 'choose between two paths', ar: 'الاختيار بين طريقين', note: 'Two' }, { en: 'distinguish between right and wrong', ar: 'التمييز بين الصواب والخطأ', note: 'Dual contrast' }] } }, quiz: [{ question: 'Diplomats negotiated a truce ___ the two rival factions.', options: ['between', 'among', 'into', 'with'], correct: 0, explanation: 'BETWEEN strictly for two distinct entities.' }] },
+           'AMONG': { id: 'AMONG', category: 'PLACE', color: 'from-emerald-500 to-teal-500', icon: '🌐', definition: { en: 'Part of a group of three or more.', ar: 'وسط أو ضمن مجموعة.' }, sections: { 'Group': { icon: '👥', items: [{ en: 'among the delegates', ar: 'بين المندوبين', note: 'Surrounded' }, { en: 'distributed among team members', ar: 'موزع بين أعضاء الفريق', note: 'Shared group' }] } }, quiz: [{ question: 'Confidential files were circulated ___ the board members.', options: ['among', 'between', 'into', 'over'], correct: 0, explanation: 'Use AMONG for three or more members.' }] },
+           'THROUGH': { id: 'THROUGH', category: 'DIRECTION', color: 'from-amber-500 to-yellow-500', icon: '🚶', definition: { en: '3D movement inside.', ar: 'الحركة ثلاثية الأبعاد بالداخل.' }, sections: { 'Means': { icon: '🔄', items: [{ en: 'succeed through resilience', ar: 'النجاح عبر المرونة', note: 'Means' }, { en: 'read through the entire manuscript', ar: 'قراءة المخطوطة بأكملها من البداية', note: 'Thorough review' }] } }, quiz: [{ question: 'Sunlight streamed ___ the frosted glass window.', options: ['through', 'across', 'over', 'into'], correct: 0, explanation: 'Penetrating 3D space uses THROUGH.' }] },
+           'DURING': { id: 'DURING', category: 'TIME', color: 'from-red-500 to-orange-500', icon: '⌛', definition: { en: 'Throughout an event.', ar: 'طوال فترة حدث ما.' }, sections: { 'Span': { icon: '🌙', items: [{ en: 'during the symposium', ar: 'أثناء الندوة', note: 'Span' }, { en: 'remain alert during crises', ar: 'البقاء في حالة يقظة أثناء الأزمات', note: 'Event span' }] } }, quiz: [{ question: 'Silence must be maintained ___ the ceremony.', options: ['during', 'while', 'for', 'since'], correct: 0, explanation: 'DURING must be followed by a noun phrase.' }] },
+           'BEFORE': { id: 'BEFORE', category: 'TIME', color: 'from-blue-500 to-indigo-500', icon: '⏪', definition: { en: 'Prior to a time.', ar: 'قبل وقت محدد.' }, sections: { 'Prior': { icon: '🕰️', items: [{ en: 'before submission', ar: 'قبل التسليم', note: 'Prior' }, { en: 'long before anyone expected', ar: 'قبل فترة طويلة مما توقعه أي شخص', note: 'Time priority' }] } }, quiz: [{ question: 'Ensure you review your answers ___ submitting the test.', options: ['before', 'after', 'since', 'during'], correct: 0, explanation: 'Earlier than deadline.' }] },
+           'AFTER': { id: 'AFTER', category: 'TIME', color: 'from-purple-500 to-violet-500', icon: '⏩', definition: { en: 'Subsequent to time.', ar: 'بعد وقت أو حدث.' }, sections: { 'Pursuit': { icon: '🏁', items: [{ en: 'chase after success', ar: 'السعي خلف النجاح', note: 'Pursuit' }, { en: 'happily ever after', ar: 'بسعادة دائمة بعد ذلك', note: 'Idiom' }] } }, quiz: [{ question: 'Detectives went ___ the elusive suspect.', options: ['after', 'before', 'behind', 'under'], correct: 0, explanation: 'Running/going "after" means pursuing.' }] },
+           'ABOVE': { id: 'ABOVE', category: 'PLACE', color: 'from-cyan-500 to-sky-500', icon: '⬆️', definition: { en: 'Higher position.', ar: 'موقع أعلى من الشيء.' }, sections: { 'Rank': { icon: '👑', items: [{ en: 'above suspicion', ar: 'فوق الشبهات', note: 'Idiom' }, { en: 'rise above adversity', ar: 'الارتفاع فوق الشدائد والصعاب', note: 'Metaphor' }] } }, quiz: [{ question: 'Her professional ethics are completely ___ reproach.', options: ['above', 'over', 'on', 'at'], correct: 0, explanation: '"Above reproach" is an idiom.' }] },
+           'BELOW': { id: 'BELOW', category: 'PLACE', color: 'from-slate-500 to-gray-500', icon: '⬇️', definition: { en: 'Lower level or metric.', ar: 'درجة أو مستوى أدنى.' }, sections: { 'Metrics': { icon: '📉', items: [{ en: 'below freezing point', ar: 'تحت الصفر بدرجات', note: 'Metric' }, { en: 'rank below the supervisor', ar: 'يقع في مرتبة أدنى من المشرف', note: 'Hierarchy' }] } }, quiz: [{ question: 'The barometer reading dropped sharply ___ normal limits.', options: ['below', 'under', 'beneath', 'down'], correct: 0, explanation: 'BELOW for scales and limits.' }] },
+           'OVER': { id: 'OVER', category: 'DIRECTION', color: 'from-fuchsia-500 to-pink-500', icon: '🔝', definition: { en: 'Crossing or covering.', ar: 'يعبر فوق أو يغطي.' }, sections: { 'Authority': { icon: '👑', items: [{ en: 'jurisdiction over the region', ar: 'الولاية القضائية على المنطقة', note: 'Authority' }, { en: 'think things over carefully', ar: 'إعادة التفكير في الأمور بعناية', note: 'Phrasal verb' }] } }, quiz: [{ question: 'The federal government has absolute control ___ the airspace.', options: ['over', 'above', 'on', 'at'], correct: 0, explanation: 'Control and authority are exercised OVER.' }] },
+           'UNDER': { id: 'UNDER', category: 'PLACE', color: 'from-stone-500 to-neutral-500', icon: '🔽', definition: { en: 'Directly beneath or condition.', ar: 'أسفل الشيء أو تحت حالة.' }, sections: { 'Condition': { icon: '📜', items: [{ en: 'under strict surveillance', ar: 'قيد المراقبة المشددة', note: 'Condition' }, { en: 'under the circumstances', ar: 'في ظل الظروف الراهنة', note: 'Idiom' }] } }, quiz: [{ question: 'The facility is currently ___ major structural renovation.', options: ['under', 'below', 'beneath', 'at'], correct: 0, explanation: 'Condition states take UNDER.' }] },
+           'INTO': { id: 'INTO', category: 'DIRECTION', color: 'from-emerald-500 to-teal-500', icon: '📥', definition: { en: 'Entering inside.', ar: 'الحركة والدخول للداخل.' }, sections: { 'Transformation': { icon: '✨', items: [{ en: 'convert into digital format', ar: 'التحويل إلى صيغة رقمية', note: 'Change' }, { en: 'delve into complex topics', ar: 'التعمق في مواضيع معقدة', note: 'Investigation' }] } }, quiz: [{ question: 'Translate this complex passage strictly ___ French.', options: ['into', 'in', 'to', 'towards'], correct: 0, explanation: 'Transformation takes INTO.' }] },
+           'OUT OF': { id: 'OUT OF', category: 'DIRECTION', color: 'from-red-500 to-rose-500', icon: '📤', definition: { en: 'Exiting interior.', ar: 'الخروج من الداخل.' }, sections: { 'Depletion': { icon: '⚠️', items: [{ en: 'out of ammunition', ar: 'نفدت الذخيرة', note: 'State' }, { en: 'out of sheer curiosity', ar: 'من باب الفضول الخالص', note: 'Motive' }] } }, quiz: [{ question: 'The company is completely ___ financial resources.', options: ['out of', 'from', 'off', 'outside'], correct: 0, explanation: 'Depletion takes OUT OF.' }] },
+           'ACROSS': { id: 'ACROSS', category: 'DIRECTION', color: 'from-yellow-500 to-amber-500', icon: '↗️', definition: { en: 'Surface traversal.', ar: 'عبور سطح مستو.' }, sections: { 'Discovery': { icon: '🌍', items: [{ en: 'come across a breakthrough', ar: 'التوصل صدفة لاختراق علمي', note: 'Discovery' }, { en: 'spread across continents', ar: 'الانتشار عبر القارات', note: 'Traversal' }] } }, quiz: [{ question: 'MOUSA stumbled ___ an exceptional research paper online.', options: ['across', 'through', 'over', 'into'], correct: 0, explanation: '"Come across" means find unexpectedly.' }] },
+           'ALONG': { id: 'ALONG', category: 'DIRECTION', color: 'from-lime-500 to-green-500', icon: '🚶‍♂️', definition: { en: 'Parallel path.', ar: 'التحرك بمحاذاة خط.' }, sections: { 'Relationship': { icon: '🤝', items: [{ en: 'get along amicably', ar: 'الانسجام بشكل ودي', note: 'Relationship' }, { en: 'along with other delegates', ar: 'رفقة المندوبين الآخرين', note: 'Addition' }] } }, quiz: [{ question: 'Does 𝑴𝑶𝑼𝑺𝑨 get ___ seamlessly with all instructors?', options: ['along', 'across', 'through', 'over'], correct: 0, explanation: '"Get along" is a phrasal verb.' }] },
+           'AROUND': { id: 'AROUND', category: 'DIRECTION', color: 'from-orange-500 to-amber-500', icon: '🔄', definition: { en: 'Circular motion.', ar: 'مسار أو اتجاه دائري.' }, sections: { 'Nonstop': { icon: '🌐', items: [{ en: 'services running around the clock', ar: 'خدمات تعمل على مدار الساعة', note: 'Non-stop' }, { en: 'rally around a common goal', ar: 'التكاتف حول هدف مشترك', note: 'Unity' }] } }, quiz: [{ question: 'The Berlitz team worked ___ the clock to prepare the exam.', options: ['around', 'about', 'across', 'over'], correct: 0, explanation: 'Idiom: "Around the clock".' }] },
+           'BEHIND': { id: 'BEHIND', category: 'PLACE', color: 'from-purple-700 to-indigo-800', icon: '🔙', definition: { en: 'Back side position.', ar: 'في الجانب الخلفي.' }, sections: { 'Secret': { icon: '🛡️', items: [{ en: 'behind the scenes planning', ar: 'تخطيط خلف الكواليس', note: 'Secret' }, { en: 'leave the competition far behind', ar: 'ترك المنافسة خلفه بمراحل', note: 'Surpassing' }] } }, quiz: [{ question: 'Who is the brilliant intellect ___ this initiative?', options: ['behind', 'in front of', 'after', 'under'], correct: 0, explanation: 'The driving force is BEHIND it.' }] },
+           'IN FRONT OF': { id: 'IN FRONT OF', category: 'PLACE', color: 'from-teal-600 to-emerald-600', icon: '🚘', definition: { en: 'Ahead position.', ar: 'في المواجهة والمقدمة.' }, sections: { 'Visibility': { icon: '🚘', items: [{ en: 'stand in front of the committee', ar: 'الوقوف أمام اللجنة', note: 'Visible' }, { en: 'face challenges in front of you', ar: 'مواجهة التحديات الماثلة أمامك', note: 'Direct presence' }] } }, quiz: [{ question: 'The applicant presented his portfolio directly ___ the board.', options: ['in front of', 'behind', 'next to', 'over'], correct: 0, explanation: 'Facing something is IN FRONT OF.' }] },
+           'NEXT TO': { id: 'NEXT TO', category: 'PLACE', color: 'from-sky-600 to-indigo-600', icon: '👫', definition: { en: 'Directly beside.', ar: 'مباشرة في الجوار.' }, sections: { 'Idiom': { icon: '📍', items: [{ en: 'next to impossible', ar: 'شبه مستحيل', note: 'Idiom' }, { en: 'seated next to the director', ar: 'جالس بجانب المدير', note: 'Adjacent seat' }] } }, quiz: [{ question: 'Mastering fluent English overnight is ___ impossible.', options: ['next to', 'beside', 'near', 'by'], correct: 0, explanation: 'Idiom: "Next to impossible".' }] },
+           'INSIDE': { id: 'INSIDE', category: 'PLACE', color: 'from-cyan-600 to-teal-700', icon: '🏠', definition: { en: 'Inner part.', ar: 'في الجزء الداخلي.' }, sections: { 'Detail': { icon: '🔑', items: [{ en: 'know the subject inside out', ar: 'معرفة الموضوع عن ظهر قلب', note: 'Detail' }, { en: 'inside information leaks', ar: 'تسريب معلومات من الداخل', note: 'Confidential' }] } }, quiz: [{ question: '𝑴𝑶𝑼𝑺𝑨 knows English grammar ___ out.', options: ['inside', 'in', 'into', 'with'], correct: 0, explanation: '"Inside out" means thoroughly and completely.' }] },
+           'WITHOUT': { id: 'WITHOUT', category: 'TIME', color: 'from-slate-600 to-zinc-700', icon: '🚫', definition: { en: 'Absence of item.', ar: 'بدون أو مع غياب.' }, sections: { 'Prompt': { icon: '❌', items: [{ en: 'proceed without further delay', ar: 'المتابعة بدون تأخير إضافي', note: 'Prompt' }, { en: 'without a shadow of a doubt', ar: 'بدون أدنى شك', note: 'Certainty idiom' }] } }, quiz: [{ question: 'The committee approved the proposal ___ hesitation.', options: ['without', 'with', 'from', 'by'], correct: 0, explanation: 'Absence of doubt uses WITHOUT.' }] }
+       };
+
+       let state = {
+           darkMode: false,
+           language: 'en',
+           currentTopic: null,
+           currentCategory: 'ALL',
+           completedLessons: safeGetStorage('completedLessons', []),
+           totalScore: safeGetStorage('totalScore', 0),
+           bookmarks: safeGetStorage('bookmarks', []),
+           userCustomNotes: safeGetStorage('userCustomNotes', {})
+       };
+
+       function saveState() {
+           safeSetStorage('completedLessons', state.completedLessons);
+           safeSetStorage('totalScore', state.totalScore);
+           safeSetStorage('bookmarks', state.bookmarks);
+           safeSetStorage('userCustomNotes', state.userCustomNotes);
+           updateStats();
+       }
+
+       function updateStats() {
+           const lessonsCountEl = document.getElementById('lessonsCompleted');
+           const totalScoreEl = document.getElementById('totalScore');
+           const rankTitleEl = document.getElementById('rankTitle');
+
+           if (lessonsCountEl) lessonsCountEl.textContent = `${state.completedLessons.length} / ${Object.keys(prepositionData).length}`;
+           if (totalScoreEl) totalScoreEl.textContent = state.totalScore;
+
+           if (rankTitleEl) {
+               if (state.totalScore > 250) rankTitleEl.textContent = "Berlitz Ninja 🥷";
+               else if (state.totalScore > 120) rankTitleEl.textContent = "Scholar 🎓";
+               else if (state.totalScore > 40) rankTitleEl.textContent = "Explorer 🧭";
+               else rankTitleEl.textContent = "Berlitz Novice ✍️";
+           }
+       }
+
+       function speakText(text) {
+           if ('speechSynthesis' in window) {
+               window.speechSynthesis.cancel();
+               const utterance = new SpeechSynthesisUtterance(text);
+               utterance.lang = 'en-US';
+               utterance.rate = 0.85;
+               window.speechSynthesis.speak(utterance);
+           }
+       }
+
+       function applyTheme() {
+           document.documentElement.classList.toggle('dark', state.darkMode);
+           const darkIcon = document.getElementById('darkIcon');
+           if (darkIcon) darkIcon.textContent = state.darkMode ? '☀️' : '🌙';
+       }
+
+       function toggleLanguage() {
+           state.language = state.language === 'en' ? 'ar' : 'en';
+           document.getElementById('langIcon').textContent = state.language === 'en' ? '🇬🇧' : '🇸🇦';
+           document.getElementById('langText').textContent = state.language === 'en' ? 'EN' : 'AR';
+           document.documentElement.dir = state.language === 'ar' ? 'rtl' : 'ltr';
+
+           if (state.currentTopic) renderMindMap(state.currentTopic);
+           renderCards();
+       }
+
+       function t(enText, arText) {
+           return state.language === 'en' ? enText : arText;
+       }
+
+       function navigateHome() {
+           state.currentTopic = null;
+           document.getElementById('homepageView').classList.remove('hidden');
+           document.getElementById('mindmapView').classList.add('hidden');
+           document.getElementById('breadcrumbPath').textContent = '';
+           document.getElementById('searchInput').value = '';
+           document.getElementById('searchResults').classList.add('hidden');
+           window.scrollTo({ top: 0, behavior: 'smooth' });
+       }
+
+       function navigateToTopic(topicId) {
+           state.currentTopic = topicId;
+           document.getElementById('homepageView').classList.add('hidden');
+           document.getElementById('mindmapView').classList.remove('hidden');
+           document.getElementById('breadcrumbPath').innerHTML = `<span class="text-gray-400">›</span> <span class="font-semibold">${topicId}</span>`;
+           document.getElementById('searchResults').classList.add('hidden');
+
+           renderMindMap(topicId);
+           window.scrollTo({ top: 0, behavior: 'smooth' });
+
+           if (!state.completedLessons.includes(topicId)) {
+               state.completedLessons.push(topicId);
+               state.totalScore += 10;
+               saveState();
+           }
+       }
+
+       function renderCards() {
+           const grid = document.getElementById('cardsGrid');
+           if (!grid) return;
+
+           let topics = Object.keys(prepositionData);
+
+           if (state.currentCategory !== 'ALL') {
+               if (state.currentCategory === 'FAVORITES') {
+                   topics = topics.filter(id => state.bookmarks.includes(id));
+               } else {
+                   topics = topics.filter(id => prepositionData[id].category === state.currentCategory);
+               }
+           }
+
+           if (topics.length === 0) {
+               grid.innerHTML = `<div class="col-span-full text-center py-12 text-gray-400 font-medium">${t('No prepositions found in this category.', 'لا توجد حروف جر في هذا القسم.')}</div>`;
+               return;
+           }
+
+           grid.innerHTML = topics.map((topicId) => {
+               const data = prepositionData[topicId];
+               const isCompleted = state.completedLessons.includes(topicId);
+               const isBookmarked = state.bookmarks.includes(topicId);
+
+               return `
+               <div class="card-hover glass rounded-2xl p-4 cursor-pointer relative overflow-hidden flex flex-col justify-between" 
+                    onclick="navigateToTopic('${topicId}')">
+                   <div>
+                       <div class="flex items-center justify-between mb-2">
+                           <span class="text-2xl">${data.icon}</span>
+                           <div class="flex gap-1">
+                               ${isCompleted ? '<span class="text-green-500 text-xs">✅</span>' : ''}
+                               ${isBookmarked ? '<span class="text-yellow-500 text-xs">⭐</span>' : ''}
+                           </div>
+                       </div>
+                       <h3 class="text-xl font-black bg-gradient-to-r ${data.color} bg-clip-text text-transparent">${topicId}</h3>
+                       <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">${t(data.definition.en, data.definition.ar)}</p>
+                   </div>
+                   <div class="mt-3 flex items-center justify-between text-[11px] text-purple-600 dark:text-purple-400 font-bold">
+                       <span>Explore</span>
+                       <span>→</span>
+                   </div>
+               </div>`;
+           }).join('');
+       }
+
+       function renderMindMap(topicId) {
+           const data = prepositionData[topicId];
+           if (!data) return;
+
+           const container = document.getElementById('mindmapContent');
+           const isBookmarked = state.bookmarks.includes(topicId);
+
+           document.getElementById('actionButtons').innerHTML = `
+               <button onclick="toggleBookmark('${topicId}')" class="glass rounded-xl px-3 py-1.5 text-xs font-semibold dark:text-white ${isBookmarked ? 'bg-yellow-200 dark:bg-yellow-800/50' : ''}">⭐ ${isBookmarked ? t('Saved', 'محفوظ') : t('Bookmark', 'حفظ')}</button>
+               <button onclick="startQuiz('${topicId}')" class="glass rounded-xl px-3 py-1.5 text-xs font-semibold dark:text-white hover:bg-purple-100">📝 ${t('Tricky Quiz', 'اختبار متقدم')}</button>
+               <button onclick="startFlashcards('${topicId}')" class="glass rounded-xl px-3 py-1.5 text-xs font-semibold dark:text-white hover:bg-cyan-100">🃏 ${t('Flashcards', 'بطاقات')}</button>
+           `;
+
+           let html = `
+               <div class="mindmap-container">
+                   <div class="text-center mb-6">
+                       <div class="w-20 h-20 rounded-full bg-gradient-to-br ${data.color} flex items-center justify-center text-white text-3xl font-black shadow-xl mx-auto mb-2 animate-glow relative">
+                           ${topicId}
+                           <button class="btn-speak absolute -bottom-1 -right-1 bg-white dark:bg-slate-800 p-1.5 rounded-full shadow text-xs text-purple-600" data-speech="${topicId}">🔊</button>
+                       </div>
+                       <h2 class="text-2xl font-black dark:text-white">${topicId}</h2>
+                       <p class="text-xs md:text-sm text-gray-500 dark:text-gray-400 max-w-md mx-auto mt-1">${t(data.definition.en, data.definition.ar)}</p>
+                   </div>
+
+                   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">`;
+
+           Object.entries(data.sections).forEach(([secName, section]) => {
+               html += `
+                   <div class="glass rounded-2xl p-4 border-l-4 border-purple-500">
+                       <h4 class="font-bold text-sm mb-2 dark:text-white flex items-center gap-1.5">
+                           <span>${section.icon}</span> ${secName}
+                       </h4>
+                       <div class="space-y-2">
+                           ${section.items.map(item => `
+                               <div class="bg-white/60 dark:bg-slate-800/60 rounded-xl p-2.5 text-xs">
+                                   <div class="flex items-center justify-between">
+                                       <span class="font-bold dark:text-white">${item.en}</span>
+                                       <button class="btn-speak text-purple-400 hover:text-purple-600 text-xs" data-speech="${item.en}">🔊</button>
+                                   </div>
+                                   <div class="text-gray-500 dark:text-gray-400 font-arabic mt-0.5">${item.ar}</div>
+                               </div>
+                           `).join('')}
+                       </div>
+                   </div>`;
+           });
+
+           html += `</div>
+
+                   <div class="glass rounded-2xl p-4 mt-6 max-w-2xl mx-auto">
+                       <h3 class="font-bold text-xs dark:text-white mb-2">✍️ ${t('My Practice Sentences (𝑴𝑶𝑼𝑺𝑨\'s Notes)', 'جمل موسى الخاصة')}</h3>
+                       <div class="flex gap-2">
+                           <input type="text" id="customNoteInput" placeholder="${t('Add a sentence with ' + topicId + '...', 'أضف جملة بـ ' + topicId + '...')}" class="flex-1 px-3 py-1.5 rounded-xl bg-white/70 dark:bg-slate-800/70 border border-purple-200 dark:border-purple-800 text-xs outline-none dark:text-white">
+                           <button onclick="addCustomNote('${topicId}')" class="px-3 py-1.5 bg-purple-600 text-white font-bold rounded-xl text-xs">${t('Save', 'حفظ')}</button>
+                       </div>
+                       <div id="customNotesList" class="mt-2 space-y-1">
+                           ${renderCustomNotesList(topicId)}
+                       </div>
+                   </div>
+               </div>`;
+
+           container.innerHTML = html;
+       }
+
+       function renderCustomNotesList(topicId) {
+           const notes = state.userCustomNotes[topicId] || [];
+           if (notes.length === 0) return `<div class="text-[11px] text-gray-400 italic">${t('No personal notes saved yet.', 'لا توجد ملاحظات حتي الآن.')}</div>`;
+           return notes.map((note, idx) => `
+               <div class="flex items-center justify-between bg-white/50 dark:bg-slate-800/50 px-2.5 py-1.5 rounded-lg text-xs dark:text-white">
+                   <span>• ${note}</span>
+                   <button onclick="deleteCustomNote('${topicId}', ${idx})" class="text-red-400 font-bold ml-2">✕</button>
+               </div>
+           `).join('');
+       }
+
+       function addCustomNote(topicId) {
+           const input = document.getElementById('customNoteInput');
+           const val = input.value.trim();
+           if (!val) return;
+
+           if (!state.userCustomNotes[topicId]) state.userCustomNotes[topicId] = [];
+           state.userCustomNotes[topicId].push(val);
+           saveState();
+
+           input.value = '';
+           document.getElementById('customNotesList').innerHTML = renderCustomNotesList(topicId);
+       }
+
+       function deleteCustomNote(topicId, idx) {
+           if (state.userCustomNotes[topicId]) {
+               state.userCustomNotes[topicId].splice(idx, 1);
+               saveState();
+               document.getElementById('customNotesList').innerHTML = renderCustomNotesList(topicId);
+           }
+       }
+
+       function toggleBookmark(topicId) {
+           const idx = state.bookmarks.indexOf(topicId);
+           if (idx > -1) state.bookmarks.splice(idx, 1);
+           else state.bookmarks.push(topicId);
+           saveState();
+           if (state.currentTopic === topicId) renderMindMap(topicId);
+           renderCards();
+       }
+
+       function handleSearch(query) {
+           const resultsDiv = document.getElementById('searchResults');
+           const q = query.toLowerCase().trim();
+           if (!q) { resultsDiv.classList.add('hidden'); return; }
+
+           const matches = Object.keys(prepositionData).filter(id => id.toLowerCase().includes(q));
+
+           if (matches.length === 0) {
+               resultsDiv.innerHTML = `<div class="p-3 text-center text-gray-400 text-xs">No match found</div>`;
+           } else {
+               resultsDiv.innerHTML = matches.map(m => `
+                   <div class="p-2.5 hover:bg-purple-50 dark:hover:bg-purple-900/30 cursor-pointer text-xs font-bold dark:text-white flex justify-between" onclick="navigateToTopic('${m}')">
+                       <span>📍 ${m}</span>
+                       <span class="text-purple-500 font-normal">View</span>
+                   </div>
+               `).join('');
+           }
+           resultsDiv.classList.remove('hidden');
+       }
+
+       function startQuiz(topicId) {
+           const data = prepositionData[topicId];
+           if (!data || !data.quiz) return;
+
+           document.getElementById('quizModal').classList.remove('hidden');
+           runQuiz(topicId, 0, 0);
+       }
+
+       function runQuiz(topicId, qIdx, score) {
+           const data = prepositionData[topicId];
+           const content = document.getElementById('quizContent');
+           const total = data.quiz.length;
+
+           if (qIdx >= total) {
+               content.innerHTML = `
+                   <div class="text-center py-4">
+                       <div class="text-4xl mb-2">🏆</div>
+                       <h3 class="text-base font-bold dark:text-white mb-1">${t('Tricky Quiz Finished!', 'اكتمل الاختبار المتقدم!')}</h3>
+                       <p class="text-sm dark:text-gray-300 mb-3">${t(`Score: ${score}/${total}`, `النتيجة: ${score}/${total}`)}</p>
+                       <button onclick="closeQuiz()" class="px-4 py-2 bg-purple-600 text-white text-xs font-bold rounded-xl">${t('Close', 'إغلاق')}</button>
+                   </div>`;
+               state.totalScore += score * 15;
+               saveState();
+               return;
+           }
+
+           const q = data.quiz[qIdx];
+           content.innerHTML = `
+               <div class="mb-3">
+                   <div class="text-xs text-purple-500 font-bold mb-1">${t('Advanced Question', 'سؤال متقدم')} ${qIdx + 1}/${total}</div>
+                   <p class="text-sm font-bold dark:text-white">${q.question}</p>
+               </div>
+               <div class="space-y-2">
+                   ${q.options.map((opt, i) => `
+                       <button onclick="answerQuiz(${i}, ${q.correct}, '${topicId}', ${qIdx}, ${total}, ${score})" 
+                           class="quiz-opt-btn w-full text-left p-2.5 rounded-xl border border-purple-200 dark:border-purple-800 hover:bg-purple-100 text-xs font-medium dark:text-white transition-all">
+                           ${String.fromCharCode(65 + i)}) ${opt}
+                       </button>
+                   `).join('')}
+               </div>
+               <div id="quizFeedback" class="mt-3 text-xs font-bold"></div>
+           `;
+       }
+
+       window.answerQuiz = function(selected, correct, topicId, currentQ, total, score) {
+           const feedback = document.getElementById('quizFeedback');
+           const q = prepositionData[topicId].quiz[currentQ];
+           
+           const optButtons = document.querySelectorAll('.quiz-opt-btn');
+           optButtons.forEach((btn, idx) => {
+               btn.disabled = true;
+               if (idx === correct) {
+                   btn.classList.add('bg-green-100', 'dark:bg-green-900/50', 'border-green-500', 'text-green-700', 'dark:text-green-300');
+               } else if (idx === selected && selected !== correct) {
+                   btn.classList.add('bg-red-100', 'dark:bg-red-900/50', 'border-red-500', 'text-red-700', 'dark:text-red-300');
+               }
+           });
+
+           if (selected === correct) {
+               feedback.innerHTML = `<div class="p-2 rounded-xl bg-green-50 dark:bg-green-950/40 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-300">✅ <b>${t('Correct!', 'إجابة صحيحة!')}</b><br><span class="text-[11px] font-normal mt-1 block">${q.explanation}</span></div>`;
+               score++;
+           } else {
+               feedback.innerHTML = `<div class="p-2 rounded-xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300">❌ <b>${t('Incorrect!', 'إجابة خاطئة!')}</b><br><span class="text-[11px] font-normal mt-1 block">${q.explanation}</span></div>`;
+           }
+
+           setTimeout(() => {
+               runQuiz(topicId, currentQ + 1, score);
+           }, 2600);
+       };
+
+       function closeQuiz() {
+           document.getElementById('quizModal').classList.add('hidden');
+       }
+
+       function startGlobalChallenge() {
+           const allQuizzes = [];
+           Object.keys(prepositionData).forEach(topicId => {
+               prepositionData[topicId].quiz.forEach(q => allQuizzes.push({ topicId, ...q }));
+           });
+
+           const shuffled = allQuizzes.sort(() => 0.5 - Math.random());
+           let score = 0;
+           let current = 0;
+
+           document.getElementById('quizModal').classList.remove('hidden');
+
+           function renderChallengeQ() {
+               const content = document.getElementById('quizContent');
+               if (current >= shuffled.length) {
+                   content.innerHTML = `
+                       <div class="text-center py-4">
+                           <div class="text-4xl mb-2">🔥</div>
+                           <h3 class="text-base font-bold dark:text-white mb-1">${t('Hard Challenge Complete!', 'اكتمل التحدي الصعب بنجاح!')}</h3>
+                           <p class="text-sm dark:text-gray-300 mb-3">${t(`Final Score: ${score}/${shuffled.length}`, `النتيجة النهائية: ${score}/${shuffled.length}`)}</p>
+                           <button onclick="closeQuiz()" class="px-4 py-2 bg-purple-600 text-white text-xs font-bold rounded-xl">${t('Done', 'تم')}</button>
+                       </div>`;
+                   state.totalScore += score * 10;
+                   saveState();
+                   return;
+               }
+
+               const q = shuffled[current];
+               content.innerHTML = `
+                   <div class="mb-3">
+                       <div class="text-xs text-amber-500 font-bold mb-1">🔥 ${t('Hard Challenge Question', 'سؤال التحدي الصعب')} ${current + 1}/${shuffled.length} (${q.topicId})</div>
+                       <p class="text-sm font-bold dark:text-white">${q.question}</p>
+                   </div>
+                   <div class="space-y-2">
+                       ${q.options.map((opt, i) => `
+                           <button onclick="handleChallengeAnswer(${i}, ${q.correct}, '${q.explanation.replace(/'/g, "\\'")}')" class="chal-opt-btn w-full text-left p-2.5 rounded-xl border border-purple-200 dark:border-purple-800 hover:bg-purple-100 text-xs font-medium dark:text-white transition-all">
+                               ${String.fromCharCode(65 + i)}) ${opt}
+                           </button>
+                       `).join('')}
+                   </div>
+                   <div id="challengeFeedback" class="mt-3 text-xs font-bold"></div>
+               `;
+           }
+
+           window.handleChallengeAnswer = function(selected, correct, exp) {
+               const feedback = document.getElementById('challengeFeedback');
+               const optButtons = document.querySelectorAll('.chal-opt-btn');
+               
+               optButtons.forEach((btn, idx) => {
+                   btn.disabled = true;
+                   if (idx === correct) {
+                       btn.classList.add('bg-green-100', 'dark:bg-green-900/50', 'border-green-500', 'text-green-700', 'dark:text-green-300');
+                   } else if (idx === selected && selected !== correct) {
+                       btn.classList.add('bg-red-100', 'dark:bg-red-900/50', 'border-red-500', 'text-red-700', 'dark:text-red-300');
+                   }
+               });
+
+               if (selected === correct) {
+                   feedback.innerHTML = `<div class="p-2 rounded-xl bg-green-50 dark:bg-green-950/40 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-300">✅ <b>${t('Brilliant!', 'إجابة عبقرية صحيحة!')}</b><br><span class="text-[11px] font-normal mt-1 block">${exp}</span></div>`;
+                   score++;
+               } else {
+                   feedback.innerHTML = `<div class="p-2 rounded-xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300">❌ <b>${t('Wrong Answer!', 'إجابة خاطئة!')}</b><br><span class="text-[11px] font-normal mt-1 block">${exp}</span></div>`;
+               }
+
+               setTimeout(() => { 
+                   current++; 
+                   renderChallengeQ(); 
+               }, 2600);
+           };
+
+           renderChallengeQ();
+       }
+
+       function startFlashcards(topicId) {
+           const data = prepositionData[topicId];
+           if (!data) return;
+
+           const allItems = [];
+           Object.values(data.sections).forEach(section => {
+               section.items.forEach(item => allItems.push(item));
+           });
+
+           if (allItems.length === 0) return;
+
+           let currentIdx = 0;
+           let showingFront = true;
+           const modal = document.getElementById('flashcardModal');
+           const content = document.getElementById('flashcardContent');
+
+           function renderCard() {
+               const item = allItems[currentIdx];
+               content.innerHTML = `
+                   <div class="text-xs text-gray-400 mb-2">${currentIdx + 1} / ${allItems.length}</div>
+                   <div class="glass rounded-2xl p-6 min-h-[140px] flex flex-col items-center justify-center cursor-pointer" onclick="flipFlashcard()">
+                       <div class="text-center">
+                           <div class="text-xl font-bold dark:text-white">${showingFront ? item.en : item.ar}</div>
+                           <div class="text-[10px] text-purple-400 mt-2">${showingFront ? t('Click to reveal Arabic', 'انقر للترجمة') : t('Click to reveal English', 'انقر للنص الإنجليزي')}</div>
+                       </div>
+                   </div>
+                   <div class="flex justify-between items-center mt-3">
+                       <button onclick="prevFlashcard()" class="px-3 py-1.5 glass rounded-xl text-xs dark:text-white" ${currentIdx === 0 ? 'disabled' : ''}>← ${t('Prev', 'السابق')}</button>
+                       <button class="btn-speak p-1.5 glass rounded-full text-xs" data-speech="${item.en}">🔊</button>
+                       <button onclick="nextFlashcard()" class="px-3 py-1.5 glass rounded-xl text-xs dark:text-white" ${currentIdx === allItems.length - 1 ? 'disabled' : ''}>${t('Next', 'التالي')} →</button>
+                   </div>
+               `;
+           }
+
+           window.flipFlashcard = function() { showingFront = !showingFront; renderCard(); };
+           window.prevFlashcard = function() { if (currentIdx > 0) { currentIdx--; showingFront = true; renderCard(); } };
+           window.nextFlashcard = function() { if (currentIdx < allItems.length - 1) { currentIdx++; showingFront = true; renderCard(); } };
+
+           renderCard();
+           modal.classList.remove('hidden');
+       }
+
+       function closeFlashcard() {
+           document.getElementById('flashcardModal').classList.add('hidden');
+       }
+
+       function createParticles() {
+           const container = document.getElementById('particles');
+           if (!container) return;
+           const colors = ['#8b5cf6', '#06b6d4', '#ec4899', '#10b981'];
+           for (let i = 0; i < 15; i++) {
+               const particle = document.createElement('div');
+               particle.className = 'particle';
+               particle.style.left = Math.random() * 100 + '%';
+               particle.style.width = (Math.random() * 6 + 2) + 'px';
+               particle.style.height = particle.style.width;
+               particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+               particle.style.animationDuration = (Math.random() * 10 + 8) + 's';
+               particle.style.animationDelay = Math.random() * 5 + 's';
+               container.appendChild(particle);
+           }
+       }
+
+       function setupEventListeners() {
+           const navLogo = document.getElementById('navLogo');
+           const navHomeLink = document.getElementById('navHomeLink');
+           const btnBackHome = document.getElementById('btnBackHome');
+           const btnLang = document.getElementById('btnLang');
+           const btnDark = document.getElementById('btnDark');
+           const btnChallenge = document.getElementById('btnChallenge');
+           const btnCloseQuiz = document.getElementById('btnCloseQuiz');
+           const btnCloseFlashcard = document.getElementById('btnCloseFlashcard');
+           const searchInput = document.getElementById('searchInput');
+
+           if (navLogo) navLogo.addEventListener('click', navigateHome);
+           if (navHomeLink) navHomeLink.addEventListener('click', navigateHome);
+           if (btnBackHome) btnBackHome.addEventListener('click', navigateHome);
+
+           if (btnLang) btnLang.addEventListener('click', toggleLanguage);
+           if (btnDark) btnDark.addEventListener('click', () => { state.darkMode = !state.darkMode; applyTheme(); });
+           if (btnChallenge) btnChallenge.addEventListener('click', startGlobalChallenge);
+
+           if (btnCloseQuiz) btnCloseQuiz.addEventListener('click', closeQuiz);
+           if (btnCloseFlashcard) btnCloseFlashcard.addEventListener('click', closeFlashcard);
+
+           if (searchInput) searchInput.addEventListener('input', (e) => handleSearch(e.target.value));
+
+           document.querySelectorAll('.cat-btn').forEach(btn => {
+               btn.addEventListener('click', (e) => {
+                   const catBtn = e.target.closest('.cat-btn');
+                   if (!catBtn) return;
+                   state.currentCategory = catBtn.dataset.cat;
+                   document.querySelectorAll('.cat-btn').forEach(b => {
+                       b.className = 'cat-btn glass px-3.5 py-2 rounded-xl text-gray-600 dark:text-gray-300';
+                   });
+                   catBtn.className = 'cat-btn glass px-3.5 py-2 rounded-xl text-purple-600 dark:text-purple-300 border-purple-500';
+                   renderCards();
+               });
+           });
+
+           document.addEventListener('click', (e) => {
+               const btnSpeak = e.target.closest('.btn-speak');
+               if (btnSpeak && btnSpeak.dataset.speech) {
+                   e.stopPropagation();
+                   speakText(btnSpeak.dataset.speech);
+               }
+           });
+
+           document.addEventListener('keydown', (e) => {
+               if (e.key === 'Escape') {
+                   closeQuiz();
+                   closeFlashcard();
+                   document.getElementById('searchResults').classList.add('hidden');
+               }
+           });
+       }
+
+       function startApp() {
+           try {
+               setupEventListeners();
+               applyTheme();
+               createParticles();
+               renderCards();
+               updateStats();
+           } catch (err) {
+               console.error("Initialization error:", err);
+           }
+       }
+
+       if (document.readyState === 'loading') {
+           document.addEventListener('DOMContentLoaded', startApp);
+       } else {
+           startApp();
+       }
+   </script>
+</body>
+</html>
