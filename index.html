@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PrepositionMaster - Created for 𝑴𝑶𝑼𝑺𝑨</title>
+    <title>منصة 𝑴𝑶𝑼𝑺𝑨 - Advanced Grammar Platform</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -96,37 +96,35 @@
 </head>
 <body class="bg-gradient-to-br from-slate-50 via-purple-50 to-cyan-50 dark:from-slate-900 dark:via-purple-950 dark:to-slate-900 min-h-screen transition-colors duration-500 font-sans text-slate-800 dark:text-slate-100 overflow-x-hidden">
 
-    <!-- Background Particle Animation -->
+    <!-- Ambient Particles -->
     <div id="particles" class="fixed inset-0 pointer-events-none z-0"></div>
 
-    <!-- Application Structure -->
+    <!-- Application Shell -->
     <div id="app" class="relative z-10">
-        <!-- Navigation Header -->
+        <!-- Header -->
         <header class="glass-strong sticky top-3 z-50 mx-3 mt-3 rounded-2xl px-5 py-3 flex items-center justify-between flex-wrap gap-3">
             <div class="flex items-center gap-3 cursor-pointer" id="navLogo">
-                <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-purple-600 via-pink-500 to-cyan-500 flex items-center justify-center text-white font-black text-xl shadow-lg">P</div>
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-purple-600 via-pink-500 to-cyan-500 flex items-center justify-center text-white font-black text-xl shadow-lg">M</div>
                 <div>
-                    <h1 class="text-xl md:text-2xl font-black gradient-text">PrepositionMaster</h1>
-                    <!-- MOUSA's Name Banner -->
-                    <div class="text-xs font-extrabold text-amber-500 dark:text-amber-400 tracking-wider flex items-center gap-1">
-                        ✨ <span>𝑴𝑶𝑼𝑺𝑨</span>
-                    </div>
+                    <!-- Replaced title with منصة 𝑴𝑶𝑼𝑺𝑨 -->
+                    <h1 class="text-xl md:text-2xl font-black gradient-text">منصة 𝑴𝑶𝑼𝑺𝑨</h1>
+                    <div class="text-[10px] text-purple-600 dark:text-purple-300 font-bold tracking-wider">ADVANCED GRAMMAR HUB</div>
                 </div>
             </div>
 
             <div class="flex items-center gap-2 flex-wrap">
-                <!-- Search Filter -->
+                <!-- Search Input -->
                 <div class="relative">
                     <input type="text" id="searchInput" placeholder="Search topics..." class="w-36 md:w-52 px-3.5 py-2 rounded-xl bg-white/70 dark:bg-slate-800/70 backdrop-blur-md border border-purple-200 dark:border-purple-800 focus:outline-none focus:ring-2 focus:ring-purple-400 text-sm dark:text-white">
                     <div id="searchResults" class="absolute top-full mt-2 left-0 right-0 bg-white/95 dark:bg-slate-800/95 backdrop-blur-xl rounded-xl shadow-2xl border border-purple-100 dark:border-purple-900 hidden max-h-60 overflow-y-auto scrollbar-thin z-50"></div>
                 </div>
 
-                <!-- Global Challenge Trigger -->
-                <button id="btnChallenge" class="px-3 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-500 hover:to-cyan-400 text-white font-bold text-xs shadow-md transition-all flex items-center gap-1" title="Random Practice">
-                    <span>⚡</span> <span>Challenge</span>
+                <!-- Global Hard Quiz Challenge -->
+                <button id="btnChallenge" class="px-3 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-500 hover:to-cyan-400 text-white font-bold text-xs shadow-md transition-all flex items-center gap-1" title="Random Tricky Quiz">
+                    <span>🔥</span> <span>Hard Challenge</span>
                 </button>
 
-                <!-- Language and Theme Toggles -->
+                <!-- Language & Theme Toggles -->
                 <button id="btnLang" class="px-3 py-2 rounded-xl glass hover:bg-purple-100 dark:hover:bg-purple-900/40 text-xs font-bold flex items-center gap-1 dark:text-white">
                     <span id="langIcon">🇬🇧</span> <span id="langText">EN</span>
                 </button>
@@ -136,36 +134,37 @@
             </div>
         </header>
 
-        <!-- Breadcrumb & Status Bar -->
+        <!-- Breadcrumb & User Rank -->
         <div class="mx-6 mt-3 flex justify-between items-center flex-wrap gap-2">
             <nav id="breadcrumb" class="flex items-center gap-2 text-sm text-purple-600 dark:text-purple-400 font-medium">
                 <span class="cursor-pointer hover:underline" id="navHomeLink">🏠 Home</span>
                 <span id="breadcrumbPath"></span>
             </nav>
             <div class="glass px-3.5 py-1.5 rounded-full text-xs font-bold text-purple-700 dark:text-purple-300 flex items-center gap-1.5 shadow-sm">
-                <span>🏆 Owner & Student:</span>
-                <span class="text-amber-600 dark:text-amber-400 font-extrabold">𝑴𝑶𝑼𝑺𝑨</span>
+                <span>👤 Welcome:</span>
+                <span class="text-amber-500 dark:text-amber-400 font-black">𝑴𝑶𝑼𝑺𝑨</span>
                 <span>•</span>
                 <span id="rankTitle">Grammar Novice</span>
             </div>
         </div>
 
-        <!-- Main Workspace -->
+        <!-- Main Content -->
         <main class="px-4 md:px-8 py-6">
-            <!-- Homepage Grid View -->
+            <!-- Homepage View -->
             <div id="homepageView" class="space-y-6 animate-fade-in-up">
                 <div class="text-center my-2">
-                    <h2 class="text-3xl md:text-5xl font-black gradient-text mb-2">Master English Prepositions</h2>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm md:text-base max-w-2xl mx-auto">Welcome 𝑴𝑶𝑼𝑺𝑨! Interactive mind maps with abundant examples, native audio, and quizzes.</p>
+                    <!-- Replaced title with منصة 𝑴𝑶𝑼𝑺𝑨 with identical gradient effects -->
+                    <h2 class="text-3xl md:text-5xl font-black gradient-text mb-2">منصة 𝑴𝑶𝑼𝑺𝑨</h2>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm md:text-base max-w-2xl mx-auto">Master complex English prepositions, tricky exceptions, native audio, and high-difficulty quizzes.</p>
                 </div>
 
-                <!-- Performance Dashboard -->
+                <!-- Stats Dashboard -->
                 <div class="flex justify-center gap-4 text-center">
                     <div class="glass rounded-2xl px-5 py-2.5 min-w-[100px]"><div class="text-xl font-black text-purple-600 dark:text-purple-400" id="lessonsCompleted">0 / 30</div><div class="text-xs text-gray-500">Mastered</div></div>
                     <div class="glass rounded-2xl px-5 py-2.5 min-w-[100px]"><div class="text-xl font-black text-cyan-600 dark:text-cyan-400" id="totalScore">0</div><div class="text-xs text-gray-500">XP Points</div></div>
                 </div>
 
-                <!-- Category Filters -->
+                <!-- Filters -->
                 <div class="flex justify-center gap-2 flex-wrap text-xs font-bold" id="categoryFilterBar">
                     <button class="cat-btn glass px-3.5 py-2 rounded-xl text-purple-600 dark:text-purple-300 border-purple-500" data-cat="ALL">All (30)</button>
                     <button class="cat-btn glass px-3.5 py-2 rounded-xl text-gray-600 dark:text-gray-300" data-cat="TIME">⏰ Time</button>
@@ -174,7 +173,7 @@
                     <button class="cat-btn glass px-3.5 py-2 rounded-xl text-gray-600 dark:text-gray-300" data-cat="FAVORITES">⭐ Saved</button>
                 </div>
 
-                <!-- Cards Grid -->
+                <!-- Grid -->
                 <div id="cardsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4"></div>
             </div>
 
@@ -195,7 +194,7 @@
     <div id="quizModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
         <div class="glass-strong rounded-3xl p-6 md:p-8 max-w-lg w-full animate-bounce-in shadow-2xl bg-white/90 dark:bg-slate-800/90">
             <div class="flex justify-between items-center mb-4">
-                <h3 class="text-lg font-bold dark:text-white">📝 Practice Quiz</h3>
+                <h3 class="text-lg font-bold dark:text-white flex items-center gap-2">🔥 <span>Challenge Quiz</span></h3>
                 <button id="btnCloseQuiz" class="text-gray-400 hover:text-red-500 font-bold text-xl">✕</button>
             </div>
             <div id="quizContent"></div>
@@ -211,110 +210,88 @@
     </div>
 
     <script>
-        // Expanded Preposition Dataset with Extra Examples for MOUSA
+        // Database with Extra Tricky Quizzes & Expanded Examples
         const prepositionData = {
             'AT': { 
                 id: 'AT', category: 'TIME', color: 'from-purple-600 to-violet-500', icon: '📍', 
-                definition: { en: 'Used for specific points in time or precise locations.', ar: 'تُستخدم للإشارة إلى نقطة زمنية محددة أو موقع دقيق.' }, 
+                definition: { en: 'Used for precise times, specific targets, and fixed locations.', ar: 'تُستخدم للأوقات الدقيقة، الأهداف، والمواقع المحددة.' }, 
                 sections: { 
                     'Time Points': { icon: '🕐', items: [
-                        { en: 'at 7 o\'clock', ar: 'في الساعة السابعة', note: 'Exact clock time' }, 
-                        { en: 'at noon / midnight', ar: 'عند الظهر / منتصف الليل', note: 'Fixed time' }, 
-                        { en: 'at the moment', ar: 'في هذه اللحظة', note: 'Current time' },
-                        { en: 'at sunrise / sunset', ar: 'عند شروق / غروب الشمس', note: 'Natural time point' },
-                        { en: 'at the end of the day', ar: 'في نهاية اليوم', note: 'Specific time mark' }
+                        { en: 'at 7:15 AM sharp', ar: 'في تمام الساعة 7:15 صباحاً', note: 'Exact clock time' }, 
+                        { en: 'at dawn / at dusk', ar: 'عند الفجر / عند الغسق', note: 'Natural time point' }, 
+                        { en: 'at the age of 21', ar: 'في سن الحادية والعشرين', note: 'Age milestone' }
                     ] }, 
-                    'Place & Location': { icon: '🏫', items: [
-                        { en: 'at school / work / home', ar: 'في المدرسة / العمل / المنزل', note: 'General place' }, 
-                        { en: 'at the entrance door', ar: 'عند مدخل الباب', note: 'Specific point' },
-                        { en: 'at the bus stop', ar: 'عند موقف الحافلة', note: 'Exact location' },
-                        { en: 'at the top of the page', ar: 'في أعلا الصفحة', note: 'Point on page' }
+                    'Complex Targets': { icon: '🎯', items: [
+                        { en: 'aim at the bullseye', ar: 'التسديد نحو الهدف بدقة', note: 'Targeting' }, 
+                        { en: 'good at solving algebra', ar: 'جيد في حل الجبر', note: 'Ability skill' },
+                        { en: 'stare at the mountain', ar: 'التحديق في الجبل', note: 'Fixed look' }
                     ] } 
                 }, 
-                quiz: [{ question: 'I\'ll meet you ___ the bus stop.', options: ['at', 'in', 'on'], correct: 0, explanation: 'Use AT for specific precise points.' }] 
+                quiz: [
+                    { question: 'She was astonished ___ how quickly he adapted to the new environment.', options: ['at', 'in', 'on', 'with'], correct: 0, explanation: 'Adjectives like "astonished/surprised" take AT when reacting to a situation.' },
+                    { question: 'The diplomat arrived ___ the airport late, but arrived ___ London on time.', options: ['in / at', 'at / in', 'at / at', 'in / in'], correct: 1, explanation: 'Use AT for specific hubs/airports and IN for large cities.' },
+                    { question: 'He pointed his gun right ___ the enemy target.', options: ['at', 'to', 'towards', 'on'], correct: 0, explanation: 'Verbs of targeting like "point/aim" take AT.' }
+                ] 
             },
             'IN': { 
                 id: 'IN', category: 'TIME', color: 'from-cyan-600 to-blue-500', icon: '📦', 
-                definition: { en: 'Used for enclosed spaces, cities, months, and years.', ar: 'تُستخدم للأماكن المغلقة، المدن، الشهور والسنوات.' }, 
+                definition: { en: 'Used for states of mind, enclosed physical spaces, and long time spans.', ar: 'تُستخدم للحالات الذهنية، الأماكن المغلقة، والفترات الزمانية.' }, 
                 sections: { 
-                    'Time (Long Periods)': { icon: '📅', items: [
-                        { en: 'in June / July', ar: 'في شهر يونيو / يوليو', note: 'Month' }, 
-                        { en: 'in 2026', ar: 'في عام ٢٠٢٦', note: 'Year' },
-                        { en: 'in the morning', ar: 'في الصباح', note: 'Part of day' },
-                        { en: 'in the summer', ar: 'في الصيف', note: 'Season' },
-                        { en: 'in two weeks', ar: 'خلال أسبوعين', note: 'Future duration' }
+                    'Abstract & States': { icon: '🧠', items: [
+                        { en: 'in a hurry / in a mood', ar: 'في عجلة / في مزاج سيء', note: 'Emotional state' }, 
+                        { en: 'in pain / in danger', ar: 'في ألم / في خطر', note: 'Condition' }
                     ] }, 
-                    'Enclosed Places': { icon: '🏠', items: [
-                        { en: 'in the living room', ar: 'في غرفة المعيشة', note: 'Enclosed space' }, 
-                        { en: 'in London / UAE', ar: 'في لندن / الإمارات', note: 'City & Country' },
-                        { en: 'in a box / bag', ar: 'في الصندوق / الحقيبة', note: 'Container' },
-                        { en: 'in the water', ar: 'في الماء', note: 'Submerged' }
+                    'Boundaries': { icon: '🏙️', items: [
+                        { en: 'in the mirror / picture', ar: 'في المرآة / الصورة', note: 'Bounded visual' }, 
+                        { en: 'in the back of the car', ar: 'في الجزء الخلفي من السيارة', note: 'Interior boundary' }
                     ] } 
                 }, 
-                quiz: [{ question: 'She lives ___ Paris.', options: ['at', 'in', 'on'], correct: 1, explanation: 'Use IN for cities and countries.' }] 
+                quiz: [
+                    { question: 'The professor insists that the solution is ___ the book.', options: ['at', 'in', 'on', 'with'], correct: 1, explanation: 'Contents contained inside a book or publication use IN.' },
+                    { question: 'She succeeded ___ mastering three languages within a year.', options: ['at', 'in', 'on', 'by'], correct: 1, explanation: 'The verb "succeed" always takes the preposition IN.' },
+                    { question: '___ the end, they decided to cancel the entire expedition.', options: ['At', 'In', 'On', 'By'], correct: 1, explanation: '"In the end" means "finally/eventually", whereas "at the end" refers to a specific edge/point.' }
+                ] 
             },
             'ON': { 
                 id: 'ON', category: 'PLACE', color: 'from-emerald-600 to-green-500', icon: '📋', 
-                definition: { en: 'Used for surfaces, specific days, dates, and transport.', ar: 'تُستخدم للأسطح، الأيام المحددة، والتواريخ.' }, 
+                definition: { en: 'Used for contact surfaces, specific days, topics, and means of travel.', ar: 'تُستخدم للتلامس على الأسطح، المواضيع، ووسائل النقل المعينة.' }, 
                 sections: { 
-                    'Days & Dates': { icon: '📆', items: [
-                        { en: 'on Monday', ar: 'يوم الإثنين', note: 'Day of week' }, 
-                        { en: 'on my birthday', ar: 'في عيد ميلادي', note: 'Special day' },
-                        { en: 'on May 15th', ar: 'في 15 مايو', note: 'Specific date' },
-                        { en: 'on New Year\'s Eve', ar: 'في عشية رأس السنة', note: 'Holiday day' }
-                    ] }, 
-                    'Surfaces & Transport': { icon: '📄', items: [
-                        { en: 'on the table / desk', ar: 'على الطاولة / المكتب', note: 'Surface' }, 
-                        { en: 'on the bus / train', ar: 'على متن الحافلة / القطار', note: 'Public transport' },
-                        { en: 'on the second floor', ar: 'في الطابق الثاني', note: 'Floor level' },
-                        { en: 'on the screen', ar: 'على الشاشة', note: 'Electronic display' }
+                    'Special Usage': { icon: '💡', items: [
+                        { en: 'on fire / on sale', ar: 'مشتعل / معروض للبيع', note: 'Idiomatic state' }, 
+                        { en: 'on foot / on horseback', ar: 'مشياً / على ظهر الحصان', note: 'Movement mode' }
                     ] } 
                 }, 
-                quiz: [{ question: 'The book is ___ the table.', options: ['at', 'in', 'on'], correct: 2, explanation: 'Use ON for surfaces.' }] 
+                quiz: [
+                    { question: 'The agreement was signed ___ the afternoon of May 12th.', options: ['in', 'on', 'at', 'by'], correct: 1, explanation: 'Even though we say "in the afternoon", when a specific date is added, ON overrides it.' },
+                    { question: 'He spent hours researching papers ___ quantum mechanics.', options: ['about', 'on', 'in', 'over'], correct: 1, explanation: 'Academic subjects or formal treatises use ON (e.g. A book ON Physics).' }
+                ] 
             },
             'FOR': { 
                 id: 'FOR', category: 'TIME', color: 'from-orange-500 to-amber-500', icon: '🎯', 
-                definition: { en: 'Indicates purpose, duration, or recipient.', ar: 'تشير إلى الغرض، المدة الزمنية، أو المستلم.' }, 
+                definition: { en: 'Indicates duration, motivation, exchange value, or benefit.', ar: 'تشير إلى المدة، الدافع، المقابل المادي، أو الفائدة.' }, 
                 sections: { 
-                    'Duration & Purpose': { icon: '⏳', items: [
-                        { en: 'for 3 hours', ar: 'لمدة ٣ ساعات', note: 'Time duration' }, 
-                        { en: 'for a long time', ar: 'لفترة طويلة', note: 'Extended period' },
-                        { en: 'for ten years', ar: 'لمدة عشر سنوات', note: 'Long span' },
-                        { en: 'this gift is for MOUSA', ar: 'هذه الهدية لموسى', note: 'Recipient' },
-                        { en: 'study for success', ar: 'دراسة من أجل النجاح', note: 'Goal' }
+                    'Exchange & Purpose': { icon: '💵', items: [
+                        { en: 'bought for $500', ar: 'شُري بمبلغ ٥٠٠ دولار', note: 'Exchange price' }, 
+                        { en: 'famous for bravery', ar: 'مشهور بشجاعته', note: 'Reason/Cause' }
                     ] } 
                 }, 
-                quiz: [{ question: 'I waited ___ two hours.', options: ['since', 'for', 'from'], correct: 1, explanation: 'Use FOR for duration.' }] 
+                quiz: [
+                    { question: 'She traded her old motorcycle ___ a brand new electric scooter.', options: ['for', 'with', 'by', 'to'], correct: 0, explanation: 'Exchanging or trading items uses FOR.' },
+                    { question: 'We have been waiting here ___ what seems like an eternity.', options: ['since', 'for', 'during', 'from'], correct: 1, explanation: 'FOR is used with spans of time (an eternity).' }
+                ] 
             },
             'SINCE': { 
                 id: 'SINCE', category: 'TIME', color: 'from-pink-500 to-rose-500', icon: '⏰', 
-                definition: { en: 'Indicates the starting point of an action.', ar: 'تشير إلى نقطة بداية حدوث فعل مستمر.' }, 
+                definition: { en: 'Refers strictly to the temporal starting point of a ongoing action.', ar: 'تشير إلى النقطة الزمنية المحددة لبدء حدث ما يزال مستمراً.' }, 
                 sections: { 
-                    'Start Point': { icon: '📍', items: [
-                        { en: 'since 2015', ar: 'منذ عام ٢٠١٥', note: 'Year start' }, 
-                        { en: 'since morning', ar: 'منذ الصباح', note: 'Time start' },
-                        { en: 'since Monday', ar: 'منذ يوم الإثنين', note: 'Day start' },
-                        { en: 'since I was a child', ar: 'منذ أن كنت طفلاً', note: 'Past life event' }
+                    'Time Start': { icon: '📍', items: [
+                        { en: 'since time immemorial', ar: 'منذ أقدم العصور', note: 'Ancient start' }, 
+                        { en: 'since the dawn of civilization', ar: 'منذ فجر الحضارة', note: 'Historical point' }
                     ] } 
                 }, 
-                quiz: [{ question: 'I have lived here ___ 2018.', options: ['for', 'since', 'from'], correct: 1, explanation: 'Use SINCE for a specific starting point.' }] 
+                quiz: [
+                    { question: '___ he lost his job, he has been spending all his time studying grammar.', options: ['Since', 'For', 'From', 'During'], correct: 0, explanation: 'SINCE acts as a conjunction introducing the past starting point.' }
+                ] 
             },
-            'FROM': { 
-                id: 'FROM', category: 'DIRECTION', color: 'from-indigo-500 to-blue-500', icon: '➡️', 
-                definition: { en: 'Indicates origin, source, or starting point.', ar: 'تشير إلى الأصل، المصدر، أو نقطة البداية.' }, 
-                sections: { 
-                    'Origin & Source': { icon: '🏠', items: [
-                        { en: 'from UAE', ar: 'من الإمارات', note: 'Country origin' }, 
-                        { en: 'from 9 AM to 5 PM', ar: 'من ٩ صباحاً حتى ٥ مساءً', note: 'Range' },
-                        { en: 'a letter from a friend', ar: 'رسالة من صديق', note: 'Source' },
-                        { en: 'from head to toe', ar: 'من الرأس إلى الأخمص', note: 'Complete range' }
-                    ] } 
-                }, 
-                quiz: [{ question: 'Where are you ___?', options: ['from', 'of', 'by'], correct: 0, explanation: 'Use FROM for origins.' }] 
-            },
-            'TO': { 
-                id: 'TO', category: 'DIRECTION', color: 'from-teal-500 to-cyan-500', icon: '🏁', 
-                definition: { en: 'Indicates direction, destination, or purpose.', ar: 'تشير إلى الاتجاه، الوجهة، أو الغرض.' }, 
-                sections: { 
-                    'Destination & Purpose': { icon: '🧭', items: [
-         
+            'FROM': { id: 'FROM', category: 'DIRECTION', color: 'from-indigo-500 to-blue-500', icon: '➡️', definition: { en: 'Indicates origin or separation.', ar: 'تشير للمصدر أو الانفصال.' }, sections: { 'Separation': { icon: '🛡️', items: [{ en: 'prevent from falling', ar: 'المنع من السقوط', note: 'Protection' }] } }, quiz: [{ question: 'He is suffering ___ a rare condition.', options: ['from', 'of', 'with', 'by'], correct: 0, explanation: 'The verb "suffer" takes FROM.' }] },
+            'TO': { id: 'TO', category: 'DIRECTION', color: 'from-teal-500 to-cyan-500', icon: '🏁', definition: { en: 'Indicates terminal direction.', ar: 'تشير نحو الوجهة النهائية.' }, sections: { 'Limit': { icon: '🏁', items: [{ en: 'to the very end', ar: 'حتى النهاية تماماً', note: 'Extreme limit' }] } }, quiz: [{ question: 'He object ___ paying extra fees.', options: ['to', 'for', 'about', 'at'], correct: 0, explanation: '"Object to" takes a gerun
