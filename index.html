@@ -1,884 +1,1624 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl" data-theme="blue-neon" class="dark">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>منصة 𝑴𝑶𝑼𝑺𝑨 - Berlitz Advanced English Hub</title>
-   <!-- Tailwind CSS CDN -->
-   <script src="https://cdn.tailwindcss.com"></script>
-   <script>
-       tailwind.config = {
-           darkMode: 'class',
-           theme: {
-               extend: {
-                   fontFamily: { 
-                       sans: ['Inter', 'system-ui', 'sans-serif'],
-                       arabic: ['Noto Naskh Arabic', 'serif'] 
-                   },
-                   animation: {
-                       'float': 'float 6s ease-in-out infinite',
-                       'glow': 'glow 2s ease-in-out infinite alternate',
-                       'fade-in-up': 'fadeInUp 0.5s ease-out',
-                       'bounce-in': 'bounceIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                   },
-                   keyframes: {
-                       float: { '0%, 100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-15px)' } },
-                       glow: { '0%': { boxShadow: '0 0 15px rgba(139, 92, 246, 0.3)' }, '100%': { boxShadow: '0 0 35px rgba(139, 92, 246, 0.6)' } },
-                       fadeInUp: { '0%': { transform: 'translateY(20px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } },
-                       bounceIn: { '0%': { transform: 'scale(0.8)', opacity: '0' }, '100%': { transform: 'scale(1)', opacity: '1' } }
-                   }
-               }
-           }
-       }
-   </script>
-   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
-   <style>
-       :root {
-           --glass-bg: rgba(255, 255, 255, 0.65);
-           --glass-border: rgba(255, 255, 255, 0.4);
-           --glass-shadow: rgba(0, 0, 0, 0.05);
-       }
-       .dark {
-           --glass-bg: rgba(15, 23, 42, 0.75);
-           --glass-border: rgba(255, 255, 255, 0.1);
-           --glass-shadow: rgba(0, 0, 0, 0.3);
-       }
-       .glass {
-           background: var(--glass-bg);
-           backdrop-filter: blur(16px);
-           -webkit-backdrop-filter: blur(16px);
-           border: 1px solid var(--glass-border);
-           box-shadow: 0 8px 32px var(--glass-shadow);
-       }
-       .glass-strong {
-           background: var(--glass-bg);
-           backdrop-filter: blur(25px);
-           -webkit-backdrop-filter: blur(25px);
-           border: 1px solid var(--glass-border);
-           box-shadow: 0 12px 40px var(--glass-shadow);
-       }
-       .gradient-text {
-           background: linear-gradient(135deg, #8b5cf6, #06b6d4, #ec4899, #8b5cf6);
-           -webkit-background-clip: text;
-           -webkit-text-fill-color: transparent;
-           background-size: 200% auto;
-           animation: gradientShift 4s ease-in-out infinite;
-       }
-       @keyframes gradientShift {
-           0%, 100% { background-position: 0% center; }
-           50% { background-position: 200% center; }
-       }
-       .card-hover {
-           transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-       }
-       .card-hover:hover {
-           transform: translateY(-8px) scale(1.02);
-           box-shadow: 0 20px 40px rgba(139, 92, 246, 0.25);
-       }
-       .particle {
-           position: fixed;
-           pointer-events: none;
-           border-radius: 50%;
-           animation: particleFloat linear infinite;
-           opacity: 0.35;
-       }
-       @keyframes particleFloat {
-           0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-           10% { opacity: 0.5; }
-           90% { opacity: 0.5; }
-           100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
-       }
-       .scrollbar-thin::-webkit-scrollbar { width: 6px; }
-       .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
-       .scrollbar-thin::-webkit-scrollbar-thumb { background: rgba(139, 92, 246, 0.4); border-radius: 10px; }
-   </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>منصة 𝑴𝑶𝑼𝑺𝑨 | English Pro Hub & Silent Letters Master</title>
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+            arabic: ['Noto Naskh Arabic', 'Amiri', 'serif']
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-glow': 'pulseGlow 2.5s infinite alternate',
+            'gradient-shift': 'gradientShift 5s ease infinite'
+          },
+          keyframes: {
+            float: { '0%, 100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-12px)' } },
+            pulseGlow: { '0%': { opacity: '0.4', filter: 'drop-shadow(0 0 15px rgba(56,189,248,0.4))' }, '100%': { opacity: '0.9', filter: 'drop-shadow(0 0 35px rgba(192,132,252,0.8))' } },
+            gradientShift: { '0%, 100%': { 'background-position': '0% 50%' }, '50%': { 'background-position': '100% 50%' } }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --font-main: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      --font-arabic: 'Noto Naskh Arabic', 'Amiri', serif;
+      --transition-fast: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-bounce: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-full: 9999px;
+    }
+
+    [data-theme="blue-neon"] {
+      --bg-dark: #070b19;
+      --bg-card: rgba(15, 23, 42, 0.75);
+      --bg-card-hover: rgba(30, 41, 59, 0.85);
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.4);
+      --accent-secondary: #818cf8;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: rgba(56, 189, 248, 0.25);
+      --silent-glow: #f43f5e;
+      --gradient-bg: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #070b19 75%);
+    }
+
+    [data-theme="purple-neon"] {
+      --bg-dark: #0f071a;
+      --bg-card: rgba(26, 16, 43, 0.75);
+      --bg-card-hover: rgba(43, 27, 71, 0.85);
+      --accent: #c084fc;
+      --accent-glow: rgba(192, 132, 252, 0.4);
+      --accent-secondary: #f472b6;
+      --text-main: #faf5ff;
+      --text-muted: #c084fc;
+      --border: rgba(192, 132, 252, 0.25);
+      --silent-glow: #fbbf24;
+      --gradient-bg: radial-gradient(circle at 50% 0%, #311042 0%, #0f071a 75%);
+    }
+
+    [data-theme="emerald"] {
+      --bg-dark: #021a12;
+      --bg-card: rgba(6, 44, 32, 0.75);
+      --bg-card-hover: rgba(11, 62, 46, 0.85);
+      --accent: #34d399;
+      --accent-glow: rgba(52, 211, 153, 0.4);
+      --accent-secondary: #2dd4bf;
+      --text-main: #ecfdf5;
+      --text-muted: #6ee7b7;
+      --border: rgba(52, 211, 153, 0.25);
+      --silent-glow: #f87171;
+      --gradient-bg: radial-gradient(circle at 50% 0%, #064e3b 0%, #021a12 75%);
+    }
+
+    [data-theme="gold"] {
+      --bg-dark: #120e03;
+      --bg-card: rgba(36, 28, 9, 0.75);
+      --bg-card-hover: rgba(54, 42, 14, 0.85);
+      --accent: #fbbf24;
+      --accent-glow: rgba(251, 191, 36, 0.4);
+      --accent-secondary: #f59e0b;
+      --text-main: #fffbeb;
+      --text-muted: #fcd34d;
+      --border: rgba(251, 191, 36, 0.25);
+      --silent-glow: #38bdf8;
+      --gradient-bg: radial-gradient(circle at 50% 0%, #451a03 0%, #120e03 75%);
+    }
+
+    [data-theme="cyberpunk"] {
+      --bg-dark: #0a0a0f;
+      --bg-card: rgba(20, 20, 35, 0.85);
+      --bg-card-hover: rgba(35, 35, 60, 0.95);
+      --accent: #ff0055;
+      --accent-glow: rgba(255, 0, 85, 0.5);
+      --accent-secondary: #00f0ff;
+      --text-main: #ffffff;
+      --text-muted: #00f0ff;
+      --border: rgba(255, 0, 85, 0.4);
+      --silent-glow: #ffe600;
+      --gradient-bg: linear-gradient(135deg, #0a0a0f 0%, #1a0022 50%, #001122 100%);
+    }
+
+    body {
+      background: var(--bg-dark);
+      background-image: var(--gradient-bg);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    #bg-particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .glass-panel {
+      background: var(--bg-card);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      border-radius: var(--radius-lg);
+      transition: var(--transition-fast);
+    }
+
+    .glass-panel:hover {
+      border-color: var(--accent);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 20px var(--accent-glow);
+    }
+
+    .hub-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      transition: var(--transition-bounce);
+      cursor: pointer;
+    }
+
+    .hub-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary), transparent);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0.6;
+      transition: var(--transition-fast);
+    }
+
+    .hub-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), 0 0 30px var(--accent-glow);
+    }
+
+    .hub-card:hover::before {
+      opacity: 1;
+    }
+
+    .silent-highlight {
+      color: var(--silent-glow);
+      text-shadow: 0 0 14px var(--silent-glow);
+      text-decoration: underline;
+      font-weight: 900;
+    }
+
+    .flashcard-3d {
+      perspective: 1000px;
+    }
+    .flashcard-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform-style: preserve-3d;
+    }
+    .flashcard-inner.flipped {
+      transform: rotateY(180deg);
+    }
+    .flashcard-front, .flashcard-back {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      border-radius: var(--radius-lg);
+    }
+    .flashcard-back {
+      transform: rotateY(180deg);
+    }
+
+    .nav-tab-btn {
+      padding: 10px 20px;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: var(--transition-fast);
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+    }
+
+    .nav-tab-btn.active, .nav-tab-btn:hover {
+      background: var(--accent);
+      color: var(--bg-dark);
+      box-shadow: 0 0 15px var(--accent-glow);
+    }
+
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-dark); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: var(--radius-full); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+  </style>
 </head>
-<body class="bg-gradient-to-br from-slate-50 via-purple-50 to-cyan-50 dark:from-slate-900 dark:via-purple-950 dark:to-slate-900 min-h-screen transition-colors duration-500 font-sans text-slate-800 dark:text-slate-100 overflow-x-hidden">
-
-   <!-- Floating Background Particles -->
-   <div id="particles" class="fixed inset-0 pointer-events-none z-0"></div>
-
-   <!-- Application Shell -->
-   <div id="app" class="relative z-10">
-       <!-- Navigation Header -->
-       <header class="glass-strong sticky top-3 z-50 mx-3 mt-3 rounded-2xl px-5 py-3 flex items-center justify-between flex-wrap gap-3">
-           <div class="flex items-center gap-3 cursor-pointer" id="navLogo">
-               <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-purple-600 via-pink-500 to-cyan-500 flex items-center justify-center text-white font-black text-xl shadow-lg">M</div>
-               <div>
-                   <h1 class="text-xl md:text-2xl font-black gradient-text">منصة 𝑴𝑶𝑼𝑺𝑨</h1>
-                   <div class="text-[10px] text-purple-600 dark:text-purple-300 font-bold tracking-wider">BERLITZ PRO HUB</div>
-               </div>
-           </div>
-
-           <div class="flex items-center gap-2 flex-wrap">
-               <!-- Search Box -->
-               <div class="relative">
-                   <input type="text" id="searchInput" placeholder="Search prepositions..." class="w-36 md:w-52 px-3.5 py-2 rounded-xl bg-white/70 dark:bg-slate-800/70 backdrop-blur-md border border-purple-200 dark:border-purple-800 focus:outline-none focus:ring-2 focus:ring-purple-400 text-sm dark:text-white">
-                   <div id="searchResults" class="absolute top-full mt-2 left-0 right-0 bg-white/95 dark:bg-slate-800/95 backdrop-blur-xl rounded-xl shadow-2xl border border-purple-100 dark:border-purple-900 hidden max-h-60 overflow-y-auto scrollbar-thin z-50"></div>
-               </div>
-
-               <!-- Hard Challenge Button -->
-               <button id="btnChallenge" class="px-3 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-500 hover:to-cyan-400 text-white font-bold text-xs shadow-md transition-all flex items-center gap-1" title="All-Questions Hard Challenge">
-                   <span>🔥</span> <span>Hard Challenge</span>
-               </button>
-
-               <!-- Controls -->
-               <button id="btnLang" class="px-3 py-2 rounded-xl glass hover:bg-purple-100 dark:hover:bg-purple-900/40 text-xs font-bold flex items-center gap-1 dark:text-white">
-                   <span id="langIcon">🇬🇧</span> <span id="langText">EN</span>
-               </button>
-               <button id="btnDark" class="px-3 py-2 rounded-xl glass hover:bg-purple-100 dark:hover:bg-purple-900/40 text-xs font-bold dark:text-white">
-                   <span id="darkIcon">🌙</span>
-               </button>
-           </div>
-       </header>
-
-       <!-- Breadcrumb & User Rank -->
-       <div class="mx-6 mt-3 flex justify-between items-center flex-wrap gap-2">
-           <nav id="breadcrumb" class="flex items-center gap-2 text-sm text-purple-600 dark:text-purple-400 font-medium">
-               <span class="cursor-pointer hover:underline" id="navHomeLink">🏠 Home</span>
-               <span id="breadcrumbPath"></span>
-           </nav>
-           <div class="glass px-3.5 py-1.5 rounded-full text-xs font-bold text-purple-700 dark:text-purple-300 flex items-center gap-1.5 shadow-sm">
-               <span>👤 Student:</span>
-               <span class="text-amber-500 dark:text-amber-400 font-black">𝑴𝑶𝑼𝑺𝑨</span>
-               <span>•</span>
-               <span id="rankTitle">Berlitz Novice</span>
-           </div>
-       </div>
-
-       <!-- Main Viewport -->
-       <main class="px-4 md:px-8 py-6">
-           <!-- Homepage View -->
-           <div id="homepageView" class="space-y-6 animate-fade-in-up">
-               <div class="text-center my-2">
-                   <h2 class="text-3xl md:text-5xl font-black gradient-text mb-2">منصة 𝑴𝑶𝑼𝑺𝑨</h2>
-                   <p class="text-gray-600 dark:text-gray-300 text-sm md:text-base max-w-2xl mx-auto">Master all 30 complex English prepositions, tricky exceptions, native audio, and high-difficulty tests tailored for 𝑴𝑶𝑼𝑺𝑨.</p>
-               </div>
-
-               <!-- Stats Dashboard -->
-               <div class="flex justify-center gap-4 text-center">
-                   <div class="glass rounded-2xl px-5 py-2.5 min-w-[100px]"><div class="text-xl font-black text-purple-600 dark:text-purple-400" id="lessonsCompleted">0 / 30</div><div class="text-xs text-gray-500">Mastered</div></div>
-                   <div class="glass rounded-2xl px-5 py-2.5 min-w-[100px]"><div class="text-xl font-black text-cyan-600 dark:text-cyan-400" id="totalScore">0</div><div class="text-xs text-gray-500">XP Points</div></div>
-               </div>
-
-               <!-- Filters -->
-               <div class="flex justify-center gap-2 flex-wrap text-xs font-bold" id="categoryFilterBar">
-                   <button class="cat-btn glass px-3.5 py-2 rounded-xl text-purple-600 dark:text-purple-300 border-purple-500" data-cat="ALL">All (30)</button>
-                   <button class="cat-btn glass px-3.5 py-2 rounded-xl text-gray-600 dark:text-gray-300" data-cat="TIME">⏰ Time</button>
-                   <button class="cat-btn glass px-3.5 py-2 rounded-xl text-gray-600 dark:text-gray-300" data-cat="PLACE">📍 Place</button>
-                   <button class="cat-btn glass px-3.5 py-2 rounded-xl text-gray-600 dark:text-gray-300" data-cat="DIRECTION">🏃 Movement</button>
-                   <button class="cat-btn glass px-3.5 py-2 rounded-xl text-gray-600 dark:text-gray-300" data-cat="FAVORITES">⭐ Saved</button>
-               </div>
-
-               <!-- Prepositions Grid -->
-               <div id="cardsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4 min-h-[300px]"></div>
-           </div>
-
-           <!-- Mindmap Detail View -->
-           <div id="mindmapView" class="hidden animate-fade-in-up">
-               <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
-                   <button id="btnBackHome" class="glass rounded-xl px-4 py-2 text-sm font-semibold hover:bg-purple-100 dark:hover:bg-purple-900/40 transition-all">
-                       ← Back to Topics
-                   </button>
-                   <div id="actionButtons" class="flex gap-2 flex-wrap"></div>
-               </div>
-               <div id="mindmapContent" class="glass-strong rounded-3xl p-6 md:p-8 min-h-[65vh]"></div>
-           </div>
-       </main>
-   </div>
-
-   <!-- Quiz Modal -->
-   <div id="quizModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-       <div class="glass-strong rounded-3xl p-6 md:p-8 max-w-lg w-full animate-bounce-in shadow-2xl bg-white/95 dark:bg-slate-800/95">
-           <div class="flex justify-between items-center mb-4">
-               <h3 class="text-lg font-bold dark:text-white flex items-center gap-2">🔥 <span>Berlitz Tricky Quiz</span></h3>
-               <button id="btnCloseQuiz" class="text-gray-400 hover:text-red-500 font-bold text-xl">✕</button>
-           </div>
-           <div id="quizContent"></div>
-       </div>
-   </div>
-
-   <!-- Flashcard Modal -->
-   <div id="flashcardModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-       <div class="glass-strong rounded-3xl p-6 max-w-sm w-full animate-bounce-in text-center bg-white/95 dark:bg-slate-800/95">
-           <button id="btnCloseFlashcard" class="float-right text-gray-400 hover:text-red-500 font-bold text-xl">✕</button>
-           <div id="flashcardContent" class="mt-4"></div>
-       </div>
-   </div>
-
-   <script>
-       function safeGetStorage(key, fallback) {
-           try {
-               const item = localStorage.getItem(key);
-               return item ? JSON.parse(item) : fallback;
-           } catch (e) {
-               return fallback;
-           }
-       }
-
-       function safeSetStorage(key, val) {
-           try {
-               localStorage.setItem(key, typeof val === 'string' ? val : JSON.stringify(val));
-           } catch (e) {}
-       }
-
-       const prepositionData = {
-           'AT': { 
-               id: 'AT', category: 'TIME', color: 'from-purple-600 to-violet-500', icon: '📍', 
-               definition: { en: 'Used for precise times, reaction targets, and specific locations.', ar: 'تُستخدم للأوقات الدقيقة، ردود الأفعال، والمواقع المحددة.' }, 
-               sections: { 
-                   'Time & Milestones': { icon: '🕐', items: [
-                       { en: 'at 7:15 AM sharp', ar: 'في تمام الساعة 7:15 صباحاً', note: 'Exact clock time' }, 
-                       { en: 'at the age of 25', ar: 'في سن الخامسة والعشرين', note: 'Milestone' },
-                       { en: 'at dawn / at dusk', ar: 'عند الفجر / الغسق', note: 'Natural time point' },
-                       { en: 'at the crack of dawn', ar: 'مع فجر اليوم الأول', note: 'Early morning idiom' }
-                   ] }, 
-                   'Reaction Targets': { icon: '🎯', items: [
-                       { en: 'astonished at the news', ar: 'مندهش من الأخبار', note: 'Reaction' }, 
-                       { en: 'good at grammar', ar: 'متمكن في القواعد', note: 'Skill' },
-                       { en: 'stare at the board', ar: 'التحديق في السبورة', note: 'Fixed look' },
-                       { en: 'laugh at the joke', ar: 'يضحك على النكتة', note: 'Reaction action' }
-                   ] } 
-               }, 
-               quiz: [
-                   { question: 'The diplomat arrived ___ the airport late, but arrived ___ London on time.', options: ['at / in', 'in / at', 'at / at', 'in / in'], correct: 0, explanation: 'Use AT for specific hubs/airports and IN for large cities.' },
-                   { question: 'She was deeply offended ___ his insensitive remark during the seminar.', options: ['at', 'with', 'by', 'on'], correct: 0, explanation: 'Being offended/astonished reacting to an event takes AT.' },
-                   { question: 'The security guards fired their weapons directly ___ the fleeing suspect.', options: ['at', 'to', 'towards', 'on'], correct: 0, explanation: 'Verbs of targeting (fire, aim, point) strictly take AT.' }
-               ] 
-           },
-           'IN': { 
-               id: 'IN', category: 'TIME', color: 'from-cyan-600 to-blue-500', icon: '📦', 
-               definition: { en: 'Used for enclosed physical spaces, emotional states, and broad times.', ar: 'تُستخدم للحالات النفسية، الأماكن المغلقة، والفترات الممتدة.' }, 
-               sections: { 
-                   'States & Mind': { icon: '🧠', items: [
-                       { en: 'in a hurry / in pain', ar: 'في عجلة / في ألم', note: 'Condition' }, 
-                       { en: 'in love / in despair', ar: 'في حب / في يأس', note: 'Emotion' },
-                       { en: 'in deep thought', ar: 'في تفكير عميق', note: 'Mental state' },
-                       { en: 'in high spirits', ar: 'في معنويات مرتفعة', note: 'Mood state' }
-                   ] } 
-               }, 
-               quiz: [
-                   { question: '𝑴𝑶𝑼𝑺𝑨 succeeded ___ mastering English prepositions within weeks.', options: ['in', 'at', 'on', 'with'], correct: 0, explanation: 'The verb "succeed" always requires IN.' },
-                   { question: '___ the end, after intense debates, they reached a brilliant consensus.', options: ['In', 'At', 'On', 'By'], correct: 0, explanation: '"In the end" means eventually/finally.' },
-                   { question: 'He is heavily involved ___ a high-profile corporate merger.', options: ['in', 'with', 'at', 'about'], correct: 0, explanation: 'Being involved/engaging in an activity uses IN.' }
-               ] 
-           },
-           'ON': { 
-               id: 'ON', category: 'PLACE', color: 'from-emerald-600 to-green-500', icon: '📋', 
-               definition: { en: 'Used for surfaces, specific full dates, academic subjects, and transport.', ar: 'تُستخدم للأسطح، التواريخ المكتملة، المواضيع العلمية، ووسائل النقل.' }, 
-               sections: { 
-                   'Special States': { icon: '💡', items: [
-                       { en: 'on fire / on sale', ar: 'مشتعل / معروض للبيع', note: 'Idiom' }, 
-                       { en: 'a thesis on linguistics', ar: 'أطروحة في علم اللغويات', note: 'Subject' },
-                       { en: 'on provisional bail', ar: 'بكفالة مؤقتة', note: 'Legal state' },
-                       { en: 'on the cutting edge', ar: 'في طليعة التطور التقني', note: 'Modern idiom' }
-                   ] } 
-               }, 
-               quiz: [
-                   { question: 'The treaty was ratified ___ the freezing morning of December 12th.', options: ['on', 'in', 'at', 'by'], correct: 0, explanation: 'Though we say "in the morning", adding a specific date overrides it to ON.' },
-                   { question: 'The instructor congratulated MOUSA ___ passing Berlitz level 5.', options: ['on', 'for', 'about', 'at'], correct: 0, explanation: 'The verb "congratulate" takes ON.' },
-                   { question: 'He delivered an extraordinary lecture ___ advanced syntax.', options: ['on', 'about', 'in', 'over'], correct: 0, explanation: 'Academic/formal lectures or treatises take ON.' }
-               ] 
-           },
-           'FOR': { 
-               id: 'FOR', category: 'TIME', color: 'from-orange-500 to-amber-500', icon: '🎯', 
-               definition: { en: 'Indicates duration, trade exchange, cause, or intended recipient.', ar: 'تشير للمدة، المقابل المادي، السبب، أو المستلم.' }, 
-               sections: { 
-                   'Exchange & Purpose': { icon: '💵', items: [
-                       { en: 'exchanged for crypto', ar: 'مُستبدل بعملات رقمية', note: 'Trade' },
-                       { en: 'blamed for the delay', ar: 'مُلام على التأخير', note: 'Cause/Reason' }
-                   ] } 
-               }, 
-               quiz: [
-                   { question: 'She mistook his polite manners ___ arrogance.', options: ['for', 'with', 'as', 'to'], correct: 0, explanation: 'The phrasal verb is "mistake [X] FOR [Y]".' },
-                   { question: 'He paid an exorbitant price ___ the antique manuscript.', options: ['for', 'with', 'by', 'to'], correct: 0, explanation: 'Financial exchange and payment always takes FOR.' }
-               ] 
-           },
-           'SINCE': { 
-               id: 'SINCE', category: 'TIME', color: 'from-pink-500 to-rose-500', icon: '⏰', 
-               definition: { en: 'Refers strictly to the past temporal starting point of an ongoing action.', ar: 'تشير إلى لحظة بدء حدث ما يزال مستمراً.' }, 
-               sections: { 
-                   'Time Start': { icon: '📍', items: [
-                       { en: 'since time immemorial', ar: 'منذ أقدم العصور', note: 'Start' },
-                       { en: 'ever since that fateful day', ar: 'منذ ذلك اليوم المشؤوم', note: 'Continuous past' }
-                   ] } 
-               }, 
-               quiz: [
-                   { question: '___ graduating from Berlitz, MOUSA has traveled across four continents.', options: ['Since', 'For', 'From', 'After'], correct: 0, explanation: 'SINCE + [verb-ing] introduces the temporal starting point.' },
-                   { question: 'It has been precisely five years ___ we last collaborated.', options: ['since', 'for', 'from', 'when'], correct: 0, explanation: 'Time elapsed + SINCE + simple past event.' }
-               ] 
-           },
-           'FROM': { id: 'FROM', category: 'DIRECTION', color: 'from-indigo-500 to-blue-500', icon: '➡️', definition: { en: 'Indicates origin, cause, or separation.', ar: 'تشير للمصدر أو الانفصال.' }, sections: { 'Protection': { icon: '🛡️', items: [{ en: 'shield from danger', ar: 'الحماية من الخطر', note: 'Protection' }, { en: 'exempt from taxes', ar: 'معفى من الضرائب', note: 'Separation' }] } }, quiz: [{ question: 'He is suffering ___ a rare neurological disorder.', options: ['from', 'of', 'with', 'by'], correct: 0, explanation: 'Suffer + FROM.' }, { question: 'It is vital to distinguish right ___ wrong.', options: ['from', 'between', 'to', 'against'], correct: 0, explanation: 'Distinguish one thing FROM another.' }] },
-           'TO': { id: 'TO', category: 'DIRECTION', color: 'from-teal-500 to-cyan-500', icon: '🏁', definition: { en: 'Indicates destination or attachment.', ar: 'تشير نحو الوجهة النهائية.' }, sections: { 'Limit': { icon: '🏁', items: [{ en: 'committed to excellence', ar: 'ملتزم بالتفوق', note: 'Dedication' }, { en: 'adjust to new climates', ar: 'التكيف مع المناخات الجديدة', note: 'Adaptation' }] } }, quiz: [{ question: 'MOUSA objects ___ skipping grammar classes.', options: ['to', 'for', 'about', 'at'], correct: 0, explanation: '"Object to" takes a gerund (-ing).' }, { question: 'She is completely accustomed ___ intensive study.', options: ['to', 'with', 'on', 'in'], correct: 0, explanation: 'Accustomed + TO.' }] },
-           'BY': { id: 'BY', category: 'DIRECTION', color: 'from-violet-500 to-purple-500', icon: '🚗', definition: { en: 'Indicates agent, transport, or deadline.', ar: 'تشير للفاعل أو الموعد النهائي.' }, sections: { 'Agent': { icon: '🎨', items: [{ en: 'by all means', ar: 'بكل الطرق / بالتأكيد', note: 'Idiom' }, { en: 'by coincidence', ar: 'بالصدفة البحتة', note: 'Manner' }] } }, quiz: [{ question: '___ all accounts, his speech was a massive triumph.', options: ['By', 'In', 'From', 'On'], correct: 0, explanation: 'Idiom: "By all accounts".' }, { question: 'She grabbed the thief firmly ___ the wrist.', options: ['by', 'with', 'on', 'at'], correct: 0, explanation: 'Grabbing a body part uses BY (by the wrist).' }] },
-           'WITH': { id: 'WITH', category: 'PLACE', color: 'from-rose-500 to-pink-500', icon: '🤝', definition: { en: 'Indicates tool, manner, or accompaniment.', ar: 'تشير للأداة أو الكيفية.' }, sections: { 'Manner': { icon: '🔧', items: [{ en: 'proceed with caution', ar: 'المضي بحذر', note: 'Manner' }, { en: 'equipped with advanced tools', ar: 'مجهز بأدوات متقدمة', note: 'Tool' }] } }, quiz: [{ question: 'The auditorium was packed ___ enthusiastic students.', options: ['with', 'of', 'by', 'from'], correct: 0, explanation: 'Packed/Filled + WITH.' }, { question: 'He trembled visibly ___ sheer terror.', options: ['with', 'from', 'of', 'by'], correct: 0, explanation: 'Physical reaction caused by emotion uses WITH.' }] },
-           'ABOUT': { id: 'ABOUT', category: 'TIME', color: 'from-sky-500 to-blue-500', icon: '💭', definition: { en: 'Concerning or imminence.', ar: 'بخصوص أو على وشك.' }, sections: { 'Imminence': { icon: '⚡', items: [{ en: 'about to make a speech', ar: 'على وشك إلقاء خطبة', note: 'Imminent' }, { en: 'bring about major reforms', ar: 'إحداث إصلاحات كبرى', note: 'Phrasal verb' }] } }, quiz: [{ question: 'The presentation is about ___ commence in a minute.', options: ['to', 'for', 'on', 'at'], correct: 0, explanation: '"Be about to" means ready to happen.' }] },
-           'BETWEEN': { id: 'BETWEEN', category: 'PLACE', color: 'from-lime-500 to-green-500', icon: '↔️', definition: { en: 'Separating two distinct things.', ar: 'الفاصل بين شيئين محددين.' }, sections: { 'Selection': { icon: '⚖️', items: [{ en: 'choose between two paths', ar: 'الاختيار بين طريقين', note: 'Two' }, { en: 'distinguish between right and wrong', ar: 'التمييز بين الصواب والخطأ', note: 'Dual contrast' }] } }, quiz: [{ question: 'Diplomats negotiated a truce ___ the two rival factions.', options: ['between', 'among', 'into', 'with'], correct: 0, explanation: 'BETWEEN strictly for two distinct entities.' }] },
-           'AMONG': { id: 'AMONG', category: 'PLACE', color: 'from-emerald-500 to-teal-500', icon: '🌐', definition: { en: 'Part of a group of three or more.', ar: 'وسط أو ضمن مجموعة.' }, sections: { 'Group': { icon: '👥', items: [{ en: 'among the delegates', ar: 'بين المندوبين', note: 'Surrounded' }, { en: 'distributed among team members', ar: 'موزع بين أعضاء الفريق', note: 'Shared group' }] } }, quiz: [{ question: 'Confidential files were circulated ___ the board members.', options: ['among', 'between', 'into', 'over'], correct: 0, explanation: 'Use AMONG for three or more members.' }] },
-           'THROUGH': { id: 'THROUGH', category: 'DIRECTION', color: 'from-amber-500 to-yellow-500', icon: '🚶', definition: { en: '3D movement inside.', ar: 'الحركة ثلاثية الأبعاد بالداخل.' }, sections: { 'Means': { icon: '🔄', items: [{ en: 'succeed through resilience', ar: 'النجاح عبر المرونة', note: 'Means' }, { en: 'read through the entire manuscript', ar: 'قراءة المخطوطة بأكملها من البداية', note: 'Thorough review' }] } }, quiz: [{ question: 'Sunlight streamed ___ the frosted glass window.', options: ['through', 'across', 'over', 'into'], correct: 0, explanation: 'Penetrating 3D space uses THROUGH.' }] },
-           'DURING': { id: 'DURING', category: 'TIME', color: 'from-red-500 to-orange-500', icon: '⌛', definition: { en: 'Throughout an event.', ar: 'طوال فترة حدث ما.' }, sections: { 'Span': { icon: '🌙', items: [{ en: 'during the symposium', ar: 'أثناء الندوة', note: 'Span' }, { en: 'remain alert during crises', ar: 'البقاء في حالة يقظة أثناء الأزمات', note: 'Event span' }] } }, quiz: [{ question: 'Silence must be maintained ___ the ceremony.', options: ['during', 'while', 'for', 'since'], correct: 0, explanation: 'DURING must be followed by a noun phrase.' }] },
-           'BEFORE': { id: 'BEFORE', category: 'TIME', color: 'from-blue-500 to-indigo-500', icon: '⏪', definition: { en: 'Prior to a time.', ar: 'قبل وقت محدد.' }, sections: { 'Prior': { icon: '🕰️', items: [{ en: 'before submission', ar: 'قبل التسليم', note: 'Prior' }, { en: 'long before anyone expected', ar: 'قبل فترة طويلة مما توقعه أي شخص', note: 'Time priority' }] } }, quiz: [{ question: 'Ensure you review your answers ___ submitting the test.', options: ['before', 'after', 'since', 'during'], correct: 0, explanation: 'Earlier than deadline.' }] },
-           'AFTER': { id: 'AFTER', category: 'TIME', color: 'from-purple-500 to-violet-500', icon: '⏩', definition: { en: 'Subsequent to time.', ar: 'بعد وقت أو حدث.' }, sections: { 'Pursuit': { icon: '🏁', items: [{ en: 'chase after success', ar: 'السعي خلف النجاح', note: 'Pursuit' }, { en: 'happily ever after', ar: 'بسعادة دائمة بعد ذلك', note: 'Idiom' }] } }, quiz: [{ question: 'Detectives went ___ the elusive suspect.', options: ['after', 'before', 'behind', 'under'], correct: 0, explanation: 'Running/going "after" means pursuing.' }] },
-           'ABOVE': { id: 'ABOVE', category: 'PLACE', color: 'from-cyan-500 to-sky-500', icon: '⬆️', definition: { en: 'Higher position.', ar: 'موقع أعلى من الشيء.' }, sections: { 'Rank': { icon: '👑', items: [{ en: 'above suspicion', ar: 'فوق الشبهات', note: 'Idiom' }, { en: 'rise above adversity', ar: 'الارتفاع فوق الشدائد والصعاب', note: 'Metaphor' }] } }, quiz: [{ question: 'Her professional ethics are completely ___ reproach.', options: ['above', 'over', 'on', 'at'], correct: 0, explanation: '"Above reproach" is an idiom.' }] },
-           'BELOW': { id: 'BELOW', category: 'PLACE', color: 'from-slate-500 to-gray-500', icon: '⬇️', definition: { en: 'Lower level or metric.', ar: 'درجة أو مستوى أدنى.' }, sections: { 'Metrics': { icon: '📉', items: [{ en: 'below freezing point', ar: 'تحت الصفر بدرجات', note: 'Metric' }, { en: 'rank below the supervisor', ar: 'يقع في مرتبة أدنى من المشرف', note: 'Hierarchy' }] } }, quiz: [{ question: 'The barometer reading dropped sharply ___ normal limits.', options: ['below', 'under', 'beneath', 'down'], correct: 0, explanation: 'BELOW for scales and limits.' }] },
-           'OVER': { id: 'OVER', category: 'DIRECTION', color: 'from-fuchsia-500 to-pink-500', icon: '🔝', definition: { en: 'Crossing or covering.', ar: 'يعبر فوق أو يغطي.' }, sections: { 'Authority': { icon: '👑', items: [{ en: 'jurisdiction over the region', ar: 'الولاية القضائية على المنطقة', note: 'Authority' }, { en: 'think things over carefully', ar: 'إعادة التفكير في الأمور بعناية', note: 'Phrasal verb' }] } }, quiz: [{ question: 'The federal government has absolute control ___ the airspace.', options: ['over', 'above', 'on', 'at'], correct: 0, explanation: 'Control and authority are exercised OVER.' }] },
-           'UNDER': { id: 'UNDER', category: 'PLACE', color: 'from-stone-500 to-neutral-500', icon: '🔽', definition: { en: 'Directly beneath or condition.', ar: 'أسفل الشيء أو تحت حالة.' }, sections: { 'Condition': { icon: '📜', items: [{ en: 'under strict surveillance', ar: 'قيد المراقبة المشددة', note: 'Condition' }, { en: 'under the circumstances', ar: 'في ظل الظروف الراهنة', note: 'Idiom' }] } }, quiz: [{ question: 'The facility is currently ___ major structural renovation.', options: ['under', 'below', 'beneath', 'at'], correct: 0, explanation: 'Condition states take UNDER.' }] },
-           'INTO': { id: 'INTO', category: 'DIRECTION', color: 'from-emerald-500 to-teal-500', icon: '📥', definition: { en: 'Entering inside.', ar: 'الحركة والدخول للداخل.' }, sections: { 'Transformation': { icon: '✨', items: [{ en: 'convert into digital format', ar: 'التحويل إلى صيغة رقمية', note: 'Change' }, { en: 'delve into complex topics', ar: 'التعمق في مواضيع معقدة', note: 'Investigation' }] } }, quiz: [{ question: 'Translate this complex passage strictly ___ French.', options: ['into', 'in', 'to', 'towards'], correct: 0, explanation: 'Transformation takes INTO.' }] },
-           'OUT OF': { id: 'OUT OF', category: 'DIRECTION', color: 'from-red-500 to-rose-500', icon: '📤', definition: { en: 'Exiting interior.', ar: 'الخروج من الداخل.' }, sections: { 'Depletion': { icon: '⚠️', items: [{ en: 'out of ammunition', ar: 'نفدت الذخيرة', note: 'State' }, { en: 'out of sheer curiosity', ar: 'من باب الفضول الخالص', note: 'Motive' }] } }, quiz: [{ question: 'The company is completely ___ financial resources.', options: ['out of', 'from', 'off', 'outside'], correct: 0, explanation: 'Depletion takes OUT OF.' }] },
-           'ACROSS': { id: 'ACROSS', category: 'DIRECTION', color: 'from-yellow-500 to-amber-500', icon: '↗️', definition: { en: 'Surface traversal.', ar: 'عبور سطح مستو.' }, sections: { 'Discovery': { icon: '🌍', items: [{ en: 'come across a breakthrough', ar: 'التوصل صدفة لاختراق علمي', note: 'Discovery' }, { en: 'spread across continents', ar: 'الانتشار عبر القارات', note: 'Traversal' }] } }, quiz: [{ question: 'MOUSA stumbled ___ an exceptional research paper online.', options: ['across', 'through', 'over', 'into'], correct: 0, explanation: '"Come across" means find unexpectedly.' }] },
-           'ALONG': { id: 'ALONG', category: 'DIRECTION', color: 'from-lime-500 to-green-500', icon: '🚶‍♂️', definition: { en: 'Parallel path.', ar: 'التحرك بمحاذاة خط.' }, sections: { 'Relationship': { icon: '🤝', items: [{ en: 'get along amicably', ar: 'الانسجام بشكل ودي', note: 'Relationship' }, { en: 'along with other delegates', ar: 'رفقة المندوبين الآخرين', note: 'Addition' }] } }, quiz: [{ question: 'Does 𝑴𝑶𝑼𝑺𝑨 get ___ seamlessly with all instructors?', options: ['along', 'across', 'through', 'over'], correct: 0, explanation: '"Get along" is a phrasal verb.' }] },
-           'AROUND': { id: 'AROUND', category: 'DIRECTION', color: 'from-orange-500 to-amber-500', icon: '🔄', definition: { en: 'Circular motion.', ar: 'مسار أو اتجاه دائري.' }, sections: { 'Nonstop': { icon: '🌐', items: [{ en: 'services running around the clock', ar: 'خدمات تعمل على مدار الساعة', note: 'Non-stop' }, { en: 'rally around a common goal', ar: 'التكاتف حول هدف مشترك', note: 'Unity' }] } }, quiz: [{ question: 'The Berlitz team worked ___ the clock to prepare the exam.', options: ['around', 'about', 'across', 'over'], correct: 0, explanation: 'Idiom: "Around the clock".' }] },
-           'BEHIND': { id: 'BEHIND', category: 'PLACE', color: 'from-purple-700 to-indigo-800', icon: '🔙', definition: { en: 'Back side position.', ar: 'في الجانب الخلفي.' }, sections: { 'Secret': { icon: '🛡️', items: [{ en: 'behind the scenes planning', ar: 'تخطيط خلف الكواليس', note: 'Secret' }, { en: 'leave the competition far behind', ar: 'ترك المنافسة خلفه بمراحل', note: 'Surpassing' }] } }, quiz: [{ question: 'Who is the brilliant intellect ___ this initiative?', options: ['behind', 'in front of', 'after', 'under'], correct: 0, explanation: 'The driving force is BEHIND it.' }] },
-           'IN FRONT OF': { id: 'IN FRONT OF', category: 'PLACE', color: 'from-teal-600 to-emerald-600', icon: '🚘', definition: { en: 'Ahead position.', ar: 'في المواجهة والمقدمة.' }, sections: { 'Visibility': { icon: '🚘', items: [{ en: 'stand in front of the committee', ar: 'الوقوف أمام اللجنة', note: 'Visible' }, { en: 'face challenges in front of you', ar: 'مواجهة التحديات الماثلة أمامك', note: 'Direct presence' }] } }, quiz: [{ question: 'The applicant presented his portfolio directly ___ the board.', options: ['in front of', 'behind', 'next to', 'over'], correct: 0, explanation: 'Facing something is IN FRONT OF.' }] },
-           'NEXT TO': { id: 'NEXT TO', category: 'PLACE', color: 'from-sky-600 to-indigo-600', icon: '👫', definition: { en: 'Directly beside.', ar: 'مباشرة في الجوار.' }, sections: { 'Idiom': { icon: '📍', items: [{ en: 'next to impossible', ar: 'شبه مستحيل', note: 'Idiom' }, { en: 'seated next to the director', ar: 'جالس بجانب المدير', note: 'Adjacent seat' }] } }, quiz: [{ question: 'Mastering fluent English overnight is ___ impossible.', options: ['next to', 'beside', 'near', 'by'], correct: 0, explanation: 'Idiom: "Next to impossible".' }] },
-           'INSIDE': { id: 'INSIDE', category: 'PLACE', color: 'from-cyan-600 to-teal-700', icon: '🏠', definition: { en: 'Inner part.', ar: 'في الجزء الداخلي.' }, sections: { 'Detail': { icon: '🔑', items: [{ en: 'know the subject inside out', ar: 'معرفة الموضوع عن ظهر قلب', note: 'Detail' }, { en: 'inside information leaks', ar: 'تسريب معلومات من الداخل', note: 'Confidential' }] } }, quiz: [{ question: '𝑴𝑶𝑼𝑺𝑨 knows English grammar ___ out.', options: ['inside', 'in', 'into', 'with'], correct: 0, explanation: '"Inside out" means thoroughly and completely.' }] },
-           'WITHOUT': { id: 'WITHOUT', category: 'TIME', color: 'from-slate-600 to-zinc-700', icon: '🚫', definition: { en: 'Absence of item.', ar: 'بدون أو مع غياب.' }, sections: { 'Prompt': { icon: '❌', items: [{ en: 'proceed without further delay', ar: 'المتابعة بدون تأخير إضافي', note: 'Prompt' }, { en: 'without a shadow of a doubt', ar: 'بدون أدنى شك', note: 'Certainty idiom' }] } }, quiz: [{ question: 'The committee approved the proposal ___ hesitation.', options: ['without', 'with', 'from', 'by'], correct: 0, explanation: 'Absence of doubt uses WITHOUT.' }] }
-       };
-
-       let state = {
-           darkMode: false,
-           language: 'en',
-           currentTopic: null,
-           currentCategory: 'ALL',
-           completedLessons: safeGetStorage('completedLessons', []),
-           totalScore: safeGetStorage('totalScore', 0),
-           bookmarks: safeGetStorage('bookmarks', []),
-           userCustomNotes: safeGetStorage('userCustomNotes', {})
-       };
-
-       function saveState() {
-           safeSetStorage('completedLessons', state.completedLessons);
-           safeSetStorage('totalScore', state.totalScore);
-           safeSetStorage('bookmarks', state.bookmarks);
-           safeSetStorage('userCustomNotes', state.userCustomNotes);
-           updateStats();
-       }
-
-       function updateStats() {
-           const lessonsCountEl = document.getElementById('lessonsCompleted');
-           const totalScoreEl = document.getElementById('totalScore');
-           const rankTitleEl = document.getElementById('rankTitle');
-
-           if (lessonsCountEl) lessonsCountEl.textContent = `${state.completedLessons.length} / ${Object.keys(prepositionData).length}`;
-           if (totalScoreEl) totalScoreEl.textContent = state.totalScore;
-
-           if (rankTitleEl) {
-               if (state.totalScore > 250) rankTitleEl.textContent = "Berlitz Ninja 🥷";
-               else if (state.totalScore > 120) rankTitleEl.textContent = "Scholar 🎓";
-               else if (state.totalScore > 40) rankTitleEl.textContent = "Explorer 🧭";
-               else rankTitleEl.textContent = "Berlitz Novice ✍️";
-           }
-       }
-
-       function speakText(text) {
-           if ('speechSynthesis' in window) {
-               window.speechSynthesis.cancel();
-               const utterance = new SpeechSynthesisUtterance(text);
-               utterance.lang = 'en-US';
-               utterance.rate = 0.85;
-               window.speechSynthesis.speak(utterance);
-           }
-       }
-
-       function applyTheme() {
-           document.documentElement.classList.toggle('dark', state.darkMode);
-           const darkIcon = document.getElementById('darkIcon');
-           if (darkIcon) darkIcon.textContent = state.darkMode ? '☀️' : '🌙';
-       }
-
-       function toggleLanguage() {
-           state.language = state.language === 'en' ? 'ar' : 'en';
-           document.getElementById('langIcon').textContent = state.language === 'en' ? '🇬🇧' : '🇸🇦';
-           document.getElementById('langText').textContent = state.language === 'en' ? 'EN' : 'AR';
-           document.documentElement.dir = state.language === 'ar' ? 'rtl' : 'ltr';
-
-           if (state.currentTopic) renderMindMap(state.currentTopic);
-           renderCards();
-       }
-
-       function t(enText, arText) {
-           return state.language === 'en' ? enText : arText;
-       }
-
-       function navigateHome() {
-           state.currentTopic = null;
-           document.getElementById('homepageView').classList.remove('hidden');
-           document.getElementById('mindmapView').classList.add('hidden');
-           document.getElementById('breadcrumbPath').textContent = '';
-           document.getElementById('searchInput').value = '';
-           document.getElementById('searchResults').classList.add('hidden');
-           window.scrollTo({ top: 0, behavior: 'smooth' });
-       }
-
-       function navigateToTopic(topicId) {
-           state.currentTopic = topicId;
-           document.getElementById('homepageView').classList.add('hidden');
-           document.getElementById('mindmapView').classList.remove('hidden');
-           document.getElementById('breadcrumbPath').innerHTML = `<span class="text-gray-400">›</span> <span class="font-semibold">${topicId}</span>`;
-           document.getElementById('searchResults').classList.add('hidden');
-
-           renderMindMap(topicId);
-           window.scrollTo({ top: 0, behavior: 'smooth' });
-
-           if (!state.completedLessons.includes(topicId)) {
-               state.completedLessons.push(topicId);
-               state.totalScore += 10;
-               saveState();
-           }
-       }
-
-       function renderCards() {
-           const grid = document.getElementById('cardsGrid');
-           if (!grid) return;
-
-           let topics = Object.keys(prepositionData);
-
-           if (state.currentCategory !== 'ALL') {
-               if (state.currentCategory === 'FAVORITES') {
-                   topics = topics.filter(id => state.bookmarks.includes(id));
-               } else {
-                   topics = topics.filter(id => prepositionData[id].category === state.currentCategory);
-               }
-           }
-
-           if (topics.length === 0) {
-               grid.innerHTML = `<div class="col-span-full text-center py-12 text-gray-400 font-medium">${t('No prepositions found in this category.', 'لا توجد حروف جر في هذا القسم.')}</div>`;
-               return;
-           }
-
-           grid.innerHTML = topics.map((topicId) => {
-               const data = prepositionData[topicId];
-               const isCompleted = state.completedLessons.includes(topicId);
-               const isBookmarked = state.bookmarks.includes(topicId);
-
-               return `
-               <div class="card-hover glass rounded-2xl p-4 cursor-pointer relative overflow-hidden flex flex-col justify-between" 
-                    onclick="navigateToTopic('${topicId}')">
-                   <div>
-                       <div class="flex items-center justify-between mb-2">
-                           <span class="text-2xl">${data.icon}</span>
-                           <div class="flex gap-1">
-                               ${isCompleted ? '<span class="text-green-500 text-xs">✅</span>' : ''}
-                               ${isBookmarked ? '<span class="text-yellow-500 text-xs">⭐</span>' : ''}
-                           </div>
-                       </div>
-                       <h3 class="text-xl font-black bg-gradient-to-r ${data.color} bg-clip-text text-transparent">${topicId}</h3>
-                       <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">${t(data.definition.en, data.definition.ar)}</p>
-                   </div>
-                   <div class="mt-3 flex items-center justify-between text-[11px] text-purple-600 dark:text-purple-400 font-bold">
-                       <span>Explore</span>
-                       <span>→</span>
-                   </div>
-               </div>`;
-           }).join('');
-       }
-
-       function renderMindMap(topicId) {
-           const data = prepositionData[topicId];
-           if (!data) return;
-
-           const container = document.getElementById('mindmapContent');
-           const isBookmarked = state.bookmarks.includes(topicId);
-
-           document.getElementById('actionButtons').innerHTML = `
-               <button onclick="toggleBookmark('${topicId}')" class="glass rounded-xl px-3 py-1.5 text-xs font-semibold dark:text-white ${isBookmarked ? 'bg-yellow-200 dark:bg-yellow-800/50' : ''}">⭐ ${isBookmarked ? t('Saved', 'محفوظ') : t('Bookmark', 'حفظ')}</button>
-               <button onclick="startQuiz('${topicId}')" class="glass rounded-xl px-3 py-1.5 text-xs font-semibold dark:text-white hover:bg-purple-100">📝 ${t('Tricky Quiz', 'اختبار متقدم')}</button>
-               <button onclick="startFlashcards('${topicId}')" class="glass rounded-xl px-3 py-1.5 text-xs font-semibold dark:text-white hover:bg-cyan-100">🃏 ${t('Flashcards', 'بطاقات')}</button>
-           `;
-
-           let html = `
-               <div class="mindmap-container">
-                   <div class="text-center mb-6">
-                       <div class="w-20 h-20 rounded-full bg-gradient-to-br ${data.color} flex items-center justify-center text-white text-3xl font-black shadow-xl mx-auto mb-2 animate-glow relative">
-                           ${topicId}
-                           <button class="btn-speak absolute -bottom-1 -right-1 bg-white dark:bg-slate-800 p-1.5 rounded-full shadow text-xs text-purple-600" data-speech="${topicId}">🔊</button>
-                       </div>
-                       <h2 class="text-2xl font-black dark:text-white">${topicId}</h2>
-                       <p class="text-xs md:text-sm text-gray-500 dark:text-gray-400 max-w-md mx-auto mt-1">${t(data.definition.en, data.definition.ar)}</p>
-                   </div>
-
-                   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">`;
-
-           Object.entries(data.sections).forEach(([secName, section]) => {
-               html += `
-                   <div class="glass rounded-2xl p-4 border-l-4 border-purple-500">
-                       <h4 class="font-bold text-sm mb-2 dark:text-white flex items-center gap-1.5">
-                           <span>${section.icon}</span> ${secName}
-                       </h4>
-                       <div class="space-y-2">
-                           ${section.items.map(item => `
-                               <div class="bg-white/60 dark:bg-slate-800/60 rounded-xl p-2.5 text-xs">
-                                   <div class="flex items-center justify-between">
-                                       <span class="font-bold dark:text-white">${item.en}</span>
-                                       <button class="btn-speak text-purple-400 hover:text-purple-600 text-xs" data-speech="${item.en}">🔊</button>
-                                   </div>
-                                   <div class="text-gray-500 dark:text-gray-400 font-arabic mt-0.5">${item.ar}</div>
-                               </div>
-                           `).join('')}
-                       </div>
-                   </div>`;
-           });
-
-           html += `</div>
-
-                   <div class="glass rounded-2xl p-4 mt-6 max-w-2xl mx-auto">
-                       <h3 class="font-bold text-xs dark:text-white mb-2">✍️ ${t('My Practice Sentences (𝑴𝑶𝑼𝑺𝑨\'s Notes)', 'جمل موسى الخاصة')}</h3>
-                       <div class="flex gap-2">
-                           <input type="text" id="customNoteInput" placeholder="${t('Add a sentence with ' + topicId + '...', 'أضف جملة بـ ' + topicId + '...')}" class="flex-1 px-3 py-1.5 rounded-xl bg-white/70 dark:bg-slate-800/70 border border-purple-200 dark:border-purple-800 text-xs outline-none dark:text-white">
-                           <button onclick="addCustomNote('${topicId}')" class="px-3 py-1.5 bg-purple-600 text-white font-bold rounded-xl text-xs">${t('Save', 'حفظ')}</button>
-                       </div>
-                       <div id="customNotesList" class="mt-2 space-y-1">
-                           ${renderCustomNotesList(topicId)}
-                       </div>
-                   </div>
-               </div>`;
-
-           container.innerHTML = html;
-       }
-
-       function renderCustomNotesList(topicId) {
-           const notes = state.userCustomNotes[topicId] || [];
-           if (notes.length === 0) return `<div class="text-[11px] text-gray-400 italic">${t('No personal notes saved yet.', 'لا توجد ملاحظات حتي الآن.')}</div>`;
-           return notes.map((note, idx) => `
-               <div class="flex items-center justify-between bg-white/50 dark:bg-slate-800/50 px-2.5 py-1.5 rounded-lg text-xs dark:text-white">
-                   <span>• ${note}</span>
-                   <button onclick="deleteCustomNote('${topicId}', ${idx})" class="text-red-400 font-bold ml-2">✕</button>
-               </div>
-           `).join('');
-       }
-
-       function addCustomNote(topicId) {
-           const input = document.getElementById('customNoteInput');
-           const val = input.value.trim();
-           if (!val) return;
-
-           if (!state.userCustomNotes[topicId]) state.userCustomNotes[topicId] = [];
-           state.userCustomNotes[topicId].push(val);
-           saveState();
-
-           input.value = '';
-           document.getElementById('customNotesList').innerHTML = renderCustomNotesList(topicId);
-       }
-
-       function deleteCustomNote(topicId, idx) {
-           if (state.userCustomNotes[topicId]) {
-               state.userCustomNotes[topicId].splice(idx, 1);
-               saveState();
-               document.getElementById('customNotesList').innerHTML = renderCustomNotesList(topicId);
-           }
-       }
-
-       function toggleBookmark(topicId) {
-           const idx = state.bookmarks.indexOf(topicId);
-           if (idx > -1) state.bookmarks.splice(idx, 1);
-           else state.bookmarks.push(topicId);
-           saveState();
-           if (state.currentTopic === topicId) renderMindMap(topicId);
-           renderCards();
-       }
-
-       function handleSearch(query) {
-           const resultsDiv = document.getElementById('searchResults');
-           const q = query.toLowerCase().trim();
-           if (!q) { resultsDiv.classList.add('hidden'); return; }
-
-           const matches = Object.keys(prepositionData).filter(id => id.toLowerCase().includes(q));
-
-           if (matches.length === 0) {
-               resultsDiv.innerHTML = `<div class="p-3 text-center text-gray-400 text-xs">No match found</div>`;
-           } else {
-               resultsDiv.innerHTML = matches.map(m => `
-                   <div class="p-2.5 hover:bg-purple-50 dark:hover:bg-purple-900/30 cursor-pointer text-xs font-bold dark:text-white flex justify-between" onclick="navigateToTopic('${m}')">
-                       <span>📍 ${m}</span>
-                       <span class="text-purple-500 font-normal">View</span>
-                   </div>
-               `).join('');
-           }
-           resultsDiv.classList.remove('hidden');
-       }
-
-       function startQuiz(topicId) {
-           const data = prepositionData[topicId];
-           if (!data || !data.quiz) return;
-
-           document.getElementById('quizModal').classList.remove('hidden');
-           runQuiz(topicId, 0, 0);
-       }
-
-       function runQuiz(topicId, qIdx, score) {
-           const data = prepositionData[topicId];
-           const content = document.getElementById('quizContent');
-           const total = data.quiz.length;
-
-           if (qIdx >= total) {
-               content.innerHTML = `
-                   <div class="text-center py-4">
-                       <div class="text-4xl mb-2">🏆</div>
-                       <h3 class="text-base font-bold dark:text-white mb-1">${t('Tricky Quiz Finished!', 'اكتمل الاختبار المتقدم!')}</h3>
-                       <p class="text-sm dark:text-gray-300 mb-3">${t(`Score: ${score}/${total}`, `النتيجة: ${score}/${total}`)}</p>
-                       <button onclick="closeQuiz()" class="px-4 py-2 bg-purple-600 text-white text-xs font-bold rounded-xl">${t('Close', 'إغلاق')}</button>
-                   </div>`;
-               state.totalScore += score * 15;
-               saveState();
-               return;
-           }
-
-           const q = data.quiz[qIdx];
-           content.innerHTML = `
-               <div class="mb-3">
-                   <div class="text-xs text-purple-500 font-bold mb-1">${t('Advanced Question', 'سؤال متقدم')} ${qIdx + 1}/${total}</div>
-                   <p class="text-sm font-bold dark:text-white">${q.question}</p>
-               </div>
-               <div class="space-y-2">
-                   ${q.options.map((opt, i) => `
-                       <button onclick="answerQuiz(${i}, ${q.correct}, '${topicId}', ${qIdx}, ${total}, ${score})" 
-                           class="quiz-opt-btn w-full text-left p-2.5 rounded-xl border border-purple-200 dark:border-purple-800 hover:bg-purple-100 text-xs font-medium dark:text-white transition-all">
-                           ${String.fromCharCode(65 + i)}) ${opt}
-                       </button>
-                   `).join('')}
-               </div>
-               <div id="quizFeedback" class="mt-3 text-xs font-bold"></div>
-           `;
-       }
-
-       window.answerQuiz = function(selected, correct, topicId, currentQ, total, score) {
-           const feedback = document.getElementById('quizFeedback');
-           const q = prepositionData[topicId].quiz[currentQ];
-           
-           const optButtons = document.querySelectorAll('.quiz-opt-btn');
-           optButtons.forEach((btn, idx) => {
-               btn.disabled = true;
-               if (idx === correct) {
-                   btn.classList.add('bg-green-100', 'dark:bg-green-900/50', 'border-green-500', 'text-green-700', 'dark:text-green-300');
-               } else if (idx === selected && selected !== correct) {
-                   btn.classList.add('bg-red-100', 'dark:bg-red-900/50', 'border-red-500', 'text-red-700', 'dark:text-red-300');
-               }
-           });
-
-           if (selected === correct) {
-               feedback.innerHTML = `<div class="p-2 rounded-xl bg-green-50 dark:bg-green-950/40 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-300">✅ <b>${t('Correct!', 'إجابة صحيحة!')}</b><br><span class="text-[11px] font-normal mt-1 block">${q.explanation}</span></div>`;
-               score++;
-           } else {
-               feedback.innerHTML = `<div class="p-2 rounded-xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300">❌ <b>${t('Incorrect!', 'إجابة خاطئة!')}</b><br><span class="text-[11px] font-normal mt-1 block">${q.explanation}</span></div>`;
-           }
-
-           setTimeout(() => {
-               runQuiz(topicId, currentQ + 1, score);
-           }, 2600);
-       };
-
-       function closeQuiz() {
-           document.getElementById('quizModal').classList.add('hidden');
-       }
-
-       function startGlobalChallenge() {
-           const allQuizzes = [];
-           Object.keys(prepositionData).forEach(topicId => {
-               prepositionData[topicId].quiz.forEach(q => allQuizzes.push({ topicId, ...q }));
-           });
-
-           const shuffled = allQuizzes.sort(() => 0.5 - Math.random());
-           let score = 0;
-           let current = 0;
-
-           document.getElementById('quizModal').classList.remove('hidden');
-
-           function renderChallengeQ() {
-               const content = document.getElementById('quizContent');
-               if (current >= shuffled.length) {
-                   content.innerHTML = `
-                       <div class="text-center py-4">
-                           <div class="text-4xl mb-2">🔥</div>
-                           <h3 class="text-base font-bold dark:text-white mb-1">${t('Hard Challenge Complete!', 'اكتمل التحدي الصعب بنجاح!')}</h3>
-                           <p class="text-sm dark:text-gray-300 mb-3">${t(`Final Score: ${score}/${shuffled.length}`, `النتيجة النهائية: ${score}/${shuffled.length}`)}</p>
-                           <button onclick="closeQuiz()" class="px-4 py-2 bg-purple-600 text-white text-xs font-bold rounded-xl">${t('Done', 'تم')}</button>
-                       </div>`;
-                   state.totalScore += score * 10;
-                   saveState();
-                   return;
-               }
-
-               const q = shuffled[current];
-               content.innerHTML = `
-                   <div class="mb-3">
-                       <div class="text-xs text-amber-500 font-bold mb-1">🔥 ${t('Hard Challenge Question', 'سؤال التحدي الصعب')} ${current + 1}/${shuffled.length} (${q.topicId})</div>
-                       <p class="text-sm font-bold dark:text-white">${q.question}</p>
-                   </div>
-                   <div class="space-y-2">
-                       ${q.options.map((opt, i) => `
-                           <button onclick="handleChallengeAnswer(${i}, ${q.correct}, '${q.explanation.replace(/'/g, "\\'")}')" class="chal-opt-btn w-full text-left p-2.5 rounded-xl border border-purple-200 dark:border-purple-800 hover:bg-purple-100 text-xs font-medium dark:text-white transition-all">
-                               ${String.fromCharCode(65 + i)}) ${opt}
-                           </button>
-                       `).join('')}
-                   </div>
-                   <div id="challengeFeedback" class="mt-3 text-xs font-bold"></div>
-               `;
-           }
-
-           window.handleChallengeAnswer = function(selected, correct, exp) {
-               const feedback = document.getElementById('challengeFeedback');
-               const optButtons = document.querySelectorAll('.chal-opt-btn');
-               
-               optButtons.forEach((btn, idx) => {
-                   btn.disabled = true;
-                   if (idx === correct) {
-                       btn.classList.add('bg-green-100', 'dark:bg-green-900/50', 'border-green-500', 'text-green-700', 'dark:text-green-300');
-                   } else if (idx === selected && selected !== correct) {
-                       btn.classList.add('bg-red-100', 'dark:bg-red-900/50', 'border-red-500', 'text-red-700', 'dark:text-red-300');
-                   }
-               });
-
-               if (selected === correct) {
-                   feedback.innerHTML = `<div class="p-2 rounded-xl bg-green-50 dark:bg-green-950/40 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-300">✅ <b>${t('Brilliant!', 'إجابة عبقرية صحيحة!')}</b><br><span class="text-[11px] font-normal mt-1 block">${exp}</span></div>`;
-                   score++;
-               } else {
-                   feedback.innerHTML = `<div class="p-2 rounded-xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300">❌ <b>${t('Wrong Answer!', 'إجابة خاطئة!')}</b><br><span class="text-[11px] font-normal mt-1 block">${exp}</span></div>`;
-               }
-
-               setTimeout(() => { 
-                   current++; 
-                   renderChallengeQ(); 
-               }, 2600);
-           };
-
-           renderChallengeQ();
-       }
-
-       function startFlashcards(topicId) {
-           const data = prepositionData[topicId];
-           if (!data) return;
-
-           const allItems = [];
-           Object.values(data.sections).forEach(section => {
-               section.items.forEach(item => allItems.push(item));
-           });
-
-           if (allItems.length === 0) return;
-
-           let currentIdx = 0;
-           let showingFront = true;
-           const modal = document.getElementById('flashcardModal');
-           const content = document.getElementById('flashcardContent');
-
-           function renderCard() {
-               const item = allItems[currentIdx];
-               content.innerHTML = `
-                   <div class="text-xs text-gray-400 mb-2">${currentIdx + 1} / ${allItems.length}</div>
-                   <div class="glass rounded-2xl p-6 min-h-[140px] flex flex-col items-center justify-center cursor-pointer" onclick="flipFlashcard()">
-                       <div class="text-center">
-                           <div class="text-xl font-bold dark:text-white">${showingFront ? item.en : item.ar}</div>
-                           <div class="text-[10px] text-purple-400 mt-2">${showingFront ? t('Click to reveal Arabic', 'انقر للترجمة') : t('Click to reveal English', 'انقر للنص الإنجليزي')}</div>
-                       </div>
-                   </div>
-                   <div class="flex justify-between items-center mt-3">
-                       <button onclick="prevFlashcard()" class="px-3 py-1.5 glass rounded-xl text-xs dark:text-white" ${currentIdx === 0 ? 'disabled' : ''}>← ${t('Prev', 'السابق')}</button>
-                       <button class="btn-speak p-1.5 glass rounded-full text-xs" data-speech="${item.en}">🔊</button>
-                       <button onclick="nextFlashcard()" class="px-3 py-1.5 glass rounded-xl text-xs dark:text-white" ${currentIdx === allItems.length - 1 ? 'disabled' : ''}>${t('Next', 'التالي')} →</button>
-                   </div>
-               `;
-           }
-
-           window.flipFlashcard = function() { showingFront = !showingFront; renderCard(); };
-           window.prevFlashcard = function() { if (currentIdx > 0) { currentIdx--; showingFront = true; renderCard(); } };
-           window.nextFlashcard = function() { if (currentIdx < allItems.length - 1) { currentIdx++; showingFront = true; renderCard(); } };
-
-           renderCard();
-           modal.classList.remove('hidden');
-       }
-
-       function closeFlashcard() {
-           document.getElementById('flashcardModal').classList.add('hidden');
-       }
-
-       function createParticles() {
-           const container = document.getElementById('particles');
-           if (!container) return;
-           const colors = ['#8b5cf6', '#06b6d4', '#ec4899', '#10b981'];
-           for (let i = 0; i < 15; i++) {
-               const particle = document.createElement('div');
-               particle.className = 'particle';
-               particle.style.left = Math.random() * 100 + '%';
-               particle.style.width = (Math.random() * 6 + 2) + 'px';
-               particle.style.height = particle.style.width;
-               particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-               particle.style.animationDuration = (Math.random() * 10 + 8) + 's';
-               particle.style.animationDelay = Math.random() * 5 + 's';
-               container.appendChild(particle);
-           }
-       }
-
-       function setupEventListeners() {
-           const navLogo = document.getElementById('navLogo');
-           const navHomeLink = document.getElementById('navHomeLink');
-           const btnBackHome = document.getElementById('btnBackHome');
-           const btnLang = document.getElementById('btnLang');
-           const btnDark = document.getElementById('btnDark');
-           const btnChallenge = document.getElementById('btnChallenge');
-           const btnCloseQuiz = document.getElementById('btnCloseQuiz');
-           const btnCloseFlashcard = document.getElementById('btnCloseFlashcard');
-           const searchInput = document.getElementById('searchInput');
-
-           if (navLogo) navLogo.addEventListener('click', navigateHome);
-           if (navHomeLink) navHomeLink.addEventListener('click', navigateHome);
-           if (btnBackHome) btnBackHome.addEventListener('click', navigateHome);
-
-           if (btnLang) btnLang.addEventListener('click', toggleLanguage);
-           if (btnDark) btnDark.addEventListener('click', () => { state.darkMode = !state.darkMode; applyTheme(); });
-           if (btnChallenge) btnChallenge.addEventListener('click', startGlobalChallenge);
-
-           if (btnCloseQuiz) btnCloseQuiz.addEventListener('click', closeQuiz);
-           if (btnCloseFlashcard) btnCloseFlashcard.addEventListener('click', closeFlashcard);
-
-           if (searchInput) searchInput.addEventListener('input', (e) => handleSearch(e.target.value));
-
-           document.querySelectorAll('.cat-btn').forEach(btn => {
-               btn.addEventListener('click', (e) => {
-                   const catBtn = e.target.closest('.cat-btn');
-                   if (!catBtn) return;
-                   state.currentCategory = catBtn.dataset.cat;
-                   document.querySelectorAll('.cat-btn').forEach(b => {
-                       b.className = 'cat-btn glass px-3.5 py-2 rounded-xl text-gray-600 dark:text-gray-300';
-                   });
-                   catBtn.className = 'cat-btn glass px-3.5 py-2 rounded-xl text-purple-600 dark:text-purple-300 border-purple-500';
-                   renderCards();
-               });
-           });
-
-           document.addEventListener('click', (e) => {
-               const btnSpeak = e.target.closest('.btn-speak');
-               if (btnSpeak && btnSpeak.dataset.speech) {
-                   e.stopPropagation();
-                   speakText(btnSpeak.dataset.speech);
-               }
-           });
-
-           document.addEventListener('keydown', (e) => {
-               if (e.key === 'Escape') {
-                   closeQuiz();
-                   closeFlashcard();
-                   document.getElementById('searchResults').classList.add('hidden');
-               }
-           });
-       }
-
-       function startApp() {
-           try {
-               setupEventListeners();
-               applyTheme();
-               createParticles();
-               renderCards();
-               updateStats();
-           } catch (err) {
-               console.error("Initialization error:", err);
-           }
-       }
-
-       if (document.readyState === 'loading') {
-           document.addEventListener('DOMContentLoaded', startApp);
-       } else {
-           startApp();
-       }
-   </script>
+
+<body class="relative min-h-screen text-slate-100 pb-16">
+
+  <!-- Particle Background Canvas -->
+  <canvas id="bg-particles"></canvas>
+
+  <div id="app" class="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6">
+
+    <!-- HEADER / BRANDING BAR -->
+    <header class="sticky top-3 z-50 mt-3 glass-panel px-5 py-3.5 flex items-center justify-between flex-wrap gap-4 border border-slate-700/50 shadow-2xl">
+      <div class="flex items-center gap-3 cursor-pointer" id="navBrandLogo">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-sky-400 via-indigo-500 to-pink-500 flex items-center justify-center text-white font-black text-2xl shadow-lg animate-pulse-glow">
+          𝑴
+        </div>
+        <div>
+          <h1 class="text-xl md:text-2xl font-black bg-gradient-to-r from-sky-300 via-indigo-300 to-pink-400 bg-clip-text text-transparent">
+            منصة 𝑴𝑶𝑼𝑺𝑨
+          </h1>
+          <span class="text-[10px] tracking-wider text-sky-400 font-bold uppercase block">
+            𝑴𝑶𝑼𝑺𝑨 PRO HUB & SILENT MASTER v3.0
+          </span>
+        </div>
+      </div>
+
+      <!-- Global Live Search Bar -->
+      <div class="relative flex-1 max-w-md mx-2">
+        <div class="relative">
+          <i class="fa-solid fa-magnifying-glass absolute right-3.5 top-1/2 -translate-y-1/2 text-sky-400"></i>
+          <input type="text" id="globalSearchInput" placeholder="بحث شامل: قواعد، حروف صامتة، كلمات، أمثلة..." 
+                 class="w-full pr-10 pl-4 py-2 rounded-2xl bg-slate-900/80 border border-slate-700 text-sm focus:outline-none focus:border-sky-400 focus:ring-2 focus:ring-sky-400/30 text-white placeholder-slate-400">
+        </div>
+        <div id="globalSearchResults" class="absolute top-full mt-2 right-0 left-0 glass-panel border border-sky-500/30 hidden max-h-80 overflow-y-auto z-50 p-2 shadow-2xl"></div>
+      </div>
+
+      <!-- Controls & Settings -->
+      <div class="flex items-center gap-2.5 flex-wrap">
+        <!-- Theme Select -->
+        <select id="themeSelect" class="bg-slate-900/80 border border-slate-700 text-xs text-sky-300 font-bold rounded-xl px-3 py-2 outline-none cursor-pointer hover:border-sky-400">
+          <option value="blue-neon">💙 النيون الأزرق</option>
+          <option value="purple-neon">💜 النيون الأرجواني</option>
+          <option value="emerald">💚 الزمرد الملكي</option>
+          <option value="gold">💛 الذهبي الفاخر</option>
+          <option value="cyberpunk">💖 السايبربانك</option>
+        </select>
+
+        <!-- Global Hard Challenge Button -->
+        <button id="btnGlobalChallenge" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-pink-500 via-purple-600 to-sky-500 hover:scale-105 text-white font-black text-xs shadow-lg transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-fire text-amber-300"></i>
+          <span>التحدي الشامل</span>
+        </button>
+
+        <!-- Language Switcher -->
+        <button id="btnLangToggle" class="px-3 py-2 rounded-xl glass-panel hover:bg-slate-800 text-xs font-bold flex items-center gap-1 text-sky-300">
+          <span id="langIcon">🇸🇦</span> <span id="langText">العربية</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- BREADCRUMB & USER RANK STATS -->
+    <div class="mt-4 px-2 flex justify-between items-center flex-wrap gap-2 text-xs font-bold">
+      <nav id="breadcrumbNav" class="flex items-center gap-2 text-sky-400">
+        <span class="cursor-pointer hover:underline" id="bcHomeLink">🏠 الصفحة الرئيسية</span>
+        <span id="bcSubPath" class="text-slate-400"></span>
+      </nav>
+
+      <div class="glass-panel px-4 py-1.5 rounded-full text-slate-300 flex items-center gap-3">
+        <span>👤 الطالب: <strong class="text-amber-400">𝑴𝑶𝑼𝑺𝑨</strong></span>
+        <span>•</span>
+        <span>🏆 الرتبة: <span id="rankBadgeTitle" class="text-sky-300">𝑴𝑶𝑼𝑺𝑨 Master 🎓</span></span>
+        <span>•</span>
+        <span>⚡ نقاط XP: <span id="totalXpCount" class="text-emerald-400">0</span></span>
+      </div>
+    </div>
+
+    <!-- MAIN VIEW CONTAINER -->
+    <main class="mt-6">
+
+      <!-- =================================================================== -->
+      <!-- VIEW 1: LANDING HOMEPAGE WITH 2 INTERACTIVE CARDS                    -->
+      <!-- =================================================================== -->
+      <section id="viewHome" class="space-y-8 animate-fade-in">
+        <!-- Hero Banner -->
+        <div class="text-center py-6">
+          <h2 class="text-3xl md:text-5xl font-black bg-gradient-to-r from-sky-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-3">
+            المجموعة التعليمية الاحترافية للغة الإنجليزية
+          </h2>
+          <p class="text-slate-300 text-sm md:text-base max-w-3xl mx-auto leading-relaxed">
+            منصة تعليمية متكاملة تدمج قواعد اللغة الإنجليزية المتقدمة بأسلوب 𝑴𝑶𝑼𝑺𝑨 الاحترافي، ونظام إتقان الحروف الصامتة المتقدم مع نطق صوتي تفاعلي واختبارات شاملة.
+          </p>
+        </div>
+
+        <!-- TWO MAIN HUB SELECTION CARDS -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+
+          <!-- CARD 1: GRAMMAR & PREPOSITIONS -->
+          <div class="hub-card glass-panel p-8 flex flex-col justify-between group" onclick="switchMainHub('grammar')">
+            <div class="space-y-4">
+              <div class="flex justify-between items-start">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 to-sky-500 flex items-center justify-center text-3xl shadow-lg">
+                  📘
+                </div>
+                <span class="text-xs font-black uppercase px-3 py-1 rounded-full bg-sky-500/20 text-sky-300 border border-sky-400/30">
+                  30 درس متقدم
+                </span>
+              </div>
+
+              <div>
+                <h3 class="text-2xl font-black text-white group-hover:text-sky-300 transition-colors">
+                  قواعد اللغة الإنجليزية وحروف الجر
+                </h3>
+                <p class="text-xs text-sky-400 font-bold mt-1">English Grammar & Prepositions Hub</p>
+              </div>
+
+              <p class="text-slate-300 text-xs leading-relaxed">
+                دليل 𝑴𝑶𝑼𝑺𝑨 الكامل لجميع حروف الجر المركبة والقواعد المعقدة (AT, IN, ON, FOR, BY, TO, FROM...) مع خرائط ذهنية، أمثلة ناطقة، واختبارات قياسية.
+              </p>
+            </div>
+
+            <div class="mt-8 pt-4 border-t border-slate-700/50 flex justify-between items-center text-xs font-black text-sky-400">
+              <span>استكشف دروس القواعد 🧭</span>
+              <i class="fa-solid fa-arrow-left group-hover:-translate-x-2 transition-transform"></i>
+            </div>
+          </div>
+
+          <!-- CARD 2: SILENT LETTERS MASTER -->
+          <div class="hub-card glass-panel p-8 flex flex-col justify-between group" onclick="switchMainHub('silent')">
+            <div class="space-y-4">
+              <div class="flex justify-between items-start">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center text-3xl shadow-lg">
+                  𝑲
+                </div>
+                <span class="text-xs font-black uppercase px-3 py-1 rounded-full bg-pink-500/20 text-pink-300 border border-pink-400/30">
+                  100+ كلمة و 10+ قواعد
+                </span>
+              </div>
+
+              <div>
+                <h3 class="text-2xl font-black text-white group-hover:text-pink-300 transition-colors">
+                  الحروف الإنجليزية الصامتة
+                </h3>
+                <p class="text-xs text-pink-400 font-bold mt-1">English Silent Letters Master</p>
+              </div>
+
+              <p class="text-slate-300 text-xs leading-relaxed">
+                احترف الحروف الصامتة (Silent K, W, B, L, H, T, G, P, S, GH) مع التظليل البصري المتوهج للحرُف الصامتة، الرموز الصوتية IPA، والترجمة العربية الكاملة.
+              </p>
+            </div>
+
+            <div class="mt-8 pt-4 border-t border-slate-700/50 flex justify-between items-center text-xs font-black text-pink-400">
+              <span>انتقل لمكتبة الكلمات الصامتة 🎧</span>
+              <i class="fa-solid fa-arrow-left group-hover:-translate-x-2 transition-transform"></i>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- DASHBOARD QUICK STATS BAR -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto pt-4">
+          <div class="glass-panel p-4 text-center">
+            <div class="text-2xl font-black text-sky-400" id="statGrammarDone">0 / 30</div>
+            <div class="text-xs text-slate-400 font-semibold mt-1">دروس القواعد المتقنة</div>
+          </div>
+          <div class="glass-panel p-4 text-center">
+            <div class="text-2xl font-black text-pink-400" id="statWordsMastered">100 / 100</div>
+            <div class="text-xs text-slate-400 font-semibold mt-1">كلمات صامتة مجهزة</div>
+          </div>
+          <div class="glass-panel p-4 text-center">
+            <div class="text-2xl font-black text-purple-400" id="statBookmarksCount">0</div>
+            <div class="text-xs text-slate-400 font-semibold mt-1">المحفوظات المفضلة</div>
+          </div>
+          <div class="glass-panel p-4 text-center">
+            <div class="text-2xl font-black text-emerald-400" id="statTotalXpDisplay">0</div>
+            <div class="text-xs text-slate-400 font-semibold mt-1">مجموع النقاط XP</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- VIEW 2: GRAMMAR & PREPOSITIONS HUB SECTION                           -->
+      <!-- =================================================================== -->
+      <section id="viewGrammar" class="hidden space-y-6">
+        <!-- Grammar Navigation Header -->
+        <div class="flex justify-between items-center flex-wrap gap-4 glass-panel p-5">
+          <div>
+            <h2 class="text-2xl font-black text-white">قواعد اللغة الإنجليزية وحروف الجر (منصة 𝑴𝑶𝑼𝑺𝑨)</h2>
+            <p class="text-xs text-slate-300">30 مادة تعليمية متقدمة تشمل كافة حالات الاستخدام والتعقيدات</p>
+          </div>
+          
+          <button onclick="switchMainHub('home')" class="px-4 py-2 rounded-xl bg-slate-800 text-xs font-bold text-sky-300 hover:bg-slate-700">
+            ← العودة للصفحة الرئيسية
+          </button>
+        </div>
+
+        <!-- Category Filter Chips -->
+        <div class="flex gap-2 flex-wrap text-xs font-bold" id="grammarCategoryFilter">
+          <button class="g-cat-btn px-4 py-2 rounded-xl glass-panel text-sky-300 border-sky-400" data-cat="ALL">الكل (30)</button>
+          <button class="g-cat-btn px-4 py-2 rounded-xl glass-panel text-slate-300" data-cat="TIME">⏰ الوقت والتواريخ</button>
+          <button class="g-cat-btn px-4 py-2 rounded-xl glass-panel text-slate-300" data-cat="PLACE">📍 الأماكن والمواقع</button>
+          <button class="g-cat-btn px-4 py-2 rounded-xl glass-panel text-slate-300" data-cat="DIRECTION">🏃 الاتجاهات والحركة</button>
+          <button class="g-cat-btn px-4 py-2 rounded-xl glass-panel text-slate-300" data-cat="FAVORITES">⭐ المفضلة</button>
+        </div>
+
+        <!-- Prepositions 30 Cards Grid -->
+        <div id="grammarCardsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 min-h-[350px]"></div>
+
+        <!-- Grammar Mindmap / Detail Modal -->
+        <div id="grammarDetailModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 overflow-y-auto">
+          <div class="glass-panel w-full max-w-4xl p-6 md:p-8 space-y-6 max-h-[90vh] overflow-y-auto border border-sky-500/40">
+            <div class="flex justify-between items-center border-b border-slate-700/60 pb-4">
+              <div class="flex items-center gap-3">
+                <span id="gDetailIcon" class="text-3xl">📍</span>
+                <div>
+                  <h3 id="gDetailTitle" class="text-2xl font-black text-white">AT</h3>
+                  <span id="gDetailCategory" class="text-xs text-sky-400 font-bold"></span>
+                </div>
+              </div>
+              <button onclick="closeGrammarDetail()" class="text-slate-400 hover:text-red-400 font-bold text-xl px-2">✕</button>
+            </div>
+
+            <!-- Detail Definition -->
+            <div class="glass-panel p-4 bg-slate-900/60">
+              <h4 class="font-bold text-xs text-sky-300 mb-1">📌 التعريف والشرح:</h4>
+              <p id="gDetailDefEn" class="text-sm font-semibold text-white"></p>
+              <p id="gDetailDefAr" class="text-xs text-slate-300 font-arabic mt-1"></p>
+            </div>
+
+            <!-- Sections / Mindmap -->
+            <div id="gDetailSectionsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+
+            <!-- User Personal Practice Sentences -->
+            <div class="glass-panel p-4 bg-slate-900/60 space-y-3">
+              <h4 class="font-bold text-xs text-sky-300">✍️ جمل التطبيق الخاصة بـ (𝑴𝑶𝑼𝑺𝑨's Notes):</h4>
+              <div class="flex gap-2">
+                <input type="text" id="gCustomNoteInput" placeholder="أضف جملتك الخاصة مع حرف الجر هذا..." class="flex-1 px-3 py-2 text-xs rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-sky-400">
+                <button id="btnSaveGrammarNote" class="px-4 py-2 bg-sky-500 text-slate-950 font-bold rounded-xl text-xs">حفظ</button>
+              </div>
+              <div id="gCustomNotesList" class="space-y-1.5 text-xs"></div>
+            </div>
+
+            <!-- Modal Action Footer -->
+            <div class="flex justify-between items-center pt-4 border-t border-slate-700/60 flex-wrap gap-2">
+              <button id="btnToggleGDetailBookmark" class="px-4 py-2 rounded-xl glass-panel text-xs font-bold text-amber-300">⭐ حفظ في المفضلة</button>
+              <div class="flex gap-2">
+                <button id="btnStartGTopicQuiz" class="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white font-bold rounded-xl text-xs">📝 اختبار الدرس</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- VIEW 3: SILENT LETTERS MASTER SECTION                              -->
+      <!-- =================================================================== -->
+      <section id="viewSilent" class="hidden space-y-6">
+        <!-- Header Controls -->
+        <div class="glass-panel p-5 space-y-4">
+          <div class="flex justify-between items-center flex-wrap gap-4">
+            <div>
+              <h2 class="text-2xl font-black text-white">قاموس ومكتبة الحروف الصامتة (100 كلمة ناطقة)</h2>
+              <p class="text-xs text-slate-300">مقسمة حسب 10 قواعد رئيسية مع النطق الصوتي والرمز الصوتي IPA والترجمة</p>
+            </div>
+
+            <button onclick="switchMainHub('home')" class="px-4 py-2 rounded-xl bg-slate-800 text-xs font-bold text-pink-300 hover:bg-slate-700">
+              ← العودة للصفحة الرئيسية
+            </button>
+          </div>
+
+          <!-- Tabs Navigation -->
+          <div class="flex gap-2 overflow-x-auto pb-1">
+            <button class="s-nav-btn nav-tab-btn active" data-stab="library">
+              <i class="fa-solid fa-book-open"></i> مكتبة الكلمات (100)
+            </button>
+            <button class="s-nav-btn nav-tab-btn" data-stab="flashcards">
+              <i class="fa-solid fa-clone"></i> البطاقات التفاعلية
+            </button>
+            <button class="s-nav-btn nav-tab-btn" data-stab="quiz">
+              <i class="fa-solid fa-graduation-cap"></i> اختبار الحروف الصامتة
+            </button>
+          </div>
+        </div>
+
+        <!-- SILENT SUB-TAB 1: WORD LIBRARY -->
+        <div id="sTabLibrary" class="space-y-4">
+          <!-- Control Filter Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+            <input type="text" id="silentSearchInput" placeholder="بحث باسم الكلمة أو الرمز الصوتي..." class="px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none focus:border-pink-400">
+            
+            <select id="silentLetterFilter" class="px-3 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs text-pink-300 font-bold focus:outline-none">
+              <option value="ALL">جميع الحروف الصامتة (10 قواعد)</option>
+              <option value="K">Silent K (10)</option>
+              <option value="W">Silent W (10)</option>
+              <option value="B">Silent B (10)</option>
+              <option value="L">Silent L (10)</option>
+              <option value="H">Silent H (10)</option>
+              <option value="T">Silent T (10)</option>
+              <option value="G">Silent G (10)</option>
+              <option value="P">Silent P (10)</option>
+              <option value="S">Silent S (10)</option>
+              <option value="GH">Silent GH (10)</option>
+            </select>
+
+            <select id="silentCategoryFilter" class="px-3 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs text-slate-300 focus:outline-none">
+              <option value="ALL">جميع التصنيفات</option>
+              <option value="Daily Life">Daily Life</option>
+              <option value="Business">Business</option>
+              <option value="Travel">Travel</option>
+              <option value="School">School</option>
+              <option value="Medical">Medical</option>
+              <option value="Restaurant">Restaurant</option>
+              <option value="Conversations">Conversations</option>
+            </select>
+
+            <select id="voiceAccentSelect" class="px-3 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs text-sky-300 font-bold focus:outline-none">
+              <option value="en-US">🇺🇸 الأمريكية (US Accent)</option>
+              <option value="en-GB">🇬🇧 البريطانية (UK Accent)</option>
+            </select>
+          </div>
+
+          <!-- Quick Alphabet Filter Chips -->
+          <div class="flex gap-2 overflow-x-auto pb-2" id="silentChipsBar">
+            <span class="chip-btn px-3 py-1.5 rounded-lg glass-panel text-xs font-bold text-pink-300 cursor-pointer active" data-letter="ALL">الكل</span>
+            <span class="chip-btn px-3 py-1.5 rounded-lg glass-panel text-xs font-bold text-slate-400 cursor-pointer" data-letter="K">Silent K</span>
+            <span class="chip-btn px-3 py-1.5 rounded-lg glass-panel text-xs font-bold text-slate-400 cursor-pointer" data-letter="W">Silent W</span>
+            <span class="chip-btn px-3 py-1.5 rounded-lg glass-panel text-xs font-bold text-slate-400 cursor-pointer" data-letter="B">Silent B</span>
+            <span class="chip-btn px-3 py-1.5 rounded-lg glass-panel text-xs font-bold text-slate-400 cursor-pointer" data-letter="L">Silent L</span>
+            <span class="chip-btn px-3 py-1.5 rounded-lg glass-panel text-xs font-bold text-slate-400 cursor-pointer" data-letter="H">Silent H</span>
+            <span class="chip-btn px-3 py-1.5 rounded-lg glass-panel text-xs font-bold text-slate-400 cursor-pointer" data-letter="T">Silent T</span>
+            <span class="chip-btn px-3 py-1.5 rounded-lg glass-panel text-xs font-bold text-slate-400 cursor-pointer" data-letter="G">Silent G</span>
+            <span class="chip-btn px-3 py-1.5 rounded-lg glass-panel text-xs font-bold text-slate-400 cursor-pointer" data-letter="P">Silent P</span>
+            <span class="chip-btn px-3 py-1.5 rounded-lg glass-panel text-xs font-bold text-slate-400 cursor-pointer" data-letter="S">Silent S</span>
+            <span class="chip-btn px-3 py-1.5 rounded-lg glass-panel text-xs font-bold text-slate-400 cursor-pointer" data-letter="GH">Silent GH</span>
+          </div>
+
+          <!-- Words Grid -->
+          <div id="silentWordsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 min-h-[400px]"></div>
+        </div>
+
+        <!-- SILENT SUB-TAB 2: FLASHCARDS -->
+        <div id="sTabFlashcards" class="hidden space-y-6">
+          <div class="max-w-md mx-auto text-center space-y-4">
+            <h3 class="text-xl font-black text-white">بطاقات الاستذكار التفاعلية</h3>
+            
+            <div class="flashcard-3d h-72 w-full cursor-pointer" id="silentFlashcardCard">
+              <div class="flashcard-inner glass-panel border border-pink-500/40" id="fcInner">
+                <!-- Front -->
+                <div class="flashcard-front p-6 flex flex-col justify-between items-center text-center bg-slate-900/90">
+                  <span id="fcCategory" class="text-xs font-bold text-pink-400 uppercase">Category</span>
+                  <div>
+                    <h1 id="fcWord" class="text-4xl font-black text-white my-2">Word</h1>
+                    <p class="text-xs text-slate-400">اضغط لقلب البطاقة للترجمة والرمز الصوتي <i class="fa-solid fa-rotate"></i></p>
+                  </div>
+                  <span id="fcIndex" class="text-xs text-slate-500">1/100</span>
+                </div>
+                <!-- Back -->
+                <div class="flashcard-back p-6 flex flex-col justify-between items-center text-center bg-slate-950 border border-purple-500/50">
+                  <h2 id="fcSilent" class="text-xl font-bold text-rose-400">Silent Letter</h2>
+                  <div class="px-4 py-1.5 rounded-xl bg-slate-900 border border-slate-700 text-sky-300 font-mono text-sm" id="fcPhonetic">/phonetic/</div>
+                  <div id="fcArabic" class="text-2xl font-black text-amber-400 font-arabic">الترجمة</div>
+                  <p id="fcExample" class="text-xs italic text-slate-300 border-r-2 border-pink-400 pr-2 font-sans"></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Flashcard Control Buttons -->
+            <div class="flex justify-center items-center gap-3">
+              <button id="fcPrevBtn" class="px-4 py-2 glass-panel rounded-xl text-xs font-bold text-slate-300 hover:bg-slate-800">← السابق</button>
+              <button id="fcAudioBtn" class="px-5 py-2.5 bg-pink-500 text-slate-950 font-black rounded-xl text-xs shadow-lg hover:scale-105">
+                <i class="fa-solid fa-volume-high"></i> استمع للنطق
+              </button>
+              <button id="fcNextBtn" class="px-4 py-2 glass-panel rounded-xl text-xs font-bold text-slate-300 hover:bg-slate-800">التالي →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- SILENT SUB-TAB 3: INTERACTIVE QUIZ -->
+        <div id="sTabQuiz" class="hidden">
+          <div class="max-w-xl mx-auto glass-panel p-6 space-y-6">
+            <div id="sQuizIntro" class="text-center space-y-4">
+              <i class="fa-solid fa-brain text-5xl text-pink-400"></i>
+              <h3 class="text-2xl font-black text-white">اختبار الحروف الصامتة التفاعلي</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">اختبر مهاراتك في تحديد الحرف الصامت الصحيح لـ 10 أسئلة عشوائية مأخوذة من قاعدة البيانات.</p>
+              <button id="btnStartSilentQuiz" class="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-black rounded-2xl text-sm shadow-xl hover:scale-105">
+                ابدأ الاختبار الآن 🚀
+              </button>
+            </div>
+
+            <div id="sQuizActive" class="hidden space-y-4">
+              <div class="flex justify-between items-center text-xs font-bold">
+                <span id="sqQuestionNum" class="text-pink-400">سؤال 1/10</span>
+                <span id="sqScoreDisplay" class="text-emerald-400">النقاط: 0</span>
+              </div>
+              <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                <div id="sqProgressBar" class="h-full bg-gradient-to-r from-pink-500 to-purple-500 w-0 transition-all"></div>
+              </div>
+              <h4 id="sqQuestionText" class="text-lg font-bold text-white my-4"></h4>
+              <div id="sqOptionsGrid" class="grid grid-cols-2 gap-3"></div>
+            </div>
+
+            <div id="sQuizResult" class="hidden text-center space-y-4">
+              <i class="fa-solid fa-trophy text-6xl text-amber-400"></i>
+              <h3 class="text-2xl font-black text-white">اكتمل الاختبار!</h3>
+              <div id="sqFinalScore" class="text-3xl font-black text-pink-400"></div>
+              <p id="sqFeedbackText" class="text-xs text-slate-300"></p>
+              <button id="btnRestartSilentQuiz" class="px-6 py-2.5 bg-sky-500 text-slate-950 font-black rounded-xl text-xs">
+                إعادة الاختبار 🔄
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- MODAL 1: GLOBAL HARD CHALLENGE QUIZ MODAL -->
+  <div id="globalChallengeModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4">
+    <div class="glass-panel w-full max-w-xl p-6 md:p-8 space-y-6 border border-pink-500/50 shadow-2xl relative">
+      <button onclick="closeGlobalChallenge()" class="absolute top-4 left-4 text-slate-400 hover:text-red-400 font-bold text-xl">✕</button>
+      <div id="gChallengeContent" class="space-y-4"></div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toastNotification" class="fixed bottom-5 left-5 z-50 glass-panel border border-sky-400/50 px-5 py-3 text-xs font-bold text-white shadow-2xl flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-300">
+    <i class="fa-solid fa-circle-info text-sky-400"></i>
+    <span id="toastMsg">إشعار</span>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC ENGINE -->
+  <script>
+    /* DATASET 1: 30 COMPLETE GRAMMAR & PREPOSITIONS */
+    const GRAMMAR_DATABASE = {
+      'AT': {
+        id: 'AT', category: 'TIME', color: 'from-purple-600 to-violet-500', icon: '📍',
+        definition: { en: 'Used for precise clock times, reaction targets, and specific location points.', ar: 'تُستخدم للأوقات الدقيقة على الساعة، أهداف ردود الأفعال، والمواقع المحددة.' },
+        sections: {
+          'Time & Milestones': { icon: '🕐', items: [
+            { en: 'at 7:15 AM sharp', ar: 'في تمام الساعة 7:15 صباحاً' },
+            { en: 'at the age of 25', ar: 'في سن الخمسة والعشرين' },
+            { en: 'at dawn / at dusk', ar: 'عند الفجر / الغسق' },
+            { en: 'at the crack of dawn', ar: 'مع فجر اليوم الأول' }
+          ]},
+          'Reaction Targets': { icon: '🎯', items: [
+            { en: 'astonished at the news', ar: 'مندهش من الأخبار' },
+            { en: 'good at grammar', ar: 'متمكن في القواعد' },
+            { en: 'stare at the board', ar: 'التحديق في السبورة' }
+          ]}
+        },
+        quiz: [
+          { question: 'The diplomat arrived ___ the airport late, but arrived ___ London on time.', options: ['at / in', 'in / at', 'at / at', 'in / in'], correct: 0, explanation: 'Use AT for specific hubs/airports and IN for large cities.' },
+          { question: 'She was deeply offended ___ his insensitive remark.', options: ['at', 'with', 'by', 'on'], correct: 0, explanation: 'Reactions to events take AT.' }
+        ]
+      },
+      'IN': {
+        id: 'IN', category: 'TIME', color: 'from-cyan-600 to-blue-500', icon: '📦',
+        definition: { en: 'Used for enclosed physical spaces, emotional states, and broad temporal periods.', ar: 'تُستخدم للحالات النفسية، الأماكن المغلقة، والفترات الزمنية الممتدة.' },
+        sections: {
+          'States & Mind': { icon: '🧠', items: [
+            { en: 'in a hurry / in pain', ar: 'في عجلة / في ألم' },
+            { en: 'in love / in despair', ar: 'في حب / في يأس' },
+            { en: 'in deep thought', ar: 'في تفكير عميق' }
+          ]}
+        },
+        quiz: [
+          { question: '𝑴𝑶𝑼𝑺𝑨 succeeded ___ mastering English prepositions within weeks.', options: ['in', 'at', 'on', 'with'], correct: 0, explanation: 'The verb succeed always requires IN.' }
+        ]
+      },
+      'ON': {
+        id: 'ON', category: 'PLACE', color: 'from-emerald-600 to-green-500', icon: '📋',
+        definition: { en: 'Used for surfaces, specific full calendar dates, and academic subjects.', ar: 'تُستخدم للأسطح، التواريخ المكتملة، والمواضيع العلمية.' },
+        sections: {
+          'Special States': { icon: '💡', items: [
+            { en: 'on fire / on sale', ar: 'مشتعل / معروض للبيع' },
+            { en: 'a thesis on linguistics', ar: 'أطروحة في علم اللغويات' }
+          ]}
+        },
+        quiz: [
+          { question: 'The instructor congratulated 𝑴𝑶𝑼𝑺𝑨 ___ passing level 5.', options: ['on', 'for', 'about', 'at'], correct: 0, explanation: 'The verb congratulate takes ON.' }
+        ]
+      },
+      'FOR': { id: 'FOR', category: 'TIME', color: 'from-amber-500 to-orange-500', icon: '🎯', definition: { en: 'Indicates duration, monetary exchange, cause, or intended recipient.', ar: 'تشير للمدة الزمنية، المقابل المادي، السبب، أو المستلم.' }, sections: { 'Exchange': { icon: '💵', items: [{ en: 'exchanged for crypto', ar: 'مُستبدل بعملات رقمية' }] } }, quiz: [{ question: 'He paid a high price ___ the manuscript.', options: ['for', 'with', 'by', 'to'], correct: 0, explanation: 'Payment exchange takes FOR.' }] },
+      'SINCE': { id: 'SINCE', category: 'TIME', color: 'from-pink-500 to-rose-500', icon: '⏰', definition: { en: 'Refers strictly to the starting point of an ongoing action.', ar: 'تشير إلى لحظة بدء حدث ما يزال مستمراً.' }, sections: { 'Time Start': { icon: '📍', items: [{ en: 'since time immemorial', ar: 'منذ أقدم العصور' }] } }, quiz: [{ question: '𝑴𝑶𝑼𝑺𝑨 has studied ___ 2020.', options: ['since', 'for', 'from', 'in'], correct: 0, explanation: 'Starting point takes SINCE.' }] },
+      'FROM': { id: 'FROM', category: 'DIRECTION', color: 'from-indigo-500 to-blue-500', icon: '➡️', definition: { en: 'Indicates origin, cause, or separation.', ar: 'تشير للمصدر، المنشأ، أو الانفصال.' }, sections: { 'Protection': { icon: '🛡️', items: [{ en: 'shield from danger', ar: 'الحماية من الخطر' }] } }, quiz: [{ question: 'He suffers ___ allergies.', options: ['from', 'of', 'with', 'by'], correct: 0, explanation: 'Suffer + FROM.' }] },
+      'TO': { id: 'TO', category: 'DIRECTION', color: 'from-teal-500 to-cyan-500', icon: '🏁', definition: { en: 'Indicates destination or commitment.', ar: 'تشير نحو الوجهة النهائية أو التفرغ.' }, sections: { 'Commitment': { icon: '🏁', items: [{ en: 'committed to excellence', ar: 'ملتزم بالتفوق' }] } }, quiz: [{ question: '𝑴𝑶𝑼𝑺𝑨 objects ___ skipping classes.', options: ['to', 'for', 'about', 'at'], correct: 0, explanation: 'Object + TO.' }] },
+      'BY': { id: 'BY', category: 'DIRECTION', color: 'from-violet-500 to-purple-500', icon: '🚗', definition: { en: 'Indicates agent, transport, or deadline.', ar: 'تشير للفاعل، وسائل النقل، أو الموعد النهائي.' }, sections: { 'Agent': { icon: '🎨', items: [{ en: 'by all means', ar: 'بكل الطرق / بالتأكيد' }] } }, quiz: [{ question: 'Grabbed him ___ the arm.', options: ['by', 'with', 'on', 'at'], correct: 0, explanation: 'Body part grabbing takes BY.' }] },
+      'WITH': { id: 'WITH', category: 'PLACE', color: 'from-rose-500 to-pink-500', icon: '🤝', definition: { en: 'Indicates accompaniment or tool.', ar: 'تشير للمعية، الأدوات، أو الكيفية.' }, sections: { 'Manner': { icon: '🔧', items: [{ en: 'proceed with caution', ar: 'المضي بحذر' }] } }, quiz: [{ question: 'Packed ___ students.', options: ['with', 'of', 'by', 'from'], correct: 0, explanation: 'Packed takes WITH.' }] },
+      'ABOUT': { id: 'ABOUT', category: 'TIME', color: 'from-sky-500 to-blue-500', icon: '💭', definition: { en: 'Concerning a topic or imminent action.', ar: 'بخصوص موضوع ما أو على وشك حدوث شيء.' }, sections: { 'Imminence': { icon: '⚡', items: [{ en: 'about to make a speech', ar: 'على وشك إلقاء خطبة' }] } }, quiz: [{ question: 'Be about ___ start.', options: ['to', 'for', 'on', 'at'], correct: 0, explanation: 'Be about + TO.' }] },
+      'BETWEEN': { id: 'BETWEEN', category: 'PLACE', color: 'from-lime-500 to-green-500', icon: '↔️', definition: { en: 'Separating two distinct entities.', ar: 'الفاصل بين شيئين محددين.' }, sections: { 'Dual': { icon: '⚖️', items: [{ en: 'between two choices', ar: 'بين خيارين' }] } }, quiz: [{ question: 'Between the ___ of us.', options: ['two', 'three', 'all', 'many'], correct: 0, explanation: 'Between is strictly for two.' }] },
+      'AMONG': { id: 'AMONG', category: 'PLACE', color: 'from-emerald-500 to-teal-500', icon: '🌐', definition: { en: 'Part of a group of three or more.', ar: 'وسط أو ضمن مجموعة من ثلاثة أو أكثر.' }, sections: { 'Group': { icon: '👥', items: [{ en: 'among the delegates', ar: 'بين المندوبين' }] } }, quiz: [{ question: 'Shared ___ three friends.', options: ['among', 'between', 'into', 'with'], correct: 0, explanation: 'Three or more takes AMONG.' }] },
+      'THROUGH': { id: 'THROUGH', category: 'DIRECTION', color: 'from-amber-500 to-yellow-500', icon: '🚶', definition: { en: '3D movement entering and exiting inside.', ar: 'الحركة ثلاثية الأبعاد بالداخل والتغلغل.' }, sections: { 'Means': { icon: '🔄', items: [{ en: 'succeed through hard work', ar: 'النجاح عبر العمل الجاد' }] } }, quiz: [{ question: 'Light came ___ the window.', options: ['through', 'across', 'over', 'into'], correct: 0, explanation: '3D penetration uses THROUGH.' }] },
+      'DURING': { id: 'DURING', category: 'TIME', color: 'from-red-500 to-orange-500', icon: '⌛', definition: { en: 'Throughout the duration of an event.', ar: 'طوال فترة زمنية لحدث ما.' }, sections: { 'Event': { icon: '🌙', items: [{ en: 'during the conference', ar: 'أثناء المؤتمر' }] } }, quiz: [{ question: 'Stay quiet ___ the exam.', options: ['during', 'while', 'for', 'since'], correct: 0, explanation: 'DURING precedes nouns.' }] },
+      'BEFORE': { id: 'BEFORE', category: 'TIME', color: 'from-blue-500 to-indigo-500', icon: '⏪', definition: { en: 'Prior to a specific moment.', ar: 'قبل وقت أو لحظة معينة.' }, sections: { 'Priority': { icon: '🕰️', items: [{ en: 'before submission', ar: 'قبل التسليم' }] } }, quiz: [{ question: 'Check answers ___ submitting.', options: ['before', 'after', 'since', 'during'], correct: 0, explanation: 'Prior action takes BEFORE.' }] },
+      'AFTER': { id: 'AFTER', category: 'TIME', color: 'from-purple-500 to-violet-500', icon: '⏩', definition: { en: 'Subsequent to time or event.', ar: 'بعد وقت أو حدث محدد.' }, sections: { 'Pursuit': { icon: '🏁', items: [{ en: 'chase after success', ar: 'السعي خلف النجاح' }] } }, quiz: [{ question: 'Run ___ the bus.', options: ['after', 'before', 'behind', 'under'], correct: 0, explanation: 'Pursuit uses AFTER.' }] },
+      'ABOVE': { id: 'ABOVE', category: 'PLACE', color: 'from-cyan-500 to-sky-500', icon: '⬆️', definition: { en: 'In a higher position or rank.', ar: 'في موقع أعلى أو مرتبة متفوقة.' }, sections: { 'Rank': { icon: '👑', items: [{ en: 'above suspicion', ar: 'فوق الشبهات' }] } }, quiz: [{ question: 'Ethics ___ reproach.', options: ['above', 'over', 'on', 'at'], correct: 0, explanation: 'Above reproach is an idiom.' }] },
+      'BELOW': { id: 'BELOW', category: 'PLACE', color: 'from-slate-500 to-gray-500', icon: '⬇️', definition: { en: 'Lower in level or scale.', ar: 'درجة أو مستوى أدنى على المقياس.' }, sections: { 'Metrics': { icon: '📉', items: [{ en: 'below zero', ar: 'تحت الصفر' }] } }, quiz: [{ question: 'Temperature dropped ___ freezing.', options: ['below', 'under', 'down', 'beneath'], correct: 0, explanation: 'Scales use BELOW.' }] },
+      'OVER': { id: 'OVER', category: 'DIRECTION', color: 'from-fuchsia-500 to-pink-500', icon: '🔝', definition: { en: 'Crossing over or authority.', ar: 'يعبر فوق أو يمتلك السلطة على.' }, sections: { 'Authority': { icon: '👑', items: [{ en: 'rule over the kingdom', ar: 'الحكم على المملكة' }] } }, quiz: [{ question: 'Control ___ the region.', options: ['over', 'above', 'on', 'at'], correct: 0, explanation: 'Authority takes OVER.' }] },
+      'UNDER': { id: 'UNDER', category: 'PLACE', color: 'from-stone-500 to-neutral-500', icon: '🔽', definition: { en: 'Directly beneath or condition.', ar: 'أسفل الشيء مباشرة أو تحت حالة معينة.' }, sections: { 'Condition': { icon: '📜', items: [{ en: 'under pressure', ar: 'تحت الضغط' }] } }, quiz: [{ question: 'Under the ___', options: ['circumstances', 'situations', 'events', 'times'], correct: 0, explanation: 'Under the circumstances.' }] },
+      'INTO': { id: 'INTO', category: 'DIRECTION', color: 'from-emerald-500 to-teal-500', icon: '📥', definition: { en: 'Entering interior or transformation.', ar: 'الدخول للداخل أو التحول.' }, sections: { 'Change': { icon: '✨', items: [{ en: 'turn into gold', ar: 'التحول إلى ذهب' }] } }, quiz: [{ question: 'Translate ___ Arabic.', options: ['into', 'in', 'to', 'towards'], correct: 0, explanation: 'Translations take INTO.' }] },
+      'OUT OF': { id: 'OUT OF', category: 'DIRECTION', color: 'from-red-500 to-rose-500', icon: '📤', definition: { en: 'Exiting interior or depletion.', ar: 'الخروج من الداخل أو النفاد.' }, sections: { 'State': { icon: '⚠️', items: [{ en: 'out of order', ar: 'تعطل عن العمل' }] } }, quiz: [{ question: 'Out ___ money.', options: ['of', 'from', 'off', 'in'], correct: 0, explanation: 'Out OF.' }] },
+      'ACROSS': { id: 'ACROSS', category: 'DIRECTION', color: 'from-yellow-500 to-amber-500', icon: '↗️', definition: { en: 'Traversing a flat surface.', ar: 'عبور سطح مستو.' }, sections: { 'Traversal': { icon: '🌍', items: [{ en: 'swim across the river', ar: 'السباحة عبر النهر' }] } }, quiz: [{ question: 'Stumbled ___ a clue.', options: ['across', 'through', 'over', 'into'], correct: 0, explanation: 'Come across = find.' }] },
+      'ALONG': { id: 'ALONG', category: 'DIRECTION', color: 'from-lime-500 to-green-500', icon: '🚶‍♂️', definition: { en: 'Moving in a parallel line.', ar: 'التحرك بمحاذاة خط مستقيم.' }, sections: { 'Parallel': { icon: '🤝', items: [{ en: 'walk along the beach', ar: 'المشي بمحاذاة الشاطئ' }] } }, quiz: [{ question: 'Get ___ with others.', options: ['along', 'across', 'through', 'over'], correct: 0, explanation: 'Get along with.' }] },
+      'AROUND': { id: 'AROUND', category: 'DIRECTION', color: 'from-orange-500 to-amber-500', icon: '🔄', definition: { en: 'Circular path or approximate time.', ar: 'مسار دائري أو وقت تقريبي.' }, sections: { 'Circle': { icon: '🌐', items: [{ en: 'around 5 PM', ar: 'حوالي الساعة 5 مساءً' }] } }, quiz: [{ question: 'Run ___ the track.', options: ['around', 'about', 'across', 'over'], correct: 0, explanation: 'Circular takes AROUND.' }] },
+      'BEHIND': { id: 'BEHIND', category: 'PLACE', color: 'from-purple-700 to-indigo-800', icon: '🔙', definition: { en: 'At the back side of.', ar: 'في الجانب الخلفي.' }, sections: { 'Position': { icon: '🛡️', items: [{ en: 'behind the scene', ar: 'خلف الكواليس' }] } }, quiz: [{ question: 'Left ___ in the race.', options: ['behind', 'after', 'under', 'below'], correct: 0, explanation: 'Leave behind.' }] },
+      'IN FRONT OF': { id: 'IN FRONT OF', category: 'PLACE', color: 'from-teal-600 to-emerald-600', icon: '🚘', definition: { en: 'Ahead or facing position.', ar: 'في المواجهة والمقدمة.' }, sections: { 'Facing': { icon: '🚘', items: [{ en: 'in front of the camera', ar: 'أمام الكاميرا' }] } }, quiz: [{ question: 'Stood ___ the crowd.', options: ['in front of', 'behind', 'next to', 'over'], correct: 0, explanation: 'Facing crowd takes in front of.' }] },
+      'NEXT TO': { id: 'NEXT TO', category: 'PLACE', color: 'from-sky-600 to-indigo-600', icon: '👫', definition: { en: 'Directly adjacent to.', ar: 'مباشرة بجانب الشيء.' }, sections: { 'Adjacent': { icon: '📍', items: [{ en: 'next to impossible', ar: 'شبه مستحيل' }] } }, quiz: [{ question: 'Sit ___ me.', options: ['next to', 'beside to', 'near to', 'by to'], correct: 0, explanation: 'Next TO.' }] },
+      'INSIDE': { id: 'INSIDE', category: 'PLACE', color: 'from-cyan-600 to-teal-700', icon: '🏠', definition: { en: 'In the inner side.', ar: 'في الجزء الداخلي.' }, sections: { 'Inner': { icon: '🔑', items: [{ en: 'know inside out', ar: 'معرفته عن ظهر قلب' }] } }, quiz: [{ question: 'Know it inside ___', options: ['out', 'in', 'off', 'to'], correct: 0, explanation: 'Inside out.' }] },
+      'WITHOUT': { id: 'WITHOUT', category: 'TIME', color: 'from-slate-600 to-zinc-700', icon: '🚫', definition: { en: 'Absence or lack of.', ar: 'بدون أو عند غياب الشيء.' }, sections: { 'Absence': { icon: '❌', items: [{ en: 'without doubt', ar: 'بدون شك' }] } }, quiz: [{ question: 'Without a ___ of doubt.', options: ['shadow', 'cloud', 'light', 'dark'], correct: 0, explanation: 'Without a shadow of doubt.' }] }
+    };
+
+    /* DATASET 2: 100 COMPLETE SILENT LETTER WORDS */
+    const SILENT_WORDS_DATABASE = [
+      { id: 1, word: "Knee", silent: "K", silentPos: [0], phonetic: "nee", arabic: "رُكْبَة", category: "Daily Life", difficulty: "Easy", example: "He injured his knee playing soccer." },
+      { id: 2, word: "Knife", silent: "K", silentPos: [0], phonetic: "nyf", arabic: "سِكِّين", category: "Daily Life", difficulty: "Easy", example: "Handle a sharp knife with care." },
+      { id: 3, word: "Know", silent: "K", silentPos: [0], phonetic: "noh", arabic: "يَعْرِف", category: "Conversations", difficulty: "Easy", example: "I know the correct answer." },
+      { id: 4, word: "Knock", silent: "K", silentPos: [0], phonetic: "nok", arabic: "يَطْرُق", category: "Daily Life", difficulty: "Easy", example: "Knock on the door before entering." },
+      { id: 5, word: "Knot", silent: "K", silentPos: [0], phonetic: "not", arabic: "عُقْدَة", category: "Daily Life", difficulty: "Medium", example: "Tie a strong knot on the rope." },
+      { id: 6, word: "Knight", silent: "K", silentPos: [0], phonetic: "nyt", arabic: "فَارِس", category: "School", difficulty: "Medium", example: "The knight defended the castle." },
+      { id: 7, word: "Kneel", silent: "K", silentPos: [0], phonetic: "neel", arabic: "يَرْكَع", category: "Daily Life", difficulty: "Medium", example: "Kneel down to show respect." },
+      { id: 8, word: "Knit", silent: "K", silentPos: [0], phonetic: "nit", arabic: "يَحْبِك / يَغْزِل", category: "Daily Life", difficulty: "Medium", example: "She likes to knit warm sweaters." },
+      { id: 9, word: "Knob", silent: "K", silentPos: [0], phonetic: "nob", arabic: "مَقْبَض", category: "Daily Life", difficulty: "Medium", example: "Turn the door knob to open." },
+      { id: 10, word: "Knuckle", silent: "K", silentPos: [0], phonetic: "NUK-uhl", arabic: "مَفْصَل الأَصْبُع", category: "Medical", difficulty: "Hard", example: "He cracked his knuckle." },
+      { id: 11, word: "Write", silent: "W", silentPos: [0], phonetic: "ryt", arabic: "يَكْتُب", category: "School", difficulty: "Easy", example: "Write your name on paper." },
+      { id: 12, word: "Wrong", silent: "W", silentPos: [0], phonetic: "rong", arabic: "خَاطِئ", category: "Conversations", difficulty: "Easy", example: "That is the wrong way." },
+      { id: 13, word: "Wrist", silent: "W", silentPos: [0], phonetic: "rist", arabic: "مِعْصَم", category: "Medical", difficulty: "Medium", example: "She wears a watch on her wrist." },
+      { id: 14, word: "Wrap", silent: "W", silentPos: [0], phonetic: "rap", arabic: "يُغَلِّف", category: "Shopping", difficulty: "Easy", example: "Wrap the gift nicely." },
+      { id: 15, word: "Wreck", silent: "W", silentPos: [0], phonetic: "rek", arabic: "حُطَام", category: "Travel", difficulty: "Hard", example: "Explored the old shipwreck." },
+      { id: 16, word: "Wrinkle", silent: "W", silentPos: [0], phonetic: "RING-kuhl", arabic: "تَجْعِيدَة", category: "Daily Life", difficulty: "Medium", example: "Iron the shirt to remove wrinkle." },
+      { id: 17, word: "Wrench", silent: "W", silentPos: [0], phonetic: "rench", arabic: "مِفْتَاح رَبْط", category: "Business", difficulty: "Hard", example: "Fixed the engine with a wrench." },
+      { id: 18, word: "Wrestle", silent: "W", silentPos: [0], phonetic: "RES-uhl", arabic: "يُصَارِع", category: "Daily Life", difficulty: "Medium", example: "Athletes wrestle on the mat." },
+      { id: 19, word: "Answer", silent: "W", silentPos: [3], phonetic: "AN-ser", arabic: "إِجَابَة", category: "School", difficulty: "Easy", example: "Give me an honest answer." },
+      { id: 20, word: "Sword", silent: "W", silentPos: [1], phonetic: "sord", arabic: "سَيْف", category: "School", difficulty: "Medium", example: "An ancient knightly sword." },
+      { id: 21, word: "Lamb", silent: "B", silentPos: [3], phonetic: "lam", arabic: "حَمَل", category: "Daily Life", difficulty: "Easy", example: "The little lamb jumped." },
+      { id: 22, word: "Comb", silent: "B", silentPos: [3], phonetic: "kohm", arabic: "مُشْط", category: "Daily Life", difficulty: "Easy", example: "Comb your hair neatly." },
+      { id: 23, word: "Thumb", silent: "B", silentPos: [4], phonetic: "thum", arabic: "إِبْهَام", category: "Medical", difficulty: "Easy", example: "Gave a thumbs-up approval." },
+      { id: 24, word: "Climb", silent: "B", silentPos: [4], phonetic: "klym", arabic: "يَتَسَلَّق", category: "Travel", difficulty: "Easy", example: "Climb the steep mountain." },
+      { id: 25, word: "Debt", silent: "B", silentPos: [2], phonetic: "det", arabic: "دَيْن", category: "Business", difficulty: "Medium", example: "Pay off your bank debt." },
+      { id: 26, word: "Doubt", silent: "B", silentPos: [3], phonetic: "dout", arabic: "شَكّ", category: "Conversations", difficulty: "Medium", example: "No doubt about your talent." },
+      { id: 27, word: "Subtle", silent: "B", silentPos: [2], phonetic: "SUT-uhl", arabic: "دَقِيق / خَفِيّ", category: "Conversations", difficulty: "Hard", example: "A subtle difference in tone." },
+      { id: 28, word: "Plumber", silent: "B", silentPos: [4], phonetic: "PLUM-er", arabic: "سَبَّاك", category: "Business", difficulty: "Medium", example: "Call a plumber for leaks." },
+      { id: 29, word: "Bomb", silent: "B", silentPos: [3], phonetic: "bom", arabic: "قُنْبُلَة", category: "Daily Life", difficulty: "Medium", example: "Bomb squad cleared the site." },
+      { id: 30, word: "Tomb", silent: "B", silentPos: [3], phonetic: "toom", arabic: "مَقْبَرَة", category: "Travel", difficulty: "Hard", example: "Ancient Egyptian tomb." },
+      { id: 31, word: "Calm", silent: "L", silentPos: [2], phonetic: "kaam", arabic: "هَادِئ", category: "Conversations", difficulty: "Easy", example: "Keep calm during exams." },
+      { id: 32, word: "Half", silent: "L", silentPos: [2], phonetic: "haaf", arabic: "نِصْف", category: "Daily Life", difficulty: "Easy", example: "Cut in half equally." },
+      { id: 33, word: "Talk", silent: "L", silentPos: [2], phonetic: "tawk", arabic: "يَتَحَدَّث", category: "Conversations", difficulty: "Easy", example: "We need to talk now." },
+      { id: 34, word: "Walk", silent: "L", silentPos: [2], phonetic: "wawk", arabic: "يَمْشِي", category: "Daily Life", difficulty: "Easy", example: "Take a walk in the park." },
+      { id: 35, word: "Chalk", silent: "L", silentPos: [3], phonetic: "chawk", arabic: "طَبَاشِير", category: "School", difficulty: "Easy", example: "Write with white chalk." },
+      { id: 36, word: "Could", silent: "L", silentPos: [3], phonetic: "kud", arabic: "اسْتَطَاعَ", category: "Conversations", difficulty: "Easy", example: "Could you help me?" },
+      { id: 37, word: "Should", silent: "L", silentPos: [4], phonetic: "shud", arabic: "يَنْبَغِي", category: "Conversations", difficulty: "Easy", example: "You should study hard." },
+      { id: 38, word: "Would", silent: "L", silentPos: [3], phonetic: "wud", arabic: "سَوْفَ", category: "Conversations", difficulty: "Easy", example: "Would you like tea?" },
+      { id: 39, word: "Salmon", silent: "L", silentPos: [2], phonetic: "SAM-uhn", arabic: "سَلَمُون", category: "Restaurant", difficulty: "Medium", example: "Grilled salmon dish." },
+      { id: 40, word: "Yolk", silent: "L", silentPos: [2], phonetic: "yohk", arabic: "صَفَار البَيْض", category: "Restaurant", difficulty: "Medium", example: "Separate the egg yolk." },
+      { id: 41, word: "Honest", silent: "H", silentPos: [0], phonetic: "ON-ist", arabic: "صَادِق", category: "Conversations", difficulty: "Medium", example: "Give an honest answer." },
+      { id: 42, word: "Hour", silent: "H", silentPos: [0], phonetic: "OW-er", arabic: "سَاعَة", category: "Daily Life", difficulty: "Easy", example: "Wait for one hour." },
+      { id: 43, word: "Honour", silent: "H", silentPos: [0], phonetic: "ON-er", arabic: "شَرَف", category: "Conversations", difficulty: "Hard", example: "A great honour to meet." },
+      { id: 44, word: "Heir", silent: "H", silentPos: [0], phonetic: "air", arabic: "وَرِيث", category: "Business", difficulty: "Hard", example: "Legal heir to the throne." },
+      { id: 45, word: "Heiress", silent: "H", silentPos: [0], phonetic: "AIR-ess", arabic: "وَرِيثَة", category: "Business", difficulty: "Hard", example: "The rich heiress." },
+      { id: 46, word: "Vehicle", silent: "H", silentPos: [2], phonetic: "VEE-uh-kuhl", arabic: "مركبة", category: "Travel", difficulty: "Medium", example: "Park your vehicle." },
+      { id: 47, word: "Rhythm", silent: "H", silentPos: [1], phonetic: "RITH-um", arabic: "إِيقَاع", category: "School", difficulty: "Hard", example: "Dance to the rhythm." },
+      { id: 48, word: "Rhyme", silent: "H", silentPos: [1], phonetic: "rym", arabic: "قَافِيَة", category: "School", difficulty: "Medium", example: "Words that rhyme well." },
+      { id: 49, word: "Ghost", silent: "H", silentPos: [1], phonetic: "gohst", arabic: "شَبَح", category: "Daily Life", difficulty: "Easy", example: "A scary ghost story." },
+      { id: 50, word: "Exhaust", silent: "H", silentPos: [2], phonetic: "ig-ZAWST", arabic: "عَادِم", category: "Travel", difficulty: "Hard", example: "Car exhaust fumes." },
+      { id: 51, word: "Listen", silent: "T", silentPos: [3], phonetic: "LIS-uhn", arabic: "يَسْتَمِع", category: "Conversations", difficulty: "Easy", example: "Listen carefully." },
+      { id: 52, word: "Castle", silent: "T", silentPos: [3], phonetic: "KAS-uhl", arabic: "قَلْعَة", category: "Travel", difficulty: "Medium", example: "A medieval castle." },
+      { id: 53, word: "Whistle", silent: "T", silentPos: [4], phonetic: "WIS-uhl", arabic: "صَفَّارَة", category: "Daily Life", difficulty: "Medium", example: "Blow the whistle." },
+      { id: 54, word: "Fasten", silent: "T", silentPos: [3], phonetic: "FAS-uhn", arabic: "يَرْبُط", category: "Travel", difficulty: "Medium", example: "Fasten seatbelts." },
+      { id: 55, word: "Soften", silent: "T", silentPos: [3], phonetic: "SOF-uhn", arabic: "يُلَيِّن", category: "Daily Life", difficulty: "Medium", example: "Soften the butter." },
+      { id: 56, word: "Christmas", silent: "T", silentPos: [5], phonetic: "KRIS-muhs", arabic: "عِيد المِيلَاد", category: "Daily Life", difficulty: "Medium", example: "Celebrate Christmas." },
+      { id: 57, word: "Mortgage", silent: "T", silentPos: [3], phonetic: "MOR-gij", arabic: "رَهْن عَقَارِي", category: "Business", difficulty: "Hard", example: "Bank home mortgage." },
+      { id: 58, word: "Ballet", silent: "T", silentPos: [5], phonetic: "BAL-ay", arabic: "بَالِيه", category: "Daily Life", difficulty: "Hard", example: "Graceful ballet dancer." },
+      { id: 59, word: "Buffet", silent: "T", silentPos: [5], phonetic: "BUH-fay", arabic: "بُوفِيه", category: "Restaurant", difficulty: "Medium", example: "Breakfast buffet meal." },
+      { id: 60, word: "Gourmet", silent: "T", silentPos: [6], phonetic: "GOR-may", arabic: "طَعَام فَاخِر", category: "Restaurant", difficulty: "Hard", example: "Gourmet chef meal." },
+      { id: 61, word: "Sign", silent: "G", silentPos: [2], phonetic: "syn", arabic: "يُوَقِّع", category: "Business", difficulty: "Easy", example: "Sign the contract." },
+      { id: 62, word: "Design", silent: "G", silentPos: [4], phonetic: "dih-ZYN", arabic: "تَصْمِيم", category: "Business", difficulty: "Medium", example: "Modern web design." },
+      { id: 63, word: "Foreign", silent: "G", silentPos: [5], phonetic: "FOR-in", arabic: "أَجْنَبِيّ", category: "Travel", difficulty: "Medium", example: "Learn a foreign language." },
+      { id: 64, word: "Reign", silent: "G", silentPos: [3], phonetic: "rayn", arabic: "حُكْم", category: "School", difficulty: "Hard", example: "Long king reign." },
+      { id: 65, word: "Campaign", silent: "G", silentPos: [6], phonetic: "kam-PAYN", arabic: "حَمْلَة", category: "Business", difficulty: "Hard", example: "Ad marketing campaign." },
+      { id: 66, word: "Gnaw", silent: "G", silentPos: [0], phonetic: "naw", arabic: "يَقْرِض", category: "Daily Life", difficulty: "Hard", example: "Rodents gnaw wood." },
+      { id: 67, word: "Gnome", silent: "G", silentPos: [0], phonetic: "nohm", arabic: "قَزَم", category: "Daily Life", difficulty: "Medium", example: "Garden gnome figure." },
+      { id: 68, word: "Gnat", silent: "G", silentPos: [0], phonetic: "nat", arabic: "بَعُوضَة", category: "Daily Life", difficulty: "Medium", example: "A small gnat insect." },
+      { id: 69, word: "Assign", silent: "G", silentPos: [4], phonetic: "uh-SYN", arabic: "يُعَيِّن", category: "Business", difficulty: "Medium", example: "Assign new tasks." },
+      { id: 70, word: "Resign", silent: "G", silentPos: [4], phonetic: "rih-ZYN", arabic: "يَسْتَقِيل", category: "Business", difficulty: "Hard", example: "Resign from office." },
+      { id: 71, word: "Psychology", silent: "P", silentPos: [0], phonetic: "sy-KOL-uh-jee", arabic: "عِلْم النَّفْس", category: "School", difficulty: "Hard", example: "Study human psychology." },
+      { id: 72, word: "Psychiatrist", silent: "P", silentPos: [0], phonetic: "sy-KY-uh-trist", arabic: "طَبِيب نَفْسَانِي", category: "Medical", difficulty: "Hard", example: "Consult a psychiatrist." },
+      { id: 73, word: "Pneumonia", silent: "P", silentPos: [0], phonetic: "new-MOH-nee-uh", arabic: "الْتِهَاب رِئَوِي", category: "Medical", difficulty: "Hard", example: "Treat severe pneumonia." },
+      { id: 74, word: "Pneumatic", silent: "P", silentPos: [0], phonetic: "new-MAT-ik", arabic: "مَعْمُول بِالهَوَاء", category: "Business", difficulty: "Hard", example: "Pneumatic drill tool." },
+      { id: 75, word: "Psalm", silent: "P", silentPos: [0], phonetic: "saam", arabic: "مَزْمُور", category: "School", difficulty: "Hard", example: "Read a sacred psalm." },
+      { id: 76, word: "Pseudo", silent: "P", silentPos: [0], phonetic: "SOO-doh", arabic: "زَائِف", category: "Conversations", difficulty: "Hard", example: "Pseudo science claim." },
+      { id: 77, word: "Receipt", silent: "P", silentPos: [5], phonetic: "ri-SEET", arabic: "إِيصَال", category: "Shopping", difficulty: "Medium", example: "Keep store receipt." },
+      { id: 78, word: "Raspberry", silent: "P", silentPos: [4], phonetic: "RAZ-buh-ree", arabic: "تُوت العُلَّيق", category: "Restaurant", difficulty: "Medium", example: "Fresh raspberry pie." },
+      { id: 79, word: "Cupboard", silent: "P", silentPos: [3], phonetic: "KUB-erd", arabic: "خِزَانَة", category: "Daily Life", difficulty: "Easy", example: "Kitchen dish cupboard." },
+      { id: 80, word: "Corps", silent: "P", silentPos: [3], phonetic: "kor", arabic: "فَيْلَق", category: "Business", difficulty: "Hard", example: "Medical military corps." },
+      { id: 81, word: "Island", silent: "S", silentPos: [1], phonetic: "EYE-lənd", arabic: "جَزِيرَة", category: "Travel", difficulty: "Easy", example: "Tropical island trip." },
+      { id: 82, word: "Aisle", silent: "S", silentPos: [1], phonetic: "EYE-l", arabic: "مَمَرّ", category: "Travel", difficulty: "Medium", example: "Airplane aisle seat." },
+      { id: 83, word: "Isle", silent: "S", silentPos: [1], phonetic: "EYE-l", arabic: "جَزِيرَة صَغِيرَة", category: "Travel", difficulty: "Medium", example: "The Isle of Skye." },
+      { id: 84, word: "Islet", silent: "S", silentPos: [1], phonetic: "EYE-let", arabic: "جُزَيْرَة", category: "Travel", difficulty: "Hard", example: "Small coastal islet." },
+      { id: 85, word: "Debris", silent: "S", silentPos: [5], phonetic: "duh-BREE", arabic: "حُطَام", category: "Daily Life", difficulty: "Hard", example: "Clear storm debris." },
+      { id: 86, word: "Viscount", silent: "S", silentPos: [1], phonetic: "VYE-count", arabic: "فَايْكُونت", category: "School", difficulty: "Hard", example: "Royal viscount title." },
+      { id: 87, word: "Bourgeois", silent: "S", silentPos: [8], phonetic: "BOOR-zhwah", arabic: "بُرْجُوَازِيّ", category: "School", difficulty: "Hard", example: "Bourgeois social class." },
+      { id: 88, word: "Rendezvous", silent: "S", silentPos: [9], phonetic: "RON-day-voo", arabic: "مَوْعِد لِقَاء", category: "Conversations", difficulty: "Hard", example: "Secret team rendezvous." },
+      { id: 89, word: "Apropos", silent: "S", silentPos: [6], phonetic: "ap-ruh-POH", arabic: "مُنَاسِب", category: "Conversations", difficulty: "Hard", example: "Apropos to topic." },
+      { id: 90, word: "Arkansas", silent: "S", silentPos: [7], phonetic: "AR-kan-saw", arabic: "أَرْكَنْسَاس", category: "Travel", difficulty: "Medium", example: "US state Arkansas." },
+      { id: 91, word: "Light", silent: "GH", silentPos: [2,3], phonetic: "lyt", arabic: "ضَوْء", category: "Daily Life", difficulty: "Easy", example: "Turn on the light." },
+      { id: 92, word: "Night", silent: "GH", silentPos: [2,3], phonetic: "nyt", arabic: "لَيْلَة", category: "Daily Life", difficulty: "Easy", example: "Good night sleep." },
+      { id: 93, word: "Right", silent: "GH", silentPos: [2,3], phonetic: "ryt", arabic: "صَحِيح", category: "Conversations", difficulty: "Easy", example: "You are right." },
+      { id: 94, word: "High", silent: "GH", silentPos: [2,3], phonetic: "hy", arabic: "عَالِي", category: "Daily Life", difficulty: "Easy", example: "Fly high in sky." },
+      { id: 95, word: "Daughter", silent: "GH", silentPos: [3,4], phonetic: "DAW-ter", arabic: "ابْنَة", category: "Daily Life", difficulty: "Easy", example: "Their young daughter." },
+      { id: 96, word: "Caught", silent: "GH", silentPos: [2,3], phonetic: "kawt", arabic: "أَمْسَكَ", category: "Conversations", difficulty: "Medium", example: "Caught the ball." },
+      { id: 97, word: "Though", silent: "GH", silentPos: [4,5], phonetic: "thoh", arabic: "رَغْمَ أَنَّ", category: "Conversations", difficulty: "Medium", example: "Even though it rained." },
+      { id: 98, word: "Through", silent: "GH", silentPos: [5,6], phonetic: "throo", arabic: "عَبْرَ", category: "Conversations", difficulty: "Medium", example: "Walk through door." },
+      { id: 99, word: "Weight", silent: "GH", silentPos: [3,4], phonetic: "wayt", arabic: "وَزْن", category: "Medical", difficulty: "Medium", example: "Check body weight." },
+      { id: 100, word: "Eight", silent: "GH", silentPos: [1,2], phonetic: "ayt", arabic: "ثَمَانِيَة", category: "School", difficulty: "Easy", example: "Eight o'clock morning." }
+    ];
+
+    /* APP STATE ENGINE */
+    const state = {
+      lang: 'ar',
+      theme: 'blue-neon',
+      activeHub: 'home',
+      voiceAccent: 'en-US',
+      xp: parseInt(localStorage.getItem('mousa_xp')) || 0,
+      grammarCategory: 'ALL',
+      silentLetterFilter: 'ALL',
+      silentCategoryFilter: 'ALL',
+      silentSearchQuery: '',
+      bookmarks: JSON.parse(localStorage.getItem('mousa_bookmarks')) || [],
+      grammarCompleted: JSON.parse(localStorage.getItem('mousa_g_completed')) || [],
+      customNotes: JSON.parse(localStorage.getItem('mousa_notes')) || {},
+      flashcardIdx: 0,
+      sQuiz: { active: false, questions: [], currentIdx: 0, score: 0 }
+    };
+
+    /* INITIALIZATION */
+    document.addEventListener('DOMContentLoaded', () => {
+      initParticles();
+      setupEventListeners();
+      updateXpAndStats();
+      renderGrammarCards();
+      renderSilentWordsGrid();
+      setupFlashcards();
+    });
+
+    /* NAVIGATION & HUB SWITCHING */
+    function switchMainHub(hubName) {
+      state.activeHub = hubName;
+      document.getElementById('viewHome').classList.add('hidden');
+      document.getElementById('viewGrammar').classList.add('hidden');
+      document.getElementById('viewSilent').classList.add('hidden');
+
+      const bcSub = document.getElementById('bcSubPath');
+
+      if (hubName === 'home') {
+        document.getElementById('viewHome').classList.remove('hidden');
+        bcSub.textContent = '';
+      } else if (hubName === 'grammar') {
+        document.getElementById('viewGrammar').classList.remove('hidden');
+        bcSub.innerHTML = ' › <span class="text-sky-300">قواعد اللغة الإنجليزية</span>';
+      } else if (hubName === 'silent') {
+        document.getElementById('viewSilent').classList.remove('hidden');
+        bcSub.innerHTML = ' › <span class="text-pink-300">الحروف الصامتة</span>';
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* VOICE AUDIO SPEECH ENGINE */
+    function speakWord(text, rate = 0.9) {
+      if (!('speechSynthesis' in window)) {
+        showToast('متصفحك لا يدعم المحرك الصوتي');
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = state.voiceAccent;
+      utterance.rate = rate;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    /* GRAMMAR MODULE LOGIC */
+    function renderGrammarCards() {
+      const container = document.getElementById('grammarCardsGrid');
+      container.innerHTML = '';
+
+      let keys = Object.keys(GRAMMAR_DATABASE);
+
+      if (state.grammarCategory !== 'ALL') {
+        if (state.grammarCategory === 'FAVORITES') {
+          keys = keys.filter(k => state.bookmarks.includes(`g_${k}`));
+        } else {
+          keys = keys.filter(k => GRAMMAR_DATABASE[k].category === state.grammarCategory);
+        }
+      }
+
+      if (keys.length === 0) {
+        container.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400">لا توجد عناصر في هذا التصنيف.</div>`;
+        return;
+      }
+
+      keys.forEach(key => {
+        const item = GRAMMAR_DATABASE[key];
+        const isDone = state.grammarCompleted.includes(key);
+        const isFav = state.bookmarks.includes(`g_${key}`);
+
+        const card = document.createElement('div');
+        card.className = 'glass-panel p-5 cursor-pointer flex flex-col justify-between hover:scale-[1.02] transition-transform';
+        card.onclick = () => openGrammarDetail(key);
+
+        card.innerHTML = `
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-3xl">${item.icon}</span>
+              <div class="flex gap-1.5">
+                ${isDone ? '<span class="text-emerald-400 text-xs">✅ متقن</span>' : ''}
+                ${isFav ? '<span class="text-amber-400 text-xs">⭐</span>' : ''}
+              </div>
+            </div>
+            <h3 class="text-xl font-black bg-gradient-to-r ${item.color} bg-clip-text text-transparent">${key}</h3>
+            <p class="text-xs text-slate-300 mt-1 line-clamp-2">${state.lang === 'ar' ? item.definition.ar : item.definition.en}</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-700/50 flex justify-between items-center text-[11px] text-sky-400 font-bold">
+            <span>عرض الدرس</span>
+            <i class="fa-solid fa-chevron-left"></i>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function openGrammarDetail(key) {
+      const item = GRAMMAR_DATABASE[key];
+      if (!item) return;
+
+      document.getElementById('gDetailTitle').textContent = key;
+      document.getElementById('gDetailIcon').textContent = item.icon;
+      document.getElementById('gDetailCategory').textContent = item.category;
+      document.getElementById('gDetailDefEn').textContent = item.definition.en;
+      document.getElementById('gDetailDefAr').textContent = item.definition.ar;
+
+      const secGrid = document.getElementById('gDetailSectionsGrid');
+      secGrid.innerHTML = '';
+
+      Object.entries(item.sections).forEach(([secTitle, secData]) => {
+        const secDiv = document.createElement('div');
+        secDiv.className = 'glass-panel p-4 bg-slate-900/60 border-r-4 border-sky-400';
+        secDiv.innerHTML = `
+          <h5 class="font-bold text-xs text-white mb-2 flex items-center gap-1.5">
+            <span>${secData.icon}</span> ${secTitle}
+          </h5>
+          <div class="space-y-1.5">
+            ${secData.items.map(i => `
+              <div class="bg-slate-800/80 p-2 rounded-xl flex justify-between items-center text-xs">
+                <div>
+                  <div class="font-bold text-white">${i.en}</div>
+                  <div class="text-[11px] text-slate-300 font-arabic">${i.ar}</div>
+                </div>
+                <button onclick="speakWord('${i.en}')" class="text-sky-400 hover:text-sky-300 p-1"><i class="fa-solid fa-volume-high"></i></button>
+              </div>
+            `).join('')}
+          </div>
+        `;
+        secGrid.appendChild(secDiv);
+      });
+
+      renderGrammarNotes(key);
+
+      const bmBtn = document.getElementById('btnToggleGDetailBookmark');
+      const isFav = state.bookmarks.includes(`g_${key}`);
+      bmBtn.textContent = isFav ? '⭐ إزالة من المفضلة' : '⭐ إضافة للمفضلة';
+      bmBtn.onclick = () => {
+        toggleBookmark(`g_${key}`);
+        openGrammarDetail(key);
+      };
+
+      document.getElementById('btnStartGTopicQuiz').onclick = () => {
+        closeGrammarDetail();
+        startGrammarTopicQuiz(key);
+      };
+
+      document.getElementById('btnSaveGrammarNote').onclick = () => {
+        const input = document.getElementById('gCustomNoteInput');
+        if (input.value.trim()) {
+          if (!state.customNotes[key]) state.customNotes[key] = [];
+          state.customNotes[key].push(input.value.trim());
+          localStorage.setItem('mousa_notes', JSON.stringify(state.customNotes));
+          input.value = '';
+          renderGrammarNotes(key);
+          showToast('تم حفظ الجملة بنجاح');
+        }
+      };
+
+      if (!state.grammarCompleted.includes(key)) {
+        state.grammarCompleted.push(key);
+        state.xp += 15;
+        saveState();
+      }
+
+      document.getElementById('grammarDetailModal').classList.remove('hidden');
+    }
+
+    function startGrammarTopicQuiz(key) {
+      const item = GRAMMAR_DATABASE[key];
+      if (!item || !item.quiz) return;
+
+      const modal = document.getElementById('globalChallengeModal');
+      const container = document.getElementById('gChallengeContent');
+
+      let curIdx = 0;
+      let score = 0;
+
+      function renderQ() {
+        if (curIdx >= item.quiz.length) {
+          container.innerHTML = `
+            <div class="text-center space-y-4 py-4">
+              <i class="fa-solid fa-trophy text-6xl text-amber-400"></i>
+              <h3 class="text-2xl font-black text-white">اكتمل اختبار درس (${key})!</h3>
+              <p class="text-lg font-bold text-sky-300">النتيجة: ${score}/${item.quiz.length}</p>
+              <button onclick="closeGlobalChallenge()" class="px-6 py-2.5 bg-sky-500 text-slate-950 font-black rounded-xl text-xs">إغلاق</button>
+            </div>
+          `;
+          state.xp += score * 15;
+          saveState();
+          return;
+        }
+
+        const q = item.quiz[curIdx];
+        container.innerHTML = `
+          <div>
+            <span class="text-xs font-bold text-sky-400">📝 اختبار درس (${key}) - سؤال ${curIdx + 1}/${item.quiz.length}</span>
+            <h4 class="text-base font-bold text-white mt-2">${q.question}</h4>
+          </div>
+          <div class="space-y-2 my-4">
+            ${q.options.map((opt, idx) => `
+              <button onclick="handleTopicQOpt(${idx}, ${q.correct}, '${q.explanation.replace(/'/g, "\\'")}')" class="topic-q-btn w-full p-3 rounded-xl glass-panel text-xs text-right font-bold text-slate-200 hover:border-sky-400">
+                ${String.fromCharCode(65 + idx)}) ${opt}
+              </button>
+            `).join('')}
+          </div>
+          <div id="topicQFeedback" class="text-xs font-bold"></div>
+        `;
+      }
+
+      window.handleTopicQOpt = (selected, correctIdx, exp) => {
+        const btns = document.querySelectorAll('.topic-q-btn');
+        btns.forEach(b => b.disabled = true);
+        const fb = document.getElementById('topicQFeedback');
+
+        if (selected === correctIdx) {
+          btns[selected].classList.add('bg-emerald-500/30', 'border-emerald-400');
+          fb.innerHTML = `<span class="text-emerald-400">✅ إجابة صحيحة! ${exp}</span>`;
+          score++;
+        } else {
+          btns[selected].classList.add('bg-rose-500/30', 'border-rose-400');
+          fb.innerHTML = `<span class="text-rose-400">❌ إجابة خاطئة! ${exp}</span>`;
+        }
+
+        setTimeout(() => {
+          curIdx++;
+          renderQ();
+        }, 2000);
+      };
+
+      renderQ();
+      modal.classList.remove('hidden');
+    }
+
+    function renderGrammarNotes(key) {
+      const list = document.getElementById('gCustomNotesList');
+      const notes = state.customNotes[key] || [];
+      if (notes.length === 0) {
+        list.innerHTML = `<span class="text-slate-500 italic">لا توجد ملاحظات محفوظة لهذا الدرس بعد.</span>`;
+        return;
+      }
+      list.innerHTML = notes.map((n, idx) => `
+        <div class="bg-slate-800 p-2 rounded-lg flex justify-between items-center text-slate-200">
+          <span>• ${n}</span>
+          <button onclick="deleteGrammarNote('${key}', ${idx})" class="text-red-400 font-bold px-1">✕</button>
+        </div>
+      `).join('');
+    }
+
+    function deleteGrammarNote(key, idx) {
+      if (state.customNotes[key]) {
+        state.customNotes[key].splice(idx, 1);
+        localStorage.setItem('mousa_notes', JSON.stringify(state.customNotes));
+        renderGrammarNotes(key);
+      }
+    }
+
+    function closeGrammarDetail() {
+      document.getElementById('grammarDetailModal').classList.add('hidden');
+    }
+
+    /* SILENT LETTERS MODULE LOGIC */
+    function formatSilentGlow(word, silent) {
+      const regex = new RegExp(`(${silent})`, 'gi');
+      let replaced = false;
+      return word.replace(regex, (match) => {
+        if (!replaced) {
+          replaced = true;
+          return `<span class="silent-highlight">${match}</span>`;
+        }
+        return match;
+      });
+    }
+
+    function renderSilentWordsGrid() {
+      const container = document.getElementById('silentWordsGrid');
+      container.innerHTML = '';
+
+      const filtered = SILENT_WORDS_DATABASE.filter(item => {
+        const matchesLetter = state.silentLetterFilter === 'ALL' || item.silent === state.silentLetterFilter;
+        const matchesCategory = state.silentCategoryFilter === 'ALL' || item.category === state.silentCategoryFilter;
+        const matchesSearch = item.word.toLowerCase().includes(state.silentSearchQuery.toLowerCase()) ||
+                              item.phonetic.toLowerCase().includes(state.silentSearchQuery.toLowerCase()) ||
+                              item.arabic.includes(state.silentSearchQuery);
+        return matchesLetter && matchesCategory && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400">لم يتم العثور على كلمات مطابقة.</div>`;
+        return;
+      }
+
+      filtered.forEach(item => {
+        const isFav = state.bookmarks.includes(`s_${item.id}`);
+        const formattedWord = formatSilentGlow(item.word, item.silent);
+
+        const card = document.createElement('div');
+        card.className = 'glass-panel p-5 flex flex-col justify-between space-y-3';
+        card.innerHTML = `
+          <div>
+            <div class="flex justify-between items-center text-xs font-bold mb-2">
+              <span class="px-2.5 py-1 rounded-full bg-slate-800 text-pink-300 border border-slate-700">${item.category}</span>
+              <button onclick="toggleBookmark('s_${item.id}')" class="text-base ${isFav ? 'text-rose-500' : 'text-slate-500 hover:text-slate-300'}">
+                <i class="fa-${isFav ? 'solid' : 'regular'} fa-heart"></i>
+              </button>
+            </div>
+
+            <div class="flex justify-between items-baseline my-1">
+              <h3 class="text-2xl font-black text-white">${formattedWord}</h3>
+              <span class="text-xs font-black text-rose-400">Silent [${item.silent}]</span>
+            </div>
+
+            <div class="inline-block px-3 py-1 rounded-xl bg-slate-900/80 border border-slate-800 font-mono text-xs text-indigo-300">
+              /${item.phonetic}/
+            </div>
+
+            <div class="text-lg font-black text-amber-400 font-arabic my-1">${item.arabic}</div>
+            <p class="text-xs italic text-slate-300 border-r-2 border-pink-400 pr-2">"${item.example}"</p>
+          </div>
+
+          <div class="pt-3 border-t border-slate-800 flex justify-between items-center">
+            <button onclick="speakWord('${item.word}')" class="px-3 py-1.5 bg-pink-500 text-slate-950 font-bold rounded-xl text-xs hover:scale-105 transition-transform flex items-center gap-1">
+              <i class="fa-solid fa-play"></i> نطق
+            </button>
+            <button onclick="speakWord('${item.word}', 0.65)" class="px-2.5 py-1.5 bg-slate-800 text-slate-300 font-bold rounded-xl text-[11px] hover:bg-slate-700">
+              بطيء 🐢
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    /* FLASHCARDS ENGINE */
+    function setupFlashcards() {
+      const fcCard = document.getElementById('silentFlashcardCard');
+      fcCard.addEventListener('click', () => {
+        document.getElementById('fcInner').classList.toggle('flipped');
+      });
+
+      document.getElementById('fcNextBtn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        state.flashcardIdx = (state.flashcardIdx + 1) % SILENT_WORDS_DATABASE.length;
+        document.getElementById('fcInner').classList.remove('flipped');
+        updateFlashcardView();
+      });
+
+      document.getElementById('fcPrevBtn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        state.flashcardIdx = (state.flashcardIdx - 1 + SILENT_WORDS_DATABASE.length) % SILENT_WORDS_DATABASE.length;
+        document.getElementById('fcInner').classList.remove('flipped');
+        updateFlashcardView();
+      });
+
+      document.getElementById('fcAudioBtn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        const cur = SILENT_WORDS_DATABASE[state.flashcardIdx];
+        speakWord(cur.word);
+      });
+
+      updateFlashcardView();
+    }
+
+    function updateFlashcardView() {
+      const cur = SILENT_WORDS_DATABASE[state.flashcardIdx];
+      document.getElementById('fcCategory').textContent = cur.category;
+      document.getElementById('fcWord').textContent = cur.word;
+      document.getElementById('fcSilent').textContent = `Silent Letter: [ ${cur.silent} ]`;
+      document.getElementById('fcPhonetic').textContent = `/${cur.phonetic}/`;
+      document.getElementById('fcArabic').textContent = cur.arabic;
+      document.getElementById('fcExample').textContent = `"${cur.example}"`;
+      document.getElementById('fcIndex').textContent = `${state.flashcardIdx + 1} / ${SILENT_WORDS_DATABASE.length}`;
+    }
+
+    /* QUIZ ENGINES (SILENT & GLOBAL HARD CHALLENGE) */
+    function startSilentQuiz() {
+      const shuffled = [...SILENT_WORDS_DATABASE].sort(() => 0.5 - Math.random()).slice(0, 10);
+      
+      state.sQuiz.questions = shuffled.map(item => {
+        const wrongOpts = SILENT_WORDS_DATABASE
+          .filter(w => w.silent !== item.silent)
+          .sort(() => 0.5 - Math.random())
+          .slice(0, 3)
+          .map(w => w.silent);
+
+        const options = [...new Set([item.silent, ...wrongOpts])].sort(() => 0.5 - Math.random());
+        return { word: item.word, correct: item.silent, phonetic: item.phonetic, options };
+      });
+
+      state.sQuiz.currentIdx = 0;
+      state.sQuiz.score = 0;
+      state.sQuiz.active = true;
+
+      document.getElementById('sQuizIntro').classList.add('hidden');
+      document.getElementById('sQuizResult').classList.add('hidden');
+      document.getElementById('sQuizActive').classList.remove('hidden');
+
+      renderSilentQuizQuestion();
+    }
+
+    function renderSilentQuizQuestion() {
+      const q = state.sQuiz.questions[state.sQuiz.currentIdx];
+      document.getElementById('sqQuestionNum').textContent = `سؤال ${state.sQuiz.currentIdx + 1}/10`;
+      document.getElementById('sqScoreDisplay').textContent = `النقاط: ${state.sQuiz.score}`;
+      document.getElementById('sqProgressBar').style.width = `${((state.sQuiz.currentIdx) / 10) * 100}%`;
+      document.getElementById('sqQuestionText').innerHTML = `ما هو <strong>الحرف الصامت</strong> في كلمة: <span class="text-pink-400">"${q.word}"</span> (/${q.phonetic}/)؟`;
+
+      const grid = document.getElementById('sqOptionsGrid');
+      grid.innerHTML = '';
+
+      q.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'glass-panel p-3 text-sm font-black text-white hover:border-pink-400 transition-all';
+        btn.textContent = `Silent "${opt}"`;
+        btn.onclick = () => handleSilentQuizAnswer(btn, opt, q.correct, q.word);
+        grid.appendChild(btn);
+      });
+    }
+
+    function handleSilentQuizAnswer(btn, chosen, correct, word) {
+      const allBtns = document.querySelectorAll('#sqOptionsGrid button');
+      allBtns.forEach(b => b.disabled = true);
+
+      if (chosen === correct) {
+        btn.classList.add('bg-emerald-500/30', 'border-emerald-400', 'text-emerald-300');
+        state.sQuiz.score += 10;
+        state.xp += 5;
+        saveState();
+        speakWord(word);
+      } else {
+        btn.classList.add('bg-rose-500/30', 'border-rose-400', 'text-rose-300');
+      }
+
+      setTimeout(() => {
+        state.sQuiz.currentIdx++;
+        if (state.sQuiz.currentIdx < 10) {
+          renderSilentQuizQuestion();
+        } else {
+          finishSilentQuiz();
+        }
+      }, 1200);
+    }
+
+    function finishSilentQuiz() {
+      document.getElementById('sQuizActive').classList.add('hidden');
+      document.getElementById('sQuizResult').classList.remove('hidden');
+
+      const finalPct = (state.sQuiz.score / 100) * 100;
+      document.getElementById('sqFinalScore').textContent = `النتيجة: ${finalPct}% (${state.sQuiz.score} XP)`;
+      document.getElementById('sqFeedbackText').textContent = finalPct >= 80 ? 'ممتاز جداً! لقد أتقنت اختبار الكلمات الصامتة.' : 'محاولة جيدة، راجع بطاقات الكلمات الصامتة لتحسين مستواك.';
+    }
+
+    /* GLOBAL HARD CHALLENGE (MIXED QUIZ) */
+    function openGlobalChallenge() {
+      const modal = document.getElementById('globalChallengeModal');
+      const container = document.getElementById('gChallengeContent');
+      
+      const questions = [];
+
+      Object.keys(GRAMMAR_DATABASE).forEach(k => {
+        GRAMMAR_DATABASE[k].quiz.forEach(q => {
+          questions.push({ type: 'grammar', title: `قواعد (${k})`, q: q.question, opts: q.options, correct: q.correct, exp: q.explanation });
+        });
+      });
+
+      SILENT_WORDS_DATABASE.slice(0, 10).forEach(s => {
+        questions.push({
+          type: 'silent',
+          title: `حروف صامتة (${s.word})`,
+          q: `ما هو الحرف الصامت في كلمة "${s.word}"؟`,
+          opts: [s.silent, 'K', 'W', 'B'].sort(() => 0.5 - Math.random()),
+          correct: 0,
+          exp: `الحرف الصامت هو ${s.silent}`
+        });
+      });
+
+      const shuffled = questions.sort(() => 0.5 - Math.random()).slice(0, 5);
+      let curIdx = 0;
+      let score = 0;
+
+      function renderChallengeQ() {
+        if (curIdx >= shuffled.length) {
+          container.innerHTML = `
+            <div class="text-center space-y-4 py-4">
+              <i class="fa-solid fa-trophy text-6xl text-amber-400"></i>
+              <h3 class="text-2xl font-black text-white">اكتمل التحدي الشامل بنجاح!</h3>
+              <p class="text-lg font-bold text-sky-300">مجموع النقاط المكتسبة: ${score * 20} XP</p>
+              <button onclick="closeGlobalChallenge()" class="px-6 py-2.5 bg-sky-500 text-slate-950 font-black rounded-xl text-xs">إغلاق</button>
+            </div>
+          `;
+          state.xp += score * 20;
+          saveState();
+          return;
+        }
+
+        const q = shuffled[curIdx];
+        container.innerHTML = `
+          <div>
+            <span class="text-xs font-bold text-pink-400">🔥 التحدي الشامل - سؤال ${curIdx + 1}/${shuffled.length} (${q.title})</span>
+            <h4 class="text-base font-bold text-white mt-2">${q.q}</h4>
+          </div>
+          <div class="space-y-2 my-4">
+            ${q.opts.map((opt, idx) => `
+              <button onclick="handleChallengeOpt(${idx}, ${q.correct}, '${q.exp.replace(/'/g, "\\'")}')" class="chal-btn w-full p-3 rounded-xl glass-panel text-xs text-right font-bold text-slate-200 hover:border-sky-400">
+                ${String.fromCharCode(65 + idx)}) ${opt}
+              </button>
+            `).join('')}
+          </div>
+          <div id="chalFeedback" class="text-xs font-bold"></div>
+        `;
+      }
+
+      window.handleChallengeOpt = (selected, correctIdx, exp) => {
+        const btns = document.querySelectorAll('.chal-btn');
+        btns.forEach(b => b.disabled = true);
+        const fb = document.getElementById('chalFeedback');
+
+        if (selected === correctIdx) {
+          btns[selected].classList.add('bg-emerald-500/30', 'border-emerald-400');
+          fb.innerHTML = `<span class="text-emerald-400">✅ إجابة صحيحة! ${exp}</span>`;
+          score++;
+        } else {
+          btns[selected].classList.add('bg-rose-500/30', 'border-rose-400');
+          fb.innerHTML = `<span class="text-rose-400">❌ إجابة خاطئة! ${exp}</span>`;
+        }
+
+        setTimeout(() => {
+          curIdx++;
+          renderChallengeQ();
+        }, 2000);
+      };
+
+      renderChallengeQ();
+      modal.classList.remove('hidden');
+    }
+
+    function closeGlobalChallenge() {
+      document.getElementById('globalChallengeModal').classList.add('hidden');
+    }
+
+    /* GLOBAL SEARCH ENGINE */
+    function setupGlobalSearch() {
+      const input = document.getElementById('globalSearchInput');
+      const resultsDiv = document.getElementById('searchResults');
+
+      input.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        if (!query) {
+          resultsDiv.classList.add('hidden');
+          return;
+        }
+
+        const matchesGrammar = Object.keys(GRAMMAR_DATABASE).filter(k => 
+          k.toLowerCase().includes(query) || GRAMMAR_DATABASE[k].definition.ar.includes(query)
+        );
+
+        const matchesSilent = SILENT_WORDS_DATABASE.filter(w => 
+          w.word.toLowerCase().includes(query) || w.arabic.includes(query)
+        );
+
+        if (matchesGrammar.length === 0 && matchesSilent.length === 0) {
+          resultsDiv.innerHTML = `<div class="p-3 text-center text-xs text-slate-400">لا توجد نتائج مطابقة</div>`;
+        } else {
+          let html = '';
+          matchesGrammar.forEach(k => {
+            html += `
+              <div onclick="switchMainHub('grammar'); openGrammarDetail('${k}')" class="p-2.5 hover:bg-slate-800 rounded-xl cursor-pointer text-xs font-bold text-sky-300 flex justify-between">
+                <span>📘 قاعدة: ${k}</span>
+                <span class="text-slate-400 font-normal">عرض</span>
+              </div>
+            `;
+          });
+          matchesSilent.forEach(w => {
+            html += `
+              <div onclick="switchMainHub('silent'); speakWord('${w.word}')" class="p-2.5 hover:bg-slate-800 rounded-xl cursor-pointer text-xs font-bold text-pink-300 flex justify-between">
+                <span>𝑲 كلمة صامتة: ${w.word} (${w.arabic})</span>
+                <span class="text-slate-400 font-normal">استمع 🔊</span>
+              </div>
+            `;
+          });
+          resultsDiv.innerHTML = html;
+        }
+        resultsDiv.classList.remove('hidden');
+      });
+    }
+
+    /* UTILITIES & EVENT LISTENERS */
+    function toggleBookmark(key) {
+      const idx = state.bookmarks.indexOf(key);
+      if (idx > -1) {
+        state.bookmarks.splice(idx, 1);
+        showToast('تمت الإزالة من المفضلة');
+      } else {
+        state.bookmarks.push(key);
+        showToast('تم الحفظ في المفضلة ⭐');
+      }
+      saveState();
+      renderGrammarCards();
+      renderSilentWordsGrid();
+    }
+
+    function updateXpAndStats() {
+      document.getElementById('totalXpCount').textContent = state.xp;
+      document.getElementById('statTotalXpDisplay').textContent = state.xp;
+      document.getElementById('statGrammarDone').textContent = `${state.grammarCompleted.length} / 30`;
+      document.getElementById('statBookmarksCount').textContent = state.bookmarks.length;
+
+      const rankTitle = document.getElementById('rankBadgeTitle');
+      if (state.xp >= 300) rankTitle.textContent = '𝑴𝑶𝑼𝑺𝑨 Legend 👑';
+      else if (state.xp >= 150) rankTitle.textContent = '𝑴𝑶𝑼𝑺𝑨 Ninja 🥷';
+      else if (state.xp >= 50) rankTitle.textContent = '𝑴𝑶𝑼𝑺𝑨 Scholar 🎓';
+      else rankTitle.textContent = '𝑴𝑶𝑼𝑺𝑨 Novice ✍️';
+    }
+
+    function saveState() {
+      localStorage.setItem('mousa_xp', state.xp);
+      localStorage.setItem('mousa_bookmarks', JSON.stringify(state.bookmarks));
+      localStorage.setItem('mousa_g_completed', JSON.stringify(state.grammarCompleted));
+      updateXpAndStats();
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toastNotification');
+      document.getElementById('toastMsg').textContent = msg;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => toast.classList.add('translate-y-20', 'opacity-0'), 2500);
+    }
+
+    function setupEventListeners() {
+      document.getElementById('navBrandLogo').onclick = () => switchMainHub('home');
+      document.getElementById('bcHomeLink').onclick = () => switchMainHub('home');
+
+      document.getElementById('themeSelect').addEventListener('change', (e) => {
+        document.documentElement.setAttribute('data-theme', e.target.value);
+        state.theme = e.target.value;
+      });
+
+      document.getElementById('btnGlobalChallenge').onclick = openGlobalChallenge;
+
+      document.getElementById('btnLangToggle').onclick = () => {
+        state.lang = state.lang === 'ar' ? 'en' : 'ar';
+        document.getElementById('langIcon').textContent = state.lang === 'ar' ? '🇸🇦' : '🇬🇧';
+        document.getElementById('langText').textContent = state.lang === 'ar' ? 'العربية' : 'EN';
+        document.documentElement.dir = state.lang === 'ar' ? 'rtl' : 'ltr';
+        renderGrammarCards();
+      };
+
+      document.querySelectorAll('.g-cat-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.g-cat-btn').forEach(b => b.classList.replace('text-sky-300', 'text-slate-300'));
+          btn.classList.replace('text-slate-300', 'text-sky-300');
+          state.grammarCategory = btn.dataset.cat;
+          renderGrammarCards();
+        });
+      });
+
+      document.querySelectorAll('.s-nav-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.s-nav-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const tab = btn.dataset.stab;
+          document.getElementById('sTabLibrary').classList.add('hidden');
+          document.getElementById('sTabFlashcards').classList.add('hidden');
+          document.getElementById('sTabQuiz').classList.add('hidden');
+
+          if (tab === 'library') document.getElementById('sTabLibrary').classList.remove('hidden');
+          if (tab === 'flashcards') document.getElementById('sTabFlashcards').classList.remove('hidden');
+          if (tab === 'quiz') document.getElementById('sTabQuiz').classList.remove('hidden');
+        });
+      });
+
+      document.getElementById('silentSearchInput').addEventListener('input', (e) => {
+        state.silentSearchQuery = e.target.value;
+        renderSilentWordsGrid();
+      });
+
+      document.getElementById('silentLetterFilter').addEventListener('change', (e) => {
+        state.silentLetterFilter = e.target.value;
+        renderSilentWordsGrid();
+      });
+
+      document.getElementById('silentCategoryFilter').addEventListener('change', (e) => {
+        state.silentCategoryFilter = e.target.value;
+        renderSilentWordsGrid();
+      });
+
+      document.getElementById('voiceAccentSelect').addEventListener('change', (e) => {
+        state.voiceAccent = e.target.value;
+      });
+
+      document.querySelectorAll('#silentChipsBar .chip-btn').forEach(chip => {
+        chip.addEventListener('click', () => {
+          document.querySelectorAll('#silentChipsBar .chip-btn').forEach(c => c.classList.remove('active', 'text-pink-300'));
+          chip.classList.add('active', 'text-pink-300');
+          state.silentLetterFilter = chip.dataset.letter;
+          document.getElementById('silentLetterFilter').value = chip.dataset.letter;
+          renderSilentWordsGrid();
+        });
+      });
+
+      document.getElementById('btnStartSilentQuiz').onclick = startSilentQuiz;
+      document.getElementById('btnRestartSilentQuiz').onclick = startSilentQuiz;
+
+      setupGlobalSearch();
+    }
+
+    /* BACKGROUND PARTICLES ANIMATION CANVAS */
+    function initParticles() {
+      const canvas = document.getElementById('bg-particles');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      for (let i = 0; i < 45; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 2 + 1,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          alpha: Math.random() * 0.5 + 0.2
+        });
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < 0) p.x = canvas.width;
+          if (p.x > canvas.width) p.x = 0;
+          if (p.y < 0) p.y = canvas.height;
+          if (p.y > canvas.height) p.y = 0;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(56, 189, 248, ${p.alpha})`;
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = '#38bdf8';
+          ctx.fill();
+        });
+        requestAnimationFrame(animate);
+      }
+      animate();
+    }
+  </script>
 </body>
 </html>
